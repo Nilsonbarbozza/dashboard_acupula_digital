@@ -18,9 +18,13 @@
       <!-- Esquerda: Hamburguer + Nome -->
       <div class="flex items-center space-x-2">
         <!-- Botão Hamburguer -->
-        <button class="text-gray-600 focus:outline-none">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <button id="menuToggle" class="text-gray-600 focus:outline-none">
+          <svg id="iconOpen" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!-- Ícone X -->
+          <svg id="iconClose" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
         <span class="text-gray-600 Text-fontSize--16 Text-fontWeight--medium Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">A CÚPULA DIGITAL</span>
@@ -215,7 +219,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="db-DailyComparison-charts">
+                            <div class="db-DailyComparison-charts" style="position: relative; z-index: 0;">
                               <div class="db-SparklineStack" data-testid="SparkLineStack">
                                 <div class="db-SparklineStack-child">
                                   <div class="db-ChartGrid">
@@ -554,8 +558,8 @@
       <div class="⚙ as-0 as-c2 as-bz as-c0 ⚙1h4mbjq sf-hidden" data-moduleid="home-tasks" data-slotid="home-tasks"
         data-testid="bento-module-chrome">
       </div>
-      <div class="⚙ ⚙1o46n01" data-bento-id="__SECTION_LAYOUT__home-custom-section" data-testid="bento-section">
-        <div class="⚙">
+      <div class="sticky top-16 z-0 md:z-40" data-bento-id="__SECTION_LAYOUT__home-custom-section" data-testid="bento-section">
+        <div class="sticky top-16 z-30 md:z-40">
           <div class="⚙ rs-2 as-x as-86 ⚙1kxl459">
             <h1 class="⚙ rs-3 as-bl as-bm as-bn as-1u ⚙bvgvth">
               <span>
@@ -563,7 +567,7 @@
               </span>
             </h1>
           </div>
-          <div class="sticky top-17 z-40 bg-white rs-2 as-7w as-6h as-35 as-c3 as-x as-1m as-4g as-5i as-6j as-6k as-8w as-8v as-6l as-6m as-c4 as-c5 as-c6 as-c7 as-c8 as-c9 as-ca as-bn as-cb as-cc ⚙to2cba">
+          <div class="rs-2 as-7w as-6h as-35 as-c3 as-x as-1m as-4g as-5i as-6j as-6k as-8w as-8v as-6l as-6m as-c4 as-c5 as-c6 as-c7 as-c8 as-c9 as-ca as-bn as-cb as-cc ⚙to2cba">
             <div class="account-charts-controls ⚙ rs-2 as-x as-cd as-4f as-bd as-1m ⚙1pkxhse" role="toolbar">
               <div class="⚙">
                 <div class="⚙ rs-3 as-ce as-cf as-8h as-cg as-ch as-ci ⚙1elb4ie">
@@ -1357,17 +1361,16 @@
     <!--START barra navegacao lateral-->
     <!--START inicio area de navegacao-->
     <!--START Content navegation fixed-->
-    <div
-      class="sn-token-provider ⚙ as-2u as-5 as-39 as-9 as-4 as-3a as-36 as-18 as-3b as-3c as-3d ⚙11dxm5x sn-182o7r0 sn-1494dug"
+    <div id="sidebar" class="fixed inset-1 w-auto h-auto z-50 hidden md:block sn-token-provider ⚙ as-2u as-5 as-39 as-9 as-4 as-3a as-36 as-18 as-3b as-3c as-3d ⚙11dxm5x sn-182o7r0 sn-1494dug"
       data-ios-body-scroll-lock="false" data-overlay-container="true" data-testid="default-chrome">
-      <div class="hidden md:block db-chrome-background ⚙ as-9 as-2q as-35 as-36 as-5 as-3e as-3f as-3g as-3h ⚙1utg9dx">
+      <div class="db-chrome-background ⚙ as-9 as-2q as-35 as-36 as-5 as-3e as-3f as-3g as-3h ⚙1utg9dx">
         <div class="⚙ rs-2 as-x as-17 as-1m as-3i as-3j as-3k ⚙1rh9yih">
           <!-- Header -->
           <header class="db-ChromeHeader-accountSwitcher" data-testid="v2-account-switcher" style="width:100%">
             <div aria-expanded="false" aria-haspopup="menu" class="⚙" id=":r19:">
               <a aria-expanded="false" aria-haspopup="true" aria-label="Op&ccedil;&otilde;es e alternador de conta"
                 class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-1m as-b0 as-b1 as-54 as-b2 as-23 as-b3 as-b4 as-b5 as-x as-4s as-b6 as-5o ⚙19563fo"
-                data-testid="account-switcher-trigger" role="button" tabindex="1" title="FLASH SALE">
+                data-testid="account-switcher-trigger" role="button" tabindex="1" title="A CÚPULA DIGITAL">
                 <div class="⚙ as-b7 ⚙1ujo9jp">
                   <div class="⚙" data-testid="account-icon">
                     <div class="⚙ rs-2 as-x as-1m as-1l as-b8 as-d as-0 as-b9 as-ba as-bb as-3o ⚙bv7vt6"
@@ -1400,6 +1403,28 @@
           <div class="sn-token-provider ⚙ t0 t1 as-0 as-2q as-3x ⚙p82mdo">
             <nav class="⚙ rs-2 as-r as-2n as-2q as-3y as-3z as-3i as-3j as-0 as-40 ⚙jyefbu"
               data-contentbucket="primarynav" data-testid="primary-nav" id="primary-nav" style="padding-bottom:0px">
+              <div class="block md:hidden flex flex-row items-center justify-center p-4 border-b border-s-15xulsv">
+                <!--elemento apenas para mobile-->
+                <a aria-expanded="false" aria-haspopup="true" aria-label="Op&ccedil;&otilde;es e alternador de conta"
+                  class="flex flex-col items-center gap-2 space-x-4 text-sm font-medium text-s-1hldvhn"
+                  data-testid="account-switcher-trigger" role="button" tabindex="1" title="A CÚPULA DIGITAL">
+                  <div class="⚙ as-b7 ⚙1ujo9jp">
+                    <div class="⚙" data-testid="account-icon">
+                      <div class="⚙ rs-2 as-x as-1m as-1l as-b8 as-d as-0 as-b9 as-ba as-bb as-3o ⚙bv7vt6"
+                        data-testid="raw-account-avatar">
+                        <span class="⚙ rs-3 as-5b as-54 as-bc ⚙1x72x6k">
+                        A
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="⚙ rs-2 as-x as-bd as-1m as-8o ⚙1fho688">
+                    <div class="flex justify-center rs-3 as-d as-59 as-1n as-be ⚙1g6oqda" data-testid="account-switcher-trigger-title">
+                    A CÚPULA DIGITAL
+                    </div>
+                  </div>
+                </a>
+              </div>
               <section aria-label="Links de navega&ccedil;&atilde;o principais" class="⚙ rs-2 as-r ⚙wsfqcn"
                 id="core-nav">
                 <ul aria-label="Links de navega&ccedil;&atilde;o principais" class="⚙ rs-2 as-r ⚙wsfqcn"
@@ -1424,7 +1449,7 @@
                           </svg>
                         </span>
                         <span class="⚙ as-58 as-d as-0 as-1n as-59 ⚙1sff4e6">
-                          P&aacute;gina inicial
+                          Pagina inicial
                         </span>
                       </span>
                     </a>
@@ -1912,11 +1937,9 @@
       <div class="hidden md:block rs-2 as-x as-2q as-35 as-1m as-5 as-3e as-6u ⚙pufog4">
         <div class="hidden md:block as-9 as-2q as-6v as-4 as-4z as-6e as-1e as-6w as-6x as-6y as-6z ⚙1jb083f">
         </div>
-        <a aria-expanded="true" aria-label="Menu de navegação de alternancia"
-          class="toggle-nav-collapsed ⚙ rs-4 rs-3 rs-9 as-1i as-1j as-1k as-4n as-5g as-9 as-70 as-71 as-0 as-72 as-73 as-74 ⚙26eyby"
-          role="button" style="isolation:isolate" tabindex="1">
+        <a aria-expanded="true" aria-label="Menu de navegação de alternancia" class="toggle-nav-collapsed ⚙ rs-4 rs-3 rs-9 as-1i as-1j as-1k as-4n as-5g as-9 as-70 as-71 as-0 as-72 as-73 as-74 ⚙26eyby" role="button" style="isolation:isolate" tabindex="1">
           <div
-            class="hidden md:block⚙ rs-c as-75 as-53 as-5 as-72 as-76 as-4z as-6e as-1e as-77 as-78 as-79 as-7a as-7b ⚙185jdpn">
+            class="hidden md:block rs-c as-75 as-53 as-5 as-72 as-76 as-4z as-6e as-1e as-77 as-78 as-79 as-7a as-7b ⚙185jdpn">
             <div
               class="hidden md:block as-7c as-7d as-7e as-5 as-7f as-4z as-1e as-7g as-7h as-7i as-7j as-7k as-7l as-7m as-7n as-7o as-7p as-7q as-7r ⚙1gll4f8">
             </div>
@@ -2076,5 +2099,25 @@
     <!--FIM Content navigation-->
   </main>
 </body>
+<!-- SCRIPT -->
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const iconOpen = document.getElementById("iconOpen");
+  const iconClose = document.getElementById("iconClose");
+  const sidebar = document.getElementById("sidebar");
 
+  menuToggle.addEventListener("click", () => {
+    const isHidden = sidebar.classList.contains("hidden");
+
+    if (isHidden) {
+      sidebar.classList.remove("hidden");
+      iconOpen.classList.add("hidden");
+      iconClose.classList.remove("hidden");
+    } else {
+      sidebar.classList.add("hidden");
+      iconOpen.classList.remove("hidden");
+      iconClose.classList.add("hidden");
+    }
+  });
+</script>
 </html>
