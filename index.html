@@ -14,44 +14,49 @@
 <body class="overflow-x-hidden">
   <header>
     <!-- Mobile Navbar -->
-    <nav class="fixed top-0 left-0 w-full h-14 bg-white px-4 py-3 flex items-center justify-between md:hidden z-50">
+    <nav class="fixed top-0 left-0 bg-white w-full h-17 px-5 py-7 flex items-center justify-between z-50 md:hidden ">
       <!-- Esquerda: Hamburguer + Nome -->
       <div class="flex items-center space-x-2">
         <!-- Botão Hamburguer -->
-        <button class="text-gray-800 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <button class="text-gray-600 focus:outline-none">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <span class="text-black font-semibold text-base">A CÚPULA DIGITAL</span>
+        <span class="text-gray-600 Text-fontSize--16 Text-fontWeight--medium Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">A CÚPULA DIGITAL</span>
       </div>
 
       <!-- Direita: Notificação + Pesquisa -->
-      <div class="flex items-center space-x-4">
-        <!-- Botão Notificação -->
-        <button class="text-gray-800 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405
-      A2.032 2.032 0 0118 14.158V11a6.002 
-      6.002 0 00-4-5.659V5a2 2 0 10-4 
-      0v.341C7.67 6.165 6 8.388 6 
-      11v3.159c0 .538-.214 1.055-.595 
-      1.436L4 17h5m6 0v1a3 3 0 11-6 
-      0v-1m6 0H9" />
-          </svg>
-        </button>
-
-        <!-- Botão Pesquisa -->
-        <button class="text-gray-800 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 
-      7.5 0 1110.5 3a7.5 7.5 0 
-      016.15 13.65z" />
-          </svg>
-        </button>
+      <div class="flex flex-row items-center justify-center gap-4">
+        <div class="flex flex-row items-center justify-center">
+          <!-- Botão Notificação -->
+          <a aria-expanded="false" aria-label="Notifica&ccedil;&otilde;es"
+            class="flex flex-col items-center justify-center w-10 h-10 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙4jchy7"
+            data-testid="chrome-notifications" role="button" style="isolation:isolate" tabindex="1">
+            <svg aria-hidden="true"
+                class="w-6 h-6 text-gray-700"
+                viewBox="0 0 19 19"
+                xmlns="http://www.w3.org/2000/svg">
+              <path clip-rule="evenodd" fill-rule="evenodd"
+                d="M5.005 13H2.79a1.792 1.792 0 0 1-1.628-2.532l.477-1.051a11.583 11.583 0 0 0 1.01-4.018l.027-.41A5.34 5.34 0 0 1 8 0a5.34 5.34 0 0 1 5.324 4.989l.027.41a11.6 11.6 0 0 0 1.01 4.018l.477 1.05A1.787 1.787 0 0 1 13.21 13h-2.215c0 1.657-1.34 3-2.995 3a2.997 2.997 0 0 1-2.995-3Zm-2.48-1.912.478-1.05a13.086 13.086 0 0 0 1.14-4.539l.027-.41A3.84 3.84 0 0 1 8 1.5a3.84 3.84 0 0 1 3.83 3.589l.027.41c.104 1.57.49 3.107 1.14 4.538l.477 1.051a.291.291 0 0 1-.264.412H2.79a.291.291 0 0 1-.264-.412ZM6.504 13a1.499 1.499 0 1 0 2.995 0H6.503Z" />
+            </svg>
+          </a>
+        </div>
+        <div class="flex items-center">
+          <!-- Botão Notificação -->
+          <a aria-expanded="false" aria-label="Search"
+            class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙4jchy7"
+            data-testid="chrome-notifications" role="button"  style="isolation:isolate" tabindex="1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto flex items-center justify-center w-6 h-6 text-gray-700" viewBox="0 0 30 30">
+              <path 
+              d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"
+              fill-rule="evenodd">
+              </path>
+            </svg>
+          </a>
+        </div>
       </div>
     </nav>
-
 
   </header>
   <!-- Main Content -->
@@ -371,62 +376,12 @@
                                 </div>
                               </div>
                               <!-- Main Content -->
-                              <section
-                                class="Box-root Padding-top--4 Flex-flex Flex-direction--row Flex-justifyContent--spaceBetween Flex-wrap--nowrap"
-                                style="position:relative">
-                                <div class=" flex flex-row Box-root Padding-right--20 gap-1" dir="ltr">
+                              <section class="" style="position:relative">
+                                <div class="flex flex-row justify-between items-center" dir="ltr">
                                   <span
                                     class="md:pe-8 pe-2 Tsext-color--gray Text-fontSize--12 Text-fontWeight--regular Text-lineHeight--16 Text-numericSpacing--proportional Text-typeface--base Text-wrap--noWrap Text-display--inline">
                                     <span style="font-variant-numeric:tabular-nums">
                                       00:00
-                                    </span>
-                                  </span>
-                                  <span
-                                    class="md:pe-8 pe-2 Text-color--gray Text-fontSize--12 Text-fontWeight--regular Text-lineHeight--16 Text-numericSpacing--proportional Text-typeface--base Text-wrap--noWrap Text-display--inline">
-                                    <span style="font-variant-numeric:tabular-nums">
-                                      06:00
-                                    </span>
-                                  </span>
-                                  <span
-                                    class="md:pe-8 pe-2 Text-color--gray Text-fontSize--12 Text-fontWeight--regular Text-lineHeight--16 Text-numericSpacing--proportional Text-typeface--base Text-wrap--noWrap Text-display--inline">
-                                    <span style="font-variant-numeric:tabular-nums">
-                                      08:00
-                                    </span>
-                                  </span>
-                                  <span
-                                    class="md:pe-8 pe-2 Text-color--gray Text-fontSize--12 Text-fontWeight--regular Text-lineHeight--16 Text-numericSpacing--proportional Text-typeface--base Text-wrap--noWrap Text-display--inline">
-                                    <span style="font-variant-numeric:tabular-nums">
-                                      10:00
-                                    </span>
-                                  </span>
-                                  <span
-                                    class="md:pe-8 pe-2 Text-color--gray Text-fontSize--12 Text-fontWeight--regular Text-lineHeight--16 Text-numericSpacing--proportional Text-typeface--base Text-wrap--noWrap Text-display--inline">
-                                    <span style="font-variant-numeric:tabular-nums">
-                                      12:00
-                                    </span>
-                                  </span>
-                                  <span
-                                    class="md:pe-8 pe-2 Text-color--gray Text-fontSize--12 Text-fontWeight--regular Text-lineHeight--16 Text-numericSpacing--proportional Text-typeface--base Text-wrap--noWrap Text-display--inline">
-                                    <span style="font-variant-numeric:tabular-nums">
-                                      16:00
-                                    </span>
-                                  </span>
-                                  <span
-                                    class="md:pe-8 pe-2 Text-color--gray Text-fontSize--12 Text-fontWeight--regular Text-lineHeight--16 Text-numericSpacing--proportional Text-typeface--base Text-wrap--noWrap Text-display--inline">
-                                    <span style="font-variant-numeric:tabular-nums">
-                                      18:00
-                                    </span>
-                                  </span>
-                                  <span
-                                    class="md:pe-8 pe-2 Text-color--gray Text-fontSize--12 Text-fontWeight--regular Text-lineHeight--16 Text-numericSpacing--proportional Text-typeface--base Text-wrap--noWrap Text-display--inline">
-                                    <span style="font-variant-numeric:tabular-nums">
-                                      20:00
-                                    </span>
-                                  </span>
-                                  <span
-                                    class="md:pe-8 pe-2 Text-color--gray Text-fontSize--12 Text-fontWeight--regular Text-lineHeight--16 Text-numericSpacing--proportional Text-typeface--base Text-wrap--noWrap Text-display--inline">
-                                    <span style="font-variant-numeric:tabular-nums">
-                                      22:00
                                     </span>
                                   </span>
                                   <span
@@ -442,7 +397,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="Box-root Flex-flex flex-row md:flex-col gap-20 md:gap-2" style="flex:1 1 0%">
+                        <div class="Box-root Flex-flex flex-row md:flex-col gap-8 md:gap-2" style="flex:1 1 0%">
                           <div
                             class="Box-root border-b-0 md:border-b md:border-gray-200 Padding-right--0 Padding-bottom--20 md:p-5"
                             style="flex:1 1 0%">
@@ -524,7 +479,7 @@
                               style="height:100%">
                               <!-- Main Content -->
                               <section
-                                class="Box-root Flex-flex Flex-direction--row md:justify-between gap-1 Flex-wrap--wrap">
+                                class="flex flex-row justify-between Flex-wrap--wrap">
                                 <span
                                   class="Text-color--default Text-fontSize--14 Text-fontWeight--medium Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
                                   <span>
@@ -573,7 +528,7 @@
                                       <span>
                                         Depositado em
                                         <span style="font-variant-numeric:tabular-nums">
-                                          2 de ago. de 2025
+                                          2 de ago.<br> de 2025
                                         </span>
                                       </span>
                                     </span>
@@ -608,7 +563,7 @@
               </span>
             </h1>
           </div>
-          <div class="sticky top-14 bg-white border-b z-40 rs-2 as-7w as-6h as-35 as-c3 as-x as-1m as-4g as-5i as-6j as-6k as-8w as-8v as-6l as-6m as-c4 as-c5 as-c6 as-c7 as-c8 as-c9 as-ca as-bn as-cb as-cc ⚙to2cba">
+          <div class="sticky top-17 z-40 bg-white rs-2 as-7w as-6h as-35 as-c3 as-x as-1m as-4g as-5i as-6j as-6k as-8w as-8v as-6l as-6m as-c4 as-c5 as-c6 as-c7 as-c8 as-c9 as-ca as-bn as-cb as-cc ⚙to2cba">
             <div class="account-charts-controls ⚙ rs-2 as-x as-cd as-4f as-bd as-1m ⚙1pkxhse" role="toolbar">
               <div class="⚙">
                 <div class="⚙ rs-3 as-ce as-cf as-8h as-cg as-ch as-ci ⚙1elb4ie">
