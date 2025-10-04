@@ -27,7 +27,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <span class="text-gray-600 Text-fontSize--16 Text-fontWeight--medium Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">A CÚPULA DIGITAL</span>
+        <span id="title" class="text-gray-600 Text-fontSize--16 Text-fontWeight--medium Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">A CÚPULA DIGITAL</span>
       </div>
 
       <!-- Direita: Notificação + Pesquisa -->
@@ -1361,9 +1361,9 @@
     <!--START barra navegacao lateral-->
     <!--START inicio area de navegacao-->
     <!--START Content navegation fixed-->
-    <div id="sidebar" class="fixed inset-1 w-auto h-auto z-50 hidden md:block sn-token-provider ⚙ as-2u as-5 as-39 as-9 as-4 as-3a as-36 as-18 as-3b as-3c as-3d ⚙11dxm5x sn-182o7r0 sn-1494dug"
+    <div id="sidebar" class="overflow-auto fixed inset-0 w-full h-full z-50 hidden md:block sn-token-provider ⚙ as-2u as-5 as-39 as-9 as-4 as-3a as-36 as-18 as-3b as-3c as-3d ⚙11dxm5x sn-182o7r0 sn-1494dug"
       data-ios-body-scroll-lock="false" data-overlay-container="true" data-testid="default-chrome">
-      <div class="db-chrome-background ⚙ as-9 as-2q as-35 as-36 as-5 as-3e as-3f as-3g as-3h ⚙1utg9dx">
+      <div class="fixed inset-0 w-full h-full overflow-auto sn-token-provider ⚙ as-2u as-5 as-39 as-9 as-4 as-3a as-36 as-18 as-3b as-3c as-3d ⚙11dxm5x sn-182o7r0 sn-1494dug">
         <div class="⚙ rs-2 as-x as-17 as-1m as-3i as-3j as-3k ⚙1rh9yih">
           <!-- Header -->
           <header class="db-ChromeHeader-accountSwitcher" data-testid="v2-account-switcher" style="width:100%">
@@ -2105,6 +2105,8 @@
   const iconOpen = document.getElementById("iconOpen");
   const iconClose = document.getElementById("iconClose");
   const sidebar = document.getElementById("sidebar");
+  const title = document.getElementById("title");
+
 
   menuToggle.addEventListener("click", () => {
     const isHidden = sidebar.classList.contains("hidden");
@@ -2113,10 +2115,20 @@
       sidebar.classList.remove("hidden");
       iconOpen.classList.add("hidden");
       iconClose.classList.remove("hidden");
+      sidebar.classList.add("bg-white");
+      title.classList.add("hidden");
+
+      // Se for mobile, ocupa tela cheia
+      if (window.innerWidth < 768) {
+        sidebar.classList.remove("md:relative", "md:w-64");
+      }
+
     } else {
       sidebar.classList.add("hidden");
       iconOpen.classList.remove("hidden");
       iconClose.classList.add("hidden");
+      sidebar.classList.remove("bg-white");
+      title.classList.remove("hidden");
     }
   });
 </script>
