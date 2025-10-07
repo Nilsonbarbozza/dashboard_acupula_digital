@@ -31,7 +31,7 @@
       </div>
 
       <!-- Direita: Notificação + Pesquisa -->
-      <div class="flex flex-row items-center justify-center gap-4">
+      <div id="icones-nativo" class="flex flex-row items-center justify-center gap-4">
         <div class="flex flex-row items-center justify-center">
           <!-- Botão Notificação -->
           <a aria-expanded="false" aria-label="Notifica&ccedil;&otilde;es"
@@ -46,19 +46,71 @@
             </svg>
           </a>
         </div>
-        <div class="flex items-center">
-          <!-- Botão Notificação -->
-          <a aria-expanded="false" aria-label="Search"
-            class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙4jchy7"
-            data-testid="chrome-notifications" role="button"  style="isolation:isolate" tabindex="1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto flex items-center justify-center w-6 h-6 text-gray-700" viewBox="0 0 30 30">
-              <path 
-              d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"
-              fill-rule="evenodd">
+          <!-- Botão search -->
+          <div class="flex flex-row items-center justify-center">
+            <a aria-expanded="false" aria-label="Search"
+              class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙4jchy7"
+              data-testid="chrome-notifications" role="button"  style="isolation:isolate" tabindex="1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto flex items-center justify-center w-6 h-6 text-gray-700" viewBox="0 0 30 30">
+                <path 
+                d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"
+                fill-rule="evenodd">
+                </path>
+              </svg>
+            </a>
+          </div>
+      </div>
+
+      <!--Icones dinamicos-->
+      <div id="iconeSmart" class="hidden flex flex-row as-x as-8j as-8k as-1m">
+        <div class="rs-2 as-x as-1m as-av as-aw as-ax as-ay as-az ⚙lncmxe">
+          <!--icones tools dinamicos-mobile-->
+          <a aria-expanded="false" aria-label="Aplicativos"
+            class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙1aavg84"
+            data-testid="chrome-apps-menu-trigger" role="button" style="isolation:isolate" tabindex="1">
+            <svg aria-hidden="true" class="⚙ as-y as-z as-10 as-11 as-8s as-55 as-56 ⚙4307n6" height="16"
+              viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+              <path clip-rule="evenodd"
+                d="M12.25 0a.75.75 0 0 1 .75.75V3h2.25a.75.75 0 0 1 0 1.5H13V7a.75.75 0 0 1-1.5 0V4.5H9A.75.75 0 0 1 9 3h2.5V.75a.75.75 0 0 1 .75-.75ZM5 2H2a.5.5 0 0 0-.5.5v3A.5.5 0 0 0 2 6h3a.5.5 0 0 0 .5-.5v-3A.5.5 0 0 0 5 2ZM2 .5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2Zm3 10H2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5ZM2 9a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2Zm8.5 1.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5Zm-2 .5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3Z"
+                fill-rule="evenodd">
               </path>
             </svg>
           </a>
         </div>
+        <!--Icones settings dinamicos-mobile-->
+        <a aria-label="Configuraçoes"
+          class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙4jchy7"
+          data-testid="chrome-settings-menu-trigger" href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/settings"
+          style="isolation:isolate" tabindex="1">
+          <svg aria-hidden="true" class="as-y as-z as-10 as-11 as-8s as-55 as-56 ⚙4307n6" height="16" viewbox="0 0 16 16"
+            width="16" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 1.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
+              fill-rule="evenodd">
+            </path>
+            <path clip-rule="evenodd"
+              d="M7.41 14.5h1.18l.053-.832a1.753 1.753 0 0 1 1.08-1.509 1.752 1.752 0 0 1 1.83.303l.625.552.836-.835-.552-.626a1.752 1.752 0 0 1-.303-1.83 1.753 1.753 0 0 1 1.509-1.08l.832-.052V7.409l-.832-.052a1.753 1.753 0 0 1-1.509-1.08 1.752 1.752 0 0 1 .303-1.83l.552-.625-.836-.836-.625.552a1.752 1.752 0 0 1-1.83.303 1.753 1.753 0 0 1-1.08-1.509L8.59 1.5H7.409l-.052.832a1.753 1.753 0 0 1-1.08 1.509 1.752 1.752 0 0 1-1.83-.303l-.625-.552-.836.836.552.625a1.753 1.753 0 0 1-1.205 2.91L1.5 7.41v1.182l.832.052a1.753 1.753 0 0 1 1.509 1.08 1.752 1.752 0 0 1-.303 1.83l-.552.625.836.836.625-.552a1.752 1.752 0 0 1 1.83-.303 1.753 1.753 0 0 1 1.08 1.509l.052.832Zm-2.896-.122c.064-.04.125-.085.183-.136l.742-.655a.252.252 0 0 1 .264-.042.25.25 0 0 1 .157.216l.062.989a1.34 1.34 0 0 0 .07.35c.18.526.679.9 1.26.9h1.495a1.334 1.334 0 0 0 1.331-1.25l.062-.989a.253.253 0 0 1 .157-.216.252.252 0 0 1 .263.042l.743.655a1.338 1.338 0 0 0 .297.199c.5.244 1.117.156 1.528-.256l1.057-1.057a1.334 1.334 0 0 0 .057-1.825l-.655-.742a.252.252 0 0 1-.042-.264.253.253 0 0 1 .216-.157l.989-.062a1.341 1.341 0 0 0 .35-.07c.526-.18.9-.679.9-1.26V7.252a1.334 1.334 0 0 0-1.25-1.331l-.989-.062a.253.253 0 0 1-.216-.157.252.252 0 0 1 .042-.264l.655-.742a1.34 1.34 0 0 0 .199-.297c.244-.5.156-1.117-.256-1.528l-1.057-1.057a1.334 1.334 0 0 0-1.825-.057l-.742.655a.252.252 0 0 1-.264.042.253.253 0 0 1-.157-.216l-.062-.989a1.34 1.34 0 0 0-.07-.35A1.33 1.33 0 0 0 8.749 0H7.252a1.334 1.334 0 0 0-1.331 1.25l-.062.989a.253.253 0 0 1-.157.216.252.252 0 0 1-.264-.042l-.742-.655a1.34 1.34 0 0 0-.297-.199 1.334 1.334 0 0 0-1.528.256L1.815 2.872a1.334 1.334 0 0 0-.057 1.825l.655.743c.064.072.08.174.042.263a.253.253 0 0 1-.216.157l-.989.062a1.34 1.34 0 0 0-.35.07c-.526.18-.9.679-.9 1.26v1.495a1.334 1.334 0 0 0 1.25 1.331l.989.062c.096.006.18.068.216.157a.252.252 0 0 1-.042.264l-.655.742a1.344 1.344 0 0 0-.199.297c-.244.5-.156 1.117.256 1.528l1.057 1.057a1.334 1.334 0 0 0 1.642.193Z"
+              fill-rule="evenodd">
+            </path>
+          </svg>
+        </a>
+        <!--icones help dinamico-mobile-->
+        <a aria-expanded="false" aria-haspopup="true" aria-label="Ajuda"
+          class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙4jchy7"
+          id="react-aria9475130546-:r5:" role="button" style="user-select:none;isolation:isolate" tabindex="1">
+          <svg aria-hidden="true" class="as-y as-z as-10 as-11 as-8s as-55 as-56 ⚙4307n6" height="16"
+            viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd"
+              d="M6.886 4.923c-.232.25-.386.63-.386 1.122a.75.75 0 1 1-1.5 0c0-.803.254-1.57.788-2.144C6.33 3.32 7.1 3 8 3c.9 0 1.67.32 2.212.901.534.574.788 1.341.788 2.144 0 1.234-.869 1.922-1.436 2.332-.094.068-.178.127-.255.181-.19.134-.33.233-.449.343a.64.64 0 0 0-.11.121V9.5a.75.75 0 0 1-1.5 0V9c0-.563.326-.956.593-1.202.198-.183.457-.364.672-.516l.17-.121c.559-.404.815-.693.815-1.116 0-.492-.154-.872-.386-1.122C8.888 4.68 8.533 4.5 8 4.5c-.533 0-.888.18-1.114.423Z"
+              fill-rule="evenodd">
+            </path>
+            <path d="M9 12a1.001 1.001 0 0 1-2 0 1.001 1.001 0 0 1 2 0Z">
+            </path>
+            <path clip-rule="evenodd"
+              d="M8 14.5A6.5 6.5 0 1 0 1.5 8c0 1.022.179 1.608.603 2.399.316.59.407 1.313.178 2.003l-.66 1.976 1.977-.659a2.541 2.541 0 0 1 2.004.178c.79.424 1.376.603 2.398.603ZM8 16a8 8 0 1 0-8-8c0 1.29.25 2.117.78 3.107.136.252.168.549.078.82l-.807 2.42a1 1 0 0 0-.051.315V15a1 1 0 0 0 1 1h.338a1 1 0 0 0 .316-.051l2.419-.807c.271-.09.568-.057.82.078.99.53 1.817.78 3.107.78Z"
+              fill-rule="evenodd">
+            </path>
+          </svg>
+        </a>
       </div>
     </nav>
 
@@ -1566,7 +1618,6 @@
                   data-testid="shortcuts-nav">
                   Atalhos
                   <a aria-label="Gerenciar atalhos"
-                    class="primary-nav-action ⚙ rs-9 rs-3 as-4l as-5f as-1j as-1k as-4n as-5g as-4p as-2w as-5h as-5i as-5j as-5k as-5l as-1l as-1m as-5m as-5b as-1p as-4z as-50 as-5n as-4v as-5o as-5p ⚙p5ur02"
                     data-testid="manage-shortcuts" role="button" style="isolation:isolate" tabindex="1">
                     <svg aria-hidden="true" class="⚙ as-y as-z as-10 as-11 as-5q as-5r as-5s ⚙zkm0c2" height="12"
                       viewbox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg">
@@ -2109,9 +2160,9 @@
         <a aria-expanded="false" aria-haspopup="true" aria-label="Op&ccedil;&otilde;es e alternador de conta"
           class="flex flex-col justify-center items-center gap-2 text-sm font-medium text-s-1hldvhn"
           data-testid="account-switcher-trigger" role="button" tabindex="1" title="A CÚPULA DIGITAL">
-          <div class="⚙ as-b7 ⚙1ujo9jp">
-            <div class="⚙" data-testid="account-icon">
-              <div class="⚙bg-red-600 rs-2 as-x as-1m as-1l as-b8 as-d as-0 as-b9 as-ba as-bb as-3o ⚙bv7vt6"
+          <div class="⚙ w-50 as-b7 ⚙1ujo9jp">
+            <div class="" data-testid="account-icon">
+              <div class="rs-2 as-x as-1m as-1l as-b8 as-d as-0 as-b9 as-ba as-bb as-3o ⚙bv7vt6"
                 data-testid="raw-account-avatar">
                 <span class="⚙text-xl rs-3 as-5b as-54 as-bc ⚙1x72x6k">
                   AC
@@ -2273,6 +2324,52 @@
           </a>
         </header>
         <ul aria-label="Atalhos" class="⚙ rs-2 as-r ⚙wsfqcn" data-testid="shortcuts-nav-links">
+          <li
+            class="shortcut-nav-item ⚙ rs-2 rs-8 as-17 as-41 as-42 as-43 as-44 as-45 as-46 as-47 as-48 as-49 as-4a as-4b as-4c as-4d as-x as-4e as-4f as-1m as-0 as-4g as-4h as-4i as-4j as-4k ⚙ny3tvm"
+            data-testid="recent-nav-item-reports">
+            <a aria-label="Relat&oacute;rios"
+              class="⚙ rs-9 rs-3 rs-a rs-2 rs-b as-4l as-4m as-1j as-1k as-4n as-4o as-4p as-4q as-4r as-2q as-17 as-1p as-23 as-24 as-4s as-4t as-4u as-4v as-4w as-9 as-x as-1m as-4x as-4g as-4y as-4z as-50 as-51 ⚙1uzo8po"
+              data-testid="primary-nav-item-link-reports" href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/reports"
+              tabindex="1">
+              <span class="⚙ rs-2 as-x as-23 as-1m as-d ⚙1568gq">
+                <span class="⚙ rs-2 as-x as-52 as-53 as-1l as-1m as-0 ⚙2es0pw">
+                  <svg aria-hidden="true"
+                    class="⚙ as-y as-z as-10 as-11 as-54 as-55 as-56 as-5 as-4z as-50 as-57 as-2w as-5t ⚙1xyxx52" height="16"
+                    viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd"
+                      d="m11.98 9.48 3.005-4.096a2 2 0 0 0 .387-1.15 2.042 2.042 0 0 0-.585-1.447l-1.574-1.574a1.997 1.997 0 0 0-2.597-.198L6.52 4.019l-.44-.44a1 1 0 0 0-1.261-.124L2.015 5.323a1 1 0 0 0-.152 1.54L4.97 9.97.72 14.22a.748.748 0 0 0 0 1.06.747.747 0 0 0 1.06 0l4.25-4.25 3.107 3.107a1 1 0 0 0 1.54-.152l1.868-2.803a1 1 0 0 0-.125-1.262l-.44-.44ZM7.593 5.093l3.316 3.316 2.868-3.911a.5.5 0 0 0-.05-.65l-1.573-1.573a.5.5 0 0 0-.65-.05l-3.91 2.868ZM5.31 4.93 3.354 6.233l6.413 6.413 1.303-1.955-5.761-5.76Z"
+                      fill-rule="evenodd">
+                    </path>
+                  </svg>
+                  <svg aria-hidden="true"
+                    class="⚙ as-y as-z as-10 as-11 as-54 as-55 as-56 as-5 as-4z as-50 as-57 as-3 as-5u ⚙1pllddw" height="16"
+                    viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.75 4.75a.75.75 0 0 0-1.5 0V9c0 .3.179.571.455.69l1.75.75a.75.75 0 0 0 .59-1.38L8.75 8.506V4.75Z">
+                    </path>
+                    <path clip-rule="evenodd"
+                      d="M15 8a7 7 0 0 1-7 7 7 7 0 0 1-7-7 7 7 0 0 1 7-7c3.876 0 7 3.134 7 7Zm-1.5 0a5.5 5.5 0 1 1-11 0A5.5 5.5 0 0 1 8 2.5c3.046 0 5.5 2.46 5.5 5.5Z"
+                      fill-rule="evenodd">
+                    </path>
+                  </svg>
+                </span>
+                <span class="⚙ as-58 as-d as-0 as-1n as-59 ⚙1sff4e6">
+                  Análise de pagamentos
+                </span>
+              </span>
+            </a>
+            <a aria-label="Fixar Relat&oacute;rios"
+              class="primary-nav-action ⚙ rs-9 rs-3 rs-a as-4l as-5f as-5v as-5w as-5x as-5y as-1j as-1k as-4n as-5g as-4p as-4q as-2w as-5h as-5i as-5j as-5k as-5l as-1l as-1m as-5z as-60 as-5b as-1p as-4z as-50 as-5n as-4v as-61 as-4 as-62 as-63 as-64 as-65 as-66 as-67 ⚙10lo7h9"
+              data-testid="pin-reports" role="button" style="isolation:isolate" tabindex="1">
+              <svg aria-hidden="true" class="⚙ as-y as-z as-10 as-11 as-5q as-5r as-5s ⚙zkm0c2" height="12" viewbox="0 0 12 12"
+                width="12" xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd"
+                  d="M10.151 1.388a2 2 0 0 0-2.597-.199L5.036 3.036l-.473-.473a1 1 0 0 0-1.238-.141L1.066 3.834a1 1 0 0 0-.177 1.555l2.33 2.33L.65 10.29a.75.75 0 0 0 1.06 1.061l2.57-2.57 2.331 2.331a1 1 0 0 0 1.555-.177l1.412-2.26a1 1 0 0 0-.14-1.236l-.475-.475 1.847-2.518a2 2 0 0 0-.199-2.597l-.46-.46Zm-2.19 4.574 1.72-2.345a.6.6 0 0 0-.06-.779l-.46-.46a.6.6 0 0 0-.779-.06l-2.344 1.72 1.924 1.924ZM3.799 3.778l-1.564.977 5.012 5.01.977-1.563-4.425-4.424Z"
+                  fill-rule="evenodd">
+                </path>
+              </svg>
+            </a>
+          </li>
+
           <li
             class="shortcut-nav-item ⚙ rs-2 rs-8 as-17 as-41 as-42 as-43 as-44 as-45 as-46 as-47 as-48 as-49 as-4a as-4b as-4c as-4d as-x as-4e as-4f as-1m as-0 as-4g as-4h as-4i as-4j as-4k ⚙ny3tvm"
             data-testid="recent-nav-item-reports">
@@ -2620,7 +2717,6 @@
         </section>
       </div>
     </nav>
-  
   </div>
 
 </body>
@@ -2631,25 +2727,35 @@
   const iconClose = document.getElementById("iconClose");
   const sidebar = document.getElementById("sidebar");
   const title = document.getElementById("title-nav")
+  const iconeNativo = document.getElementById("icones-nativo")
+  const iconesDinamico = document.getElementById("iconeSmart")
 
   menuToggle.addEventListener("click", () => {
     const isHidden = sidebar.classList.contains("hidden");
     const isMobile = window.innerWidth < 768; // breakpoint Tailwind md
-
+    
     if (isHidden) {
       sidebar.classList.remove("hidden");
       iconOpen.classList.add("hidden");
       iconClose.classList.remove("hidden");
       title.classList.add("hidden");
+      iconeNativo.classList.add("hidden");
+      iconesDinamico.classList.remove("hidden");
+
 
       if (isMobile) {
         sidebar.classList.add("fixed", "inset-0", "w-full", "h-full", "bg-white", "overflow-y-auto");
+
       }
     } else {
       sidebar.classList.add("hidden");
       iconOpen.classList.remove("hidden");
       iconClose.classList.add("hidden");
       title.classList.remove("hidden");
+      iconeNativo.classList.remove("hidden");
+      iconesDinamico.classList.add("hidden");
+
+
 
       if (isMobile) {
         sidebar.classList.remove("fixed", "inset-0", "w-full", "h-full", "bg-white", "overflow-y-auto");

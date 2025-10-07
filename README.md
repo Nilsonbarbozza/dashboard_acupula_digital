@@ -8,9 +8,9 @@ stripe payments
 Criar um novo sidebar mobile -<br> FINALIZADA
 *Ocupe 100% tela<br> FINALIZADA
 *com avatar e nome pricipal<br> FINALIZADA
-*fazer a mudança dinamica de icones de navbar mobile<br>
-*subir essas mudanças<br>
+*fazer a mudança dinamica de icones de navbar mobile<br> FINALIZADO
+*subir essas mudanças<br> PROGRESSO
 
-FINAL!
+PROXIMA TASK!
 
 Preparar para receber outras paginas!
