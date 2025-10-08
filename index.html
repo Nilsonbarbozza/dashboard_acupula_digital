@@ -14,7 +14,7 @@
 <body class="overflow-x-hidden">
   <header>
     <!-- Mobile Navbar -->
-    <nav class="fixed top-0 left-0 bg-white w-full h-17 px-5 py-7 flex items-center justify-between z-50 md:hidden ">
+    <nav class="fixed top-0 left-0 bg-white w-full h-20 p-6 flex flex-row items-center justify-between z-50 md:hidden ">
       <!-- Esquerda: Hamburguer + Nome -->
       <div class="flex items-center space-x-2">
         <!-- Botão Hamburguer -->
@@ -27,31 +27,36 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <span id="title-nav" class="text-gray-600 Text-fontSize--16 Text-fontWeight--medium Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">A CÚPULA DIGITAL</span>
+        <span id="title-nav" class="text-gray-700 Text-fontSize--14 Text-fontWeight--medium Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">A CÚPULA DIGITAL</span>
       </div>
 
       <!-- Direita: Notificação + Pesquisa -->
-      <div id="icones-nativo" class="flex flex-row items-center justify-center gap-4">
-        <div class="flex flex-row items-center justify-center">
-          <!-- Botão Notificação -->
-          <a aria-expanded="false" aria-label="Notifica&ccedil;&otilde;es"
-            class="flex flex-col items-center justify-center w-10 h-10 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙4jchy7"
-            data-testid="chrome-notifications" role="button" style="isolation:isolate" tabindex="1">
-            <svg aria-hidden="true"
-                class="w-6 h-6 text-gray-700"
-                viewBox="0 0 19 19"
-                xmlns="http://www.w3.org/2000/svg">
-              <path clip-rule="evenodd" fill-rule="evenodd"
-                d="M5.005 13H2.79a1.792 1.792 0 0 1-1.628-2.532l.477-1.051a11.583 11.583 0 0 0 1.01-4.018l.027-.41A5.34 5.34 0 0 1 8 0a5.34 5.34 0 0 1 5.324 4.989l.027.41a11.6 11.6 0 0 0 1.01 4.018l.477 1.05A1.787 1.787 0 0 1 13.21 13h-2.215c0 1.657-1.34 3-2.995 3a2.997 2.997 0 0 1-2.995-3Zm-2.48-1.912.478-1.05a13.086 13.086 0 0 0 1.14-4.539l.027-.41A3.84 3.84 0 0 1 8 1.5a3.84 3.84 0 0 1 3.83 3.589l.027.41c.104 1.57.49 3.107 1.14 4.538l.477 1.051a.291.291 0 0 1-.264.412H2.79a.291.291 0 0 1-.264-.412ZM6.504 13a1.499 1.499 0 1 0 2.995 0H6.503Z" />
-            </svg>
-          </a>
-        </div>
+      <div id="icones-nativo" class="flex flex-row items-center justify-center space-x-5">
+          <div class="db-NotificationsX-button">
+            <a aria-expanded="false" aria-label="Notifica&ccedil;&otilde;es"
+               class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙4jchy7"
+                data-testid="chrome-notifications" role="button" style="isolation:isolate" tabindex="1">
+                <svg aria-hidden="true" class="⚙ as-y as-z as-10 as-11 as-8s as-55 as-56 ⚙4307n6" height="16"
+                viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                  <path clip-rule="evenodd"
+                        d="M5.005 13H2.79a1.792 1.792 0 0 1-1.628-2.532l.477-1.051a11.583 11.583 0 0 0 1.01-4.018l.027-.41A5.34 5.34 0 0 1 8 0a5.34 5.34 0 0 1 5.324 4.989l.027.41a11.6 11.6 0 0 0 1.01 4.018l.477 1.05A1.787 1.787 0 0 1 13.21 13h-2.215c0 1.657-1.34 3-2.995 3a2.997 2.997 0 0 1-2.995-3Zm-2.48-1.912.478-1.05a13.086 13.086 0 0 0 1.14-4.539l.027-.41A3.84 3.84 0 0 1 8 1.5a3.84 3.84 0 0 1 3.83 3.589l.027.41c.104 1.57.49 3.107 1.14 4.538l.477 1.051a.291.291 0 0 1-.264.412H2.79a.291.291 0 0 1-.264-.412ZM6.504 13a1.499 1.499 0 1 0 2.995 0H6.503Z"
+                        fill-rule="evenodd">
+                  </path>
+                </svg>
+                <span
+                  class="⚙ rs-2 rs-3 as-z as-10 as-ah as-y as-1n as-x as-1m as-1l as-ai as-aj as-ak as-9f as-8q as-al as-am as-an as-ao as-60 as-34 as-ap as-5 as-4z as-aq as-50 as-ar as-as as-at as-au ⚙1jzmz8p"
+                  data-testid="notifications-counter">
+                </span>
+            </a>
+          </div>
+
           <!-- Botão search -->
-          <div class="flex flex-row items-center justify-center">
+          <div class="flex items-center justify-center">
             <a aria-expanded="false" aria-label="Search"
               class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙4jchy7"
               data-testid="chrome-notifications" role="button"  style="isolation:isolate" tabindex="1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto flex items-center justify-center w-6 h-6 text-gray-700" viewBox="0 0 30 30">
+              <svg xmlns="http://www.w3.org/2000/svg" height="19"
+                 width="19" class="text-gray-700" viewBox="0 0 25 30">
                 <path 
                 d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"
                 fill-rule="evenodd">
@@ -69,7 +74,7 @@
             class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙1aavg84"
             data-testid="chrome-apps-menu-trigger" role="button" style="isolation:isolate" tabindex="1">
             <svg aria-hidden="true" class="⚙ as-y as-z as-10 as-11 as-8s as-55 as-56 ⚙4307n6" height="16"
-              viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+              viewbox="0 0 16 16" width="34" xmlns="http://www.w3.org/2000/svg">
               <path clip-rule="evenodd"
                 d="M12.25 0a.75.75 0 0 1 .75.75V3h2.25a.75.75 0 0 1 0 1.5H13V7a.75.75 0 0 1-1.5 0V4.5H9A.75.75 0 0 1 9 3h2.5V.75a.75.75 0 0 1 .75-.75ZM5 2H2a.5.5 0 0 0-.5.5v3A.5.5 0 0 0 2 6h3a.5.5 0 0 0 .5-.5v-3A.5.5 0 0 0 5 2ZM2 .5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2Zm3 10H2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5ZM2 9a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2Zm8.5 1.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5Zm-2 .5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3Z"
                 fill-rule="evenodd">
@@ -97,8 +102,8 @@
         <a aria-expanded="false" aria-haspopup="true" aria-label="Ajuda"
           class="⚙ rs-4 rs-3 rs-2 as-1i as-1j as-1k as-4s as-8l as-8m as-8n as-5h as-x as-1u as-8o as-5i as-5j as-5k as-5l as-1m as-5m as-8p as-8q as-4z as-50 as-8r ⚙4jchy7"
           id="react-aria9475130546-:r5:" role="button" style="user-select:none;isolation:isolate" tabindex="1">
-          <svg aria-hidden="true" class="as-y as-z as-10 as-11 as-8s as-55 as-56 ⚙4307n6" height="16"
-            viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+          <svg aria-hidden="true" class="as-y as-z as-10 as-11 as-8s as-55 as-56 ⚙4307n6" height="19.99"
+            viewbox="0 0 16 16" width="19.99" xmlns="http://www.w3.org/2000/svg">
             <path clip-rule="evenodd"
               d="M6.886 4.923c-.232.25-.386.63-.386 1.122a.75.75 0 1 1-1.5 0c0-.803.254-1.57.788-2.144C6.33 3.32 7.1 3 8 3c.9 0 1.67.32 2.212.901.534.574.788 1.341.788 2.144 0 1.234-.869 1.922-1.436 2.332-.094.068-.178.127-.255.181-.19.134-.33.233-.449.343a.64.64 0 0 0-.11.121V9.5a.75.75 0 0 1-1.5 0V9c0-.563.326-.956.593-1.202.198-.183.457-.364.672-.516l.17-.121c.559-.404.815-.693.815-1.116 0-.492-.154-.872-.386-1.122C8.888 4.68 8.533 4.5 8 4.5c-.533 0-.888.18-1.114.423Z"
               fill-rule="evenodd">
@@ -2151,9 +2156,9 @@
     <!--FIM Content navigation-->
   </main>
 
-  <div id="sidebar" class="w-full h-full mt-20 z-50 block md:hidden p-6">
+  <div id="sidebar" class="w-full h-full mt-20 z-50 block md:hidden p-6 fixed inset-0 bg-white overflow-y-auto transform -translate-x-full transition-transform duration-300 ease-in-out">
     <!--elemento apenas para mobile-->
-    <nav class="⚙ rs-2 as-r as-2n as-2q as-3y as-3z as-3i as-3j as-0 as-40 ⚙jyefbu" data-contentbucket="primarynav"
+    <nav class="rs-2 as-r as-2n as-2q as-3y as-3z as-3i as-3j as-0 as-40 ⚙jyefbu" data-contentbucket="primarynav"
       data-testid="primary-nav" id="primary-nav" style="padding-bottom:0px">
       <div class="block md:hidden flex flex-row items-center justify-center p-4 pb-16 border-b border-s-15xulsv">
         <!--elemento apenas para mobile-->
@@ -2162,18 +2167,24 @@
           data-testid="account-switcher-trigger" role="button" tabindex="1" title="A CÚPULA DIGITAL">
           <div class="⚙ w-50 as-b7 ⚙1ujo9jp">
             <div class="" data-testid="account-icon">
-              <div class="rs-2 as-x as-1m as-1l as-b8 as-d as-0 as-b9 as-ba as-bb as-3o ⚙bv7vt6"
+              <div class="w-12 h-12 rounded-md text-xl font-medium bg-gray-100 flex justify-center items-center"
                 data-testid="raw-account-avatar">
-                <span class="⚙text-xl rs-3 as-5b as-54 as-bc ⚙1x72x6k">
+                <span class="⚙ rs-3 as-5b as-54  ⚙1x72x6k">
                   AC
                 </span>
               </div>
             </div>
           </div>
           <div class="⚙ rs-2 as-x as-bd as-1m as-8o ⚙1fho688">
-            <div class="flex flex-row justify-center text-xl font-bold text-black"
+            <div class="flex flex-row items-center justify-center text-2xl text-gray-800 font-extrabold Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline"
               data-testid="account-switcher-trigger-title">
-              A CÚPULA DIGITAL
+              <span>A CÚPULA DIGITAL</span>
+              <!-- Ícone Chevron Up-Down -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="19.99" height="19.99" viewBox="0 0 24 24" fill="currentColor"
+                class="ml-1 text-gray-800 scale-110 solid">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12 5.25a.75.75 0 0 1 .53.22l4.5 4.5a.75.75 0 0 1-1.06 1.06L12 6.81l-3.97 3.97a.75.75 0 1 1-1.06-1.06l4.5-4.5a.75.75 0 0 1 .53-.22Zm0 13.5a.75.75 0 0 0 .53-.22l4.5-4.5a.75.75 0 0 0-1.06-1.06L12 17.19l-3.97-3.97a.75.75 0 1 0-1.06 1.06l4.5 4.5a.75.75 0 0 0 .53.22Z" />
+              </svg>
             </div>
           </div>
         </a>
@@ -2720,7 +2731,7 @@
   </div>
 
 </body>
-<!-- SCRIPT -->
+
 <script>
   const menuToggle = document.getElementById("menuToggle");
   const iconOpen = document.getElementById("iconOpen");
@@ -2733,8 +2744,9 @@
   menuToggle.addEventListener("click", () => {
     const isHidden = sidebar.classList.contains("hidden");
     const isMobile = window.innerWidth < 768; // breakpoint Tailwind md
-    
+
     if (isHidden) {
+      // Abrir sidebar
       sidebar.classList.remove("hidden");
       iconOpen.classList.add("hidden");
       iconClose.classList.remove("hidden");
@@ -2742,23 +2754,35 @@
       iconeNativo.classList.add("hidden");
       iconesDinamico.classList.remove("hidden");
 
-
       if (isMobile) {
-        sidebar.classList.add("fixed", "inset-0", "w-full", "h-full", "bg-white", "overflow-y-auto");
+        sidebar.classList.add("fixed", "inset-0", "w-full", "h-full", "bg-white", "overflow-y-auto", "transform", "-translate-x-full", "transition-transform", "duration-300", "ease-in-out");
 
+        // Animar entrada
+        requestAnimationFrame(() => {
+          sidebar.classList.remove("-translate-x-full");
+          sidebar.classList.add("translate-x-0");
+        });
       }
     } else {
-      sidebar.classList.add("hidden");
+      // Fechar sidebar
       iconOpen.classList.remove("hidden");
       iconClose.classList.add("hidden");
       title.classList.remove("hidden");
       iconeNativo.classList.remove("hidden");
       iconesDinamico.classList.add("hidden");
 
-
-
       if (isMobile) {
-        sidebar.classList.remove("fixed", "inset-0", "w-full", "h-full", "bg-white", "overflow-y-auto");
+        // Animar saída
+        sidebar.classList.remove("translate-x-0");
+        sidebar.classList.add("-translate-x-full");
+
+        // Espera a animação terminar antes de esconder
+        setTimeout(() => {
+          sidebar.classList.add("hidden");
+          sidebar.classList.remove("fixed", "inset-0", "w-full", "h-full", "bg-white", "overflow-y-auto", "transform", "transition-transform", "duration-300", "ease-in-out");
+        }, 300); // duração da animação em ms
+      } else {
+        sidebar.classList.add("hidden");
       }
     }
   });

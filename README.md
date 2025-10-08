@@ -1,4 +1,4 @@
-stripe payments
+<h1>Stripe Payments</h1>
 
 
 --Cronograma--
@@ -8,10 +8,11 @@ Criar um novo sidebar mobile -<br> FINALIZADA
 *Ocupe 100% tela<br> FINALIZADA
 *com avatar e nome pricipal<br> FINALIZADA
 *fazer a mudança dinamica de icones de navbar mobile<br> FINALIZADO
-*subir essas mudanças<br> PROGRESSO
-*Alinhar avatar e nome<br> PROGRESSO
-*Tirar scroll index-0 menu <br> PROGRESSO
-*add icone expandir no name avatar <br> PROGRESSO
+*subir essas mudanças<br> FINALIZADO
+*Alinhar avatar e nome<br> FINALIZADO
+*Tirar scroll index-0 menu <br> FINALIZADO
+*add icone expandir no name avatar <br> FINALIZADO
+*Revisar mobile em deploy <br> PROGRESSO
 
 !IMPORTANTE : Alinhar nav e menu mobile - 
 
