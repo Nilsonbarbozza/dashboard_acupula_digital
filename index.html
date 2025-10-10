@@ -2738,60 +2738,74 @@
   </div>
 
   <!--ModalFiltro-->
-  <div id="modalFiltro" class="hidden absolute bg-white border border-gray-200 rounded-xl shadow-lg p-4 z-50 w-auto max-w-sm md:max-w-md max-h-60 overflow-y-auto transition-all duration-200 ease-out as-5m ⚙ug1pqi">
-    <div class="⚙ rs-2 as-o7 as-x as-96 as-o8 ⚙12og451">
-     <div class="⚙ rs-2 as-r as-9a as-o9 as-oa as-ob as-oc ⚙ziw4r" data-testid="date-range-picker-presets">
-      <ul class="⚙ rs-2 as-r as-2n as-od as-23 as-cx as-oe as-20 as-of as-og ⚙13msz5o">
-       <li class="⚙">
-        <a class="p-4 border border-gray-200 rounded-xl" role="button" tabindex="0">
-         Hoje
-        </a>
-       </li>
-       <li class="⚙">
-        <a aria-current="true" class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-bw as-8h as-d3 as-cs as-d4 as-d5 as-72 as-oh as-24 as-9g as-4t as-oj as-ok ⚙yy9rlj" data-testid="date-range-picker-preset-last7Days preset-selected" role="button" tabindex="0">
-         &Uacute;ltimos 7 dias
-        </a>
-       </li>
-       <li class="⚙">
-        <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-bw as-8h as-d3 as-cs as-d4 as-d5 as-72 as-oh as-4s as-8m as-oi ⚙myjhg1" data-testid="date-range-picker-preset-last4Weeks " role="button" tabindex="0">
-         &Uacute;ltimas 4 semanas
-        </a>
-       </li>
-       <li class="⚙">
-        <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-bw as-8h as-d3 as-cs as-d4 as-d5 as-72 as-oh as-4s as-8m as-oi ⚙myjhg1" data-testid="date-range-picker-preset-last6Months " role="button" tabindex="0">
-         &Uacute;ltimos 6 meses
-        </a>
-       </li>
-       <li class="⚙">
-        <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-bw as-8h as-d3 as-cs as-d4 as-d5 as-72 as-oh as-4s as-8m as-oi ⚙myjhg1" data-testid="date-range-picker-preset-last12Months " role="button" tabindex="0">
-         &Uacute;ltimos 12 meses
-        </a>
-       </li>
-       <li class="⚙">
-        <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-bw as-8h as-d3 as-cs as-d4 as-d5 as-72 as-oh as-4s as-8m as-oi ⚙myjhg1" data-testid="date-range-picker-preset-monthToDate " role="button" tabindex="0">
-         M&ecirc;s at&eacute; a data
-        </a>
-       </li>
-       <li class="⚙">
-        <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-bw as-8h as-d3 as-cs as-d4 as-d5 as-72 as-oh as-4s as-8m as-oi ⚙myjhg1" data-testid="date-range-picker-preset-quarterToDate " role="button" tabindex="0">
-         Trimestre at&eacute; a data
-        </a>
-       </li>
-       <li class="⚙">
-        <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-bw as-8h as-d3 as-cs as-d4 as-d5 as-72 as-oh as-4s as-8m as-oi ⚙myjhg1" data-testid="date-range-picker-preset-yearToDate " role="button" tabindex="0">
-         Ano at&eacute; a data
-        </a>
-       </li>
-       <li class="⚙">
-        <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-bw as-8h as-d3 as-cs as-d4 as-d5 as-72 as-oh as-4s as-8m as-oi ⚙myjhg1" data-testid="date-range-picker-preset-allTime " role="button" tabindex="0">
-         Desde o in&iacute;cio
-        </a>
-       </li>
-      </ul>
-     </div>
-     </div>
+  <div id="modalFiltro" class="absolute bg-white border border-gray-200 rounded-xl shadow-lg z-50 w-auto max-w-sm md:max-w-md max-h-200 overflow-y-auto transition-all duration-200 ease-out">
+    <!--container filtro dias coluna-->
+    <div class="bg-white m-8">
+        <ul class="flex flex-col items-start gap-2">
+            <li
+                class="flex flex-row items-center justify-start w-full h-8 rounded-lg hover:bg-gray-100 cursor-pointer">
+                <a class="text-black p-2" role="button" tabindex="0">
+                    Hoje
+                </a>
+            </li>
+            <li
+                class="bg-gray-100 flex flex-row items-center justify-start w-full h-8 rounded-lg hover:bg-gray-100 cursor-pointer">
+                <a class="text-purple-600 font-semibold p-2" data-testid="date-range-picker-preset-last7Days preset-selected"
+                    role="button" tabindex="0">
+                    Ultimos 7 dias
+                </a>
+            </li>
+            <li
+                class="flex flex-row items-center justify-start w-full h-8 rounded-lg hover:bg-gray-100 cursor-pointer">
+                <a class=" text-black p-2" data-testid="date-range-picker-preset-last4Weeks " role="button"
+                    tabindex="0">
+                    Ultimas 4 semanas
+                </a>
+            </li>
+            <li
+                class="flex flex-row items-center justify-start w-full h-8 rounded-lg hover:bg-gray-100 cursor-pointer">
+                <a class=" text-black p-2" data-testid="date-range-picker-preset-last6Months " role="button"
+                    tabindex="0">
+                    Ultimos 6 meses
+                </a>
+            </li>
+            <li
+                class="flex flex-row items-center justify-start w-full h-8 rounded-lg hover:bg-gray-100 cursor-pointer ">
+                <a class=" text-black p-2" data-testid="date-range-picker-preset-last12Months " role="button"
+                    tabindex="0">
+                    Ultimos 12 meses
+                </a>
+            </li>
+            <li
+                class="flex flex-row items-center justify-start w-full h-8 rounded-lg hover:bg-gray-100 cursor-pointer ">
+                <a class=" text-black p-2" data-testid="date-range-picker-preset-monthToDate " role="button"
+                    tabindex="0">
+                    M&ecirc;s at&eacute; a data
+                </a>
+            </li>
+            <li
+                class="flex flex-row items-center justify-start w-full h-8 rounded-lg hover:bg-gray-100 cursor-pointer ">
+                <a class=" text-black p-2" data-testid="date-range-picker-preset-quarterToDate " role="button"
+                    tabindex="0">
+                    Trimestre at&eacute; a data
+                </a>
+            </li>
+            <li
+                class="flex flex-row items-center justify-start w-full h-8 rounded-lg hover:bg-gray-100 cursor-pointer ">
+                <a class=" text-black p-2" data-testid="date-range-picker-preset-yearToDate " role="button"
+                    tabindex="0">
+                    Ano at&eacute; a data
+                </a>
+            </li>
+            <li
+                class="flex flex-row items-center justify-start w-full h-8 rounded-lg hover:bg-gray-100 cursor-pointer ">
+                <a class=" text-black p-2" data-testid="date-range-picker-preset-allTime " role="button"
+                    tabindex="0">
+                    Desde o in&iacute;cio
+                </a>
+            </li>
+        </ul>
     </div>
-  </div>
 
 
 </body>
@@ -2862,7 +2876,7 @@
 
     // posiciona o modal logo abaixo do botão
     modal.style.position = "absolute";
-    modal.style.top = `${rect.bottom + window.scrollY + 4}px`;
+    modal.style.top = `${rect.bottom + window.scrollY + 2}px`;
     modal.style.left = `${rect.left + window.scrollX}px`;
   });
 
