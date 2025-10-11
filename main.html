@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal de Filtro Stripe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .calendar-day {
+            @apply w-8 h-8 flex items-center justify-center text-sm rounded-md cursor-pointer hover:bg-gray-100 transition-colors;
+        }
+        .calendar-day.selected {
+            @apply bg-purple-600 text-white hover:bg-purple-700;
+        }
+        .calendar-day.in-range {
+            @apply bg-purple-100 text-purple-600 hover:bg-purple-200;
+        }
+        .calendar-day.disabled {
+            @apply text-gray-300 cursor-not-allowed hover:bg-transparent;
+        }
+        .filter-item.active {
+            @apply bg-gray-100;
+        }
+        .filter-item.active a {
+            @apply text-purple-600 font-medium;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    
+    <!-- Botão para abrir modal (exemplo) -->
+    <div class="relative inline-block">
+        <button id="buttonfiltro" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+            Período: Últimos 7 dias
+        </button>
+
+        <!-- Modal Filtro -->
+        <div id="modalFiltro" class="hidden absolute top-full mt-2 left-0 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 w-full min-w-max max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div class="bg-white border border-gray-200 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            
+            <div class="flex flex-col md:flex-row h-full">
+                <!-- Coluna Esquerda - Filtros Rápidos -->
+                <!-- Coluna Esquerda - Filtros Rápidos -->
+                <div class="w-full md:w-48 bg-white md:border-r border-gray-200 p-4 md:max-h-none max-h-48 overflow-y-auto">
+                    <ul class="flex flex-col gap-1">
+                        <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors" data-filter="today">
+                            <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
+                                Hoje
+                            </a>
+                        </li>
+                        <li class="filter-item active flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors" data-filter="last7days">
+                            <a class="text-purple-600 font-medium px-3 py-2 text-sm w-full" role="button" tabindex="0">
+                                Últimos 7 dias
+                            </a>
+                        </li>
+                        <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors" data-filter="last4weeks">
+                            <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
+                                Últimas 4 semanas
+                            </a>
+                        </li>
+                        <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors" data-filter="last6months">
+                            <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
+                                Últimos 6 meses
+                            </a>
+                        </li>
+                        <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors" data-filter="last12months">
+                            <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
+                                Últimos 12 meses
+                            </a>
+                        </li>
+                        <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors" data-filter="monthToDate">
+                            <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
+                                Mês até a data
+                            </a>
+                        </li>
+                        <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors" data-filter="quarterToDate">
+                            <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
+                                Trimestre até a data
+                            </a>
+                        </li>
+                        <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors" data-filter="yearToDate">
+                            <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
+                                Ano até a data
+                            </a>
+                        </li>
+                        <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors" data-filter="allTime">
+                            <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
+                                Desde o início
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Coluna Direita - Calendários -->
+                <div class="flex-1 p-4 md:p-6">
+                    <!-- Inputs de Data -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                        <div class="flex-1">
+                            <label class="block text-xs font-medium text-gray-600 mb-2">Início</label>
+                            <input type="text" value="19 / 03 / 2019" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                readonly>
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-xs font-medium text-gray-600 mb-2">Término</label>
+                            <input type="text" value="11 / 10 / 2025" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                readonly>
+                        </div>
+                    </div>
+
+                    <!-- Calendários -->
+                    <div class="flex flex-col lg:flex-row gap-6 mb-4">
+                        <!-- Calendário 1 - Março 2019 -->
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-4">
+                                <button class="p-1 hover:bg-gray-100 rounded transition-colors">
+                                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
+                                </button>
+                                <span class="text-sm font-medium text-gray-700">março de 2019</span>
+                                <button class="p-1 hover:bg-gray-100 rounded transition-colors">
+                                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-7 gap-1 mb-2">
+                                <div class="text-xs text-gray-500 text-center font-medium">D</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">S</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">T</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">Q</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">Q</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">S</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">S</div>
+                            </div>
+                            <div class="grid grid-cols-7 gap-1">
+                                <div class="calendar-day disabled"></div>
+                                <div class="calendar-day disabled"></div>
+                                <div class="calendar-day disabled"></div>
+                                <div class="calendar-day disabled"></div>
+                                <div class="calendar-day disabled"></div>
+                                <div class="calendar-day">1</div>
+                                <div class="calendar-day">2</div>
+                                <div class="calendar-day">3</div>
+                                <div class="calendar-day">4</div>
+                                <div class="calendar-day">5</div>
+                                <div class="calendar-day">6</div>
+                                <div class="calendar-day">7</div>
+                                <div class="calendar-day">8</div>
+                                <div class="calendar-day">9</div>
+                                <div class="calendar-day">10</div>
+                                <div class="calendar-day">11</div>
+                                <div class="calendar-day">12</div>
+                                <div class="calendar-day">13</div>
+                                <div class="calendar-day">14</div>
+                                <div class="calendar-day">15</div>
+                                <div class="calendar-day">16</div>
+                                <div class="calendar-day">17</div>
+                                <div class="calendar-day">18</div>
+                                <div class="calendar-day selected">19</div>
+                                <div class="calendar-day in-range">20</div>
+                                <div class="calendar-day in-range">21</div>
+                                <div class="calendar-day in-range">22</div>
+                                <div class="calendar-day in-range">23</div>
+                                <div class="calendar-day in-range">24</div>
+                                <div class="calendar-day in-range">25</div>
+                                <div class="calendar-day in-range">26</div>
+                                <div class="calendar-day in-range">27</div>
+                                <div class="calendar-day in-range">28</div>
+                                <div class="calendar-day in-range">29</div>
+                                <div class="calendar-day in-range">30</div>
+                                <div class="calendar-day in-range">31</div>
+                            </div>
+                        </div>
+
+                        <!-- Calendário 2 - Abril 2019 -->
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-4">
+                                <button class="p-1 hover:bg-gray-100 rounded transition-colors">
+                                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
+                                </button>
+                                <span class="text-sm font-medium text-gray-700">abril de 2019</span>
+                                <button class="p-1 hover:bg-gray-100 rounded transition-colors">
+                                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-7 gap-1 mb-2">
+                                <div class="text-xs text-gray-500 text-center font-medium">D</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">S</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">T</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">Q</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">Q</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">S</div>
+                                <div class="text-xs text-gray-500 text-center font-medium">S</div>
+                            </div>
+                            <div class="grid grid-cols-7 gap-1">
+                                <div class="calendar-day disabled"></div>
+                                <div class="calendar-day in-range">1</div>
+                                <div class="calendar-day in-range">2</div>
+                                <div class="calendar-day in-range">3</div>
+                                <div class="calendar-day in-range">4</div>
+                                <div class="calendar-day in-range">5</div>
+                                <div class="calendar-day in-range">6</div>
+                                <div class="calendar-day in-range">7</div>
+                                <div class="calendar-day in-range">8</div>
+                                <div class="calendar-day in-range">9</div>
+                                <div class="calendar-day in-range">10</div>
+                                <div class="calendar-day in-range">11</div>
+                                <div class="calendar-day in-range">12</div>
+                                <div class="calendar-day in-range">13</div>
+                                <div class="calendar-day in-range">14</div>
+                                <div class="calendar-day in-range">15</div>
+                                <div class="calendar-day in-range">16</div>
+                                <div class="calendar-day in-range">17</div>
+                                <div class="calendar-day in-range">18</div>
+                                <div class="calendar-day in-range">19</div>
+                                <div class="calendar-day in-range">20</div>
+                                <div class="calendar-day in-range">21</div>
+                                <div class="calendar-day in-range">22</div>
+                                <div class="calendar-day in-range">23</div>
+                                <div class="calendar-day in-range">24</div>
+                                <div class="calendar-day in-range">25</div>
+                                <div class="calendar-day in-range">26</div>
+                                <div class="calendar-day in-range">27</div>
+                                <div class="calendar-day in-range">28</div>
+                                <div class="calendar-day in-range">29</div>
+                                <div class="calendar-day in-range">30</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botões de Ação -->
+                    <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-gray-200">
+                        <button class="excluir-btn px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                            Excluir
+                        </button>
+                        <button class="aplicar-btn px-4 py-2 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                            Aplicar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Abrir/Fechar Modal
+        const modal = document.getElementById('modalFiltro');
+        const openBtn = document.getElementById('buttonfiltro');
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.toggle('hidden');
+        });
+
+        // Fechar modal ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!modal.contains(e.target) && !openBtn.contains(e.target)) {
+                modal.classList.add('hidden');
+            }
+        });
+
+        // Botão Aplicar fecha o modal
+        const aplicarBtn = document.querySelector('.aplicar-btn');
+        aplicarBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            // Aqui você aplicaria o filtro selecionado
+        });
+
+        // Botão Excluir fecha o modal
+        const excluirBtn = document.querySelector('.excluir-btn');
+        excluirBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        // Selecionar Filtros Rápidos
+        const filterItems = document.querySelectorAll('.filter-item');
+        
+        filterItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active de todos
+                filterItems.forEach(i => {
+                    i.classList.remove('active');
+                    const link = i.querySelector('a');
+                    link.classList.remove('text-purple-600', 'font-medium');
+                    link.classList.add('text-gray-700');
+                });
+                
+                // Adiciona active no clicado
+                this.classList.add('active');
+                const link = this.querySelector('a');
+                link.classList.remove('text-gray-700');
+                link.classList.add('text-purple-600', 'font-medium');
+                
+                // Aqui você pode adicionar a lógica para atualizar o dashboard
+                const filterType = this.getAttribute('data-filter');
+                console.log('Filtro selecionado:', filterType);
+                
+                // TODO: Chamar função que atualiza gráficos e números do dashboard
+                // updateDashboard(filterType);
+            });
+        });
+
+        // Funcionalidade dos dias do calendário (visual apenas)
+        const calendarDays = document.querySelectorAll('.calendar-day:not(.disabled)');
+        
+        calendarDays.forEach(day => {
+            day.addEventListener('click', function() {
+                console.log('Dia selecionado:', this.textContent);
+                // Funcionalidade de seleção de data será implementada futuramente
+            });
+        });
+    </script>
+</body>
+</html>
