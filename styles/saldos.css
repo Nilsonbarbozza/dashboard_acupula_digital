@@ -44,3 +44,11 @@ body{margin:0}
 .inline_8c8d9f44 {align-items:center;line-height:24px;transition:border 0.5s,width 0.5s;width:16px;display:none!important}
 .inline_0cbbf018 {outline:none}
 .inline_9f65e3b3 {z-index:2147483647!important;position:relative!important;height:0px!important;display:none!important}
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE e Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari e Opera */
+}
+  
