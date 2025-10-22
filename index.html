@@ -745,7 +745,7 @@
                             </div>
                   
                             <!-- Calendários -->
-                            <div class="flex flex-row gap-3 mb-4 overflow-x-auto">
+                            <div id="calendario" class="flex flex-row gap-3 mb-4 overflow-x-auto">
                               <!-- Calendário 1 - Março 2019 -->
                               <div class="flex-shrink-0 w-72 sm:flex-1">
                                 <div class="flex items-center justify-between mb-4">
@@ -1152,12 +1152,12 @@
                                                       <div class="⚙ as-pi as-p6 as-pj as-p7 as-lq as-5b as-54 ⚙2144yx">
                                                         <div class="Box-root inline_1f5d8c91">
                                                           <div
-                                                            class="Box-root Flex-flex Flex-alignItems--center Flex-direction--row Flex-justifyContent--flexStart Flex-wrap--nowrap inline_5375a6d2">
+                                                            class="">
                                                             <div class="">
                                                               BANCO DO BRASIL S.A.
                                                             </div>
                                                             <div class="mr-2">
-                                                              &bull;&bull;&bull;&bull; 9507
+                                                              
                                                             </div>
                                                           </div>
                                                         </div>
@@ -1243,12 +1243,12 @@
                                                       <div class="⚙ as-pi as-p6 as-pj as-p7 as-lq as-5b as-54 ⚙2144yx">
                                                         <div class="Box-root inline_1f5d8c91">
                                                           <div
-                                                            class="Box-root Flex-flex Flex-alignItems--center Flex-direction--row Flex-justifyContent--flexStart Flex-wrap--nowrap inline_5375a6d2">
+                                                            class="">
                                                             <div class="">
                                                               BANCO DO BRASIL S.A.
                                                             </div>
                                                             <div class="mr-2">
-                                                              &bull;&bull;&bull;&bull; 9507
+                                                              
                                                             </div>
                                                           </div>
                                                         </div>
@@ -1334,12 +1334,12 @@
                                                       <div class="⚙ as-pi as-p6 as-pj as-p7 as-lq as-5b as-54 ⚙2144yx">
                                                         <div class="Box-root inline_1f5d8c91">
                                                           <div
-                                                            class="Box-root Flex-flex Flex-alignItems--center Flex-direction--row Flex-justifyContent--flexStart Flex-wrap--nowrap inline_5375a6d2">
+                                                            class="">
                                                             <div class="">
                                                               BANCO DO BRASIL S.A.
                                                             </div>
                                                             <div class="mr-2">
-                                                              &bull;&bull;&bull;&bull; 9507
+                                                              
                                                             </div>
                                                           </div>
                                                         </div>
@@ -1423,12 +1423,12 @@
                                                       <div class="⚙ as-pi as-p6 as-pj as-p7 as-lq as-5b as-54 ⚙2144yx">
                                                         <div class="Box-root inline_1f5d8c91">
                                                           <div
-                                                            class="Box-root Flex-flex Flex-alignItems--center Flex-direction--row Flex-justifyContent--flexStart Flex-wrap--nowrap inline_5375a6d2">
+                                                            class="">
                                                             <div class="">
                                                               BANCO DO BRASIL S.A.
                                                             </div>
                                                             <div class="mr-2">
-                                                              &bull;&bull;&bull;&bull; 9507
+                                                              
                                                             </div>
                                                           </div>
                                                         </div>
@@ -2165,10 +2165,6 @@
                                                             class="">
                                                             millena829@gmail.com
                                                           </div>
-                                                          <div
-                                                            class="mr-2">
-                                                            &ZeroWidthSpace;
-                                                          </div>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -2262,10 +2258,6 @@
                                                           <div
                                                             class="">
                                                             junioralbano@hotmail.com
-                                                          </div>
-                                                          <div
-                                                            class="mr-2">
-                                                            &ZeroWidthSpace;
                                                           </div>
                                                         </div>
                                                       </div>
@@ -2361,10 +2353,6 @@
                                                             class="">
                                                             cabralbarbosa76@gmail.com
                                                           </div>
-                                                          <div
-                                                            class="mr-2">
-                                                            &ZeroWidthSpace;
-                                                          </div>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -2456,10 +2444,6 @@
                                                           <div
                                                             class="">
                                                             anaisabela06@gmail.com
-                                                          </div>
-                                                          <div
-                                                            class="mr-2">
-                                                            &ZeroWidthSpace;
                                                           </div>
                                                         </div>
                                                       </div>
@@ -3854,6 +3838,7 @@
   const iconeNativo = document.getElementById("icones-nativo")
   const iconesDinamico = document.getElementById("iconeSmart")
 
+
   menuToggle.addEventListener("click", () => {
     const isHidden = sidebar.classList.contains("hidden");
     const isMobile = window.innerWidth < 768; // breakpoint Tailwind md
@@ -3869,7 +3854,6 @@
 
       if (isMobile) {
         sidebar.classList.add("fixed", "inset-0", "w-full", "h-full", "bg-white", "overflow-y-auto", "transform", "-translate-x-full", "transition-transform", "duration-300", "ease-in-out");
-
         // Animar entrada
         requestAnimationFrame(() => {
           sidebar.classList.remove("-translate-x-full");
@@ -3900,71 +3884,105 @@
     }
   });
 
-    <!--SCRIPT MODAL FILTRO-->
-    // Abrir/Fechar Modal
-    const modal = document.getElementById('modalFiltro');
-    const openBtn = document.getElementById('buttonfiltro');
+  // Abrir/Fechar Modal
+  const modal = document.getElementById('modalFiltro');
+  const openBtn = document.getElementById('buttonfiltro');
+  const calendario = document.getElementById('calendario');
 
-    openBtn.addEventListener('click', () => {
-      modal.classList.toggle('hidden');
-    });
+  // Função para detectar se está em mobile
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
 
-    // Fechar modal ao clicar fora
-    document.addEventListener('click', (e) => {
-      if (!modal.contains(e.target) && !openBtn.contains(e.target)) {
-        modal.classList.add('hidden');
+  // Função para mostrar/ocultar calendário
+  function toggleCalendario(mostrar) {
+    if (isMobile() && calendario) {
+      if (mostrar) {
+        calendario.classList.remove('hidden');
+      } else {
+        calendario.classList.add('hidden');
       }
-    });
+    }
+  }
 
-    // Botão Aplicar fecha o modal
-    const aplicarBtn = document.querySelector('.aplicar-btn');
-    aplicarBtn.addEventListener('click', () => {
+  openBtn.addEventListener('click', () => {
+    modal.classList.toggle('hidden');
+
+    // Oculta calendário quando abre o modal em mobile
+    if (!modal.classList.contains('hidden')) {
+      toggleCalendario(false);
+    } else {
+      toggleCalendario(true);
+    }
+  });
+
+  // Fechar modal ao clicar fora
+  document.addEventListener('click', (e) => {
+    if (!modal.contains(e.target) && !openBtn.contains(e.target)) {
       modal.classList.add('hidden');
-      // Aqui você aplicaria o filtro selecionado
-    });
+      toggleCalendario(true); // Mostra calendário ao fechar
+    }
+  });
 
-    // Botão Excluir fecha o modal
-    const excluirBtn = document.querySelector('.excluir-btn');
-    excluirBtn.addEventListener('click', () => {
-      modal.classList.add('hidden');
-    });
+  // Botão Aplicar fecha o modal
+  const aplicarBtn = document.querySelector('.aplicar-btn');
+  aplicarBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    toggleCalendario(true); // Mostra calendário ao fechar
+    // Aqui você aplicaria o filtro selecionado
+  });
 
-    // Selecionar Filtros Rápidos
-    const filterItems = document.querySelectorAll('.filter-item');
+  // Botão Excluir fecha o modal
+  const excluirBtn = document.querySelector('.excluir-btn');
+  excluirBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    toggleCalendario(true); // Mostra calendário ao fechar
+  });
 
-    filterItems.forEach(item => {
-      item.addEventListener('click', function () {
-        // Remove active de todos
-        filterItems.forEach(i => {
-          i.classList.remove('active');
-          const link = i.querySelector('a');
-          link.classList.remove('text-purple-600', 'font-medium');
-          link.classList.add('text-gray-700');
-        });
+  // Listener para redimensionamento da janela
+  window.addEventListener('resize', () => {
+    // Se sair do modo mobile, garantir que o calendário fique visível
+    if (!isMobile() && calendario && calendario.classList.contains('hidden')) {
+      calendario.classList.remove('hidden');
+    }
+  });
 
-        // Adiciona active no clicado
-        this.classList.add('active');
-        const link = this.querySelector('a');
-        link.classList.remove('text-gray-700');
-        link.classList.add('text-purple-600', 'font-medium');
+  // Selecionar Filtros Rápidos
+  const filterItems = document.querySelectorAll('.filter-item');
 
-        // Aqui você pode adicionar a lógica para atualizar o dashboard
-        const filterType = this.getAttribute('data-filter');
-        console.log('Filtro selecionado:', filterType);
-
-        // TODO: Chamar função que atualiza gráficos e números do dashboard
-        // updateDashboard(filterType);
+  filterItems.forEach(item => {
+    item.addEventListener('click', function () {
+      // Remove active de todos
+      filterItems.forEach(i => {
+        i.classList.remove('active');
+        const link = i.querySelector('a');
+        link.classList.remove('text-purple-600', 'font-medium');
+        link.classList.add('text-gray-700');
       });
-    });
 
-    // Funcionalidade dos dias do calendário (visual apenas)
-    const calendarDays = document.querySelectorAll('.calendar-day:not(.disabled)');
+      // Adiciona active no clicado
+      this.classList.add('active');
+      const link = this.querySelector('a');
+      link.classList.remove('text-gray-700');
+      link.classList.add('text-purple-600', 'font-medium');
 
-    calendarDays.forEach(day => {
-      day.addEventListener('click', function () {
-        console.log('Dia selecionado:', this.textContent);
-        // Funcionalidade de seleção de data será implementada futuramente
-      });
+      // Aqui você pode adicionar a lógica para atualizar o dashboard
+      const filterType = this.getAttribute('data-filter');
+      console.log('Filtro selecionado:', filterType);
+
+      // TODO: Chamar função que atualiza gráficos e números do dashboard
+      // updateDashboard(filterType);
     });
-  </script>
+  });
+
+  // Funcionalidade dos dias do calendário (visual apenas)
+  const calendarDays = document.querySelectorAll('.calendar-day:not(.disabled)');
+
+  calendarDays.forEach(day => {
+    day.addEventListener('click', function () {
+      console.log('Dia selecionado:', this.textContent);
+      // Funcionalidade de seleção de data será implementada futuramente
+    });
+  });
+</script>
 </html>
