@@ -174,7 +174,7 @@
                                                     Volume bruto
                                                   </span>
                                                 </span>
-                                                <div aria-hidden="true"
+                                                <div id="dropbruto" aria-hidden="true"
                                                   class="SVGInline SVGInline--cleaned SVG Icon Icon--chevronDown Icon-color Icon-color--gray600 Box-root Margin-left--8 Flex-flex">
                                                   <svg aria-hidden="true"
                                                     class="SVGInline-svg SVGInline--cleaned-svg SVG-svg Icon-svg Icon--chevronDown-svg Icon-color-svg Icon-color--gray600-svg"
@@ -186,6 +186,10 @@
                                                     </path>
                                                   </svg>
                                                 </div>
+                                              </div>
+                                              <!--Drop Valor Bruto-->
+                                              <div class="hidden" id="select-valorbruto">
+                                                <h1>valor bruto</h1>
                                               </div>
                                             </button>
                                           </div>
@@ -486,7 +490,7 @@
                                   </section>
                                 </div>
                                 <a class="UnstyledLink ButtonLink Flex-flex"
-                                  href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/balance/overview?currency=brl">
+                                  href="saldos.html">
                                   <div class="Box-root Flex-flex Flex-alignItems--baseline Flex-direction--row"
                                     style="position:relative">
                                     <div aria-hidden="true" class="TextAligner Box-root"
@@ -547,7 +551,7 @@
                                   </span>
                                 </span>
                                 <a class="UnstyledLink ButtonLink Flex-flex"
-                                  href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI">
+                                  href="transacoes.html">
                                   <div class="Box-root Flex-flex Flex-alignItems--baseline Flex-direction--row"
                                     style="position:relative">
                                     <div aria-hidden="true" class="TextAligner Box-root"
@@ -669,38 +673,38 @@
                           <div class="w-full md:w-48 bg-white md:border-r border-gray-200 p-4 md:max-h-none max-h-48 overflow-y-auto">
                             <ul class="flex flex-col gap-1">
                               <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                                data-filter="today">
+                                data-filter="hoje">
                                 <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
                                   Hoje
                                 </a>
                               </li>
                               <li
                                 class="filter-item active flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                                data-filter="last7days">
+                                data-filter="7dias">
                                 <a class="text-purple-600 font-medium px-3 py-2 text-sm w-full" role="button" tabindex="0">
                                   Últimos 7 dias
                                 </a>
                               </li>
                               <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                                data-filter="last4weeks">
+                                data-filter="4semanas">
                                 <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
                                   Últimas 4 semanas
                                 </a>
                               </li>
                               <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                                data-filter="last6months">
+                                data-filter="6meses">
                                 <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
                                   Últimos 6 meses
                                 </a>
                               </li>
                               <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                                data-filter="last12months">
+                                data-filter="12meses">
                                 <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
                                   Últimos 12 meses
                                 </a>
                               </li>
                               <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                                data-filter="monthToDate">
+                                data-filter="mesatedata">
                                 <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
                                   Mês até a data
                                 </a>
@@ -718,7 +722,7 @@
                                 </a>
                               </li>
                               <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                                data-filter="allTime">
+                                data-filter="desdoinicio">
                                 <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
                                   Desde o início
                                 </a>
@@ -1523,8 +1527,8 @@
                                     </a>
                                   </div>
                                   <div class="⚙ rs-2 as-x as-8o as-bd ⚙crsr0q" display="inline">
-                                    <span class="⚙ rs-3 as-g0 ⚙7q55hl" title="R$&nbsp;0,00">
-                                      $ 69,071.00
+                                    <span id="valorbruto" class="⚙ rs-3 as-g0 ⚙7q55hl" title="R$&nbsp;0,00">
+                                      69,071.00
                                     </span>
                                   </div>
                                   <div class="⚙ rs-3 as-8h as-g1 as-5b ⚙1ge4qgr">
@@ -1632,7 +1636,7 @@
                             <div class="⚙ rs-2 as-x as-f8 as-fh ⚙yd7323">
                               <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4r as-1t as-1u as-3o as-23 as-24 as-f9 as-fa as-4u as-fb as-4w as-8h as-1n ⚙h80dqa"
                                 data-bento-action-target="footerLink"
-                                href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payments?created[gte]=1758250800&amp;created[lte]=1758855599"
+                                href="clientes.html"
                                 tabindex="0">
                                 Exibir mais
                               </a>
@@ -1680,7 +1684,7 @@
                                     </a>
                                   </div>
                                   <div class="⚙ rs-2 as-x as-8o as-bd ⚙crsr0q" display="inline">
-                                    <span class="⚙ rs-3 as-g0 ⚙7q55hl" title="R$&nbsp;0,00">
+                                    <span id="volumeliquido" class="⚙ rs-3 as-g0 ⚙7q55hl" title="R$&nbsp;0,00">
                                       $32,927.00
                                     </span>
                                   </div>
@@ -1788,7 +1792,7 @@
                             <div class="⚙ rs-2 as-x as-f8 as-fh ⚙yd7323">
                               <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4r as-1t as-1u as-3o as-23 as-24 as-f9 as-fa as-4u as-fb as-4w as-8h as-1n ⚙h80dqa"
                                 data-bento-action-target="footerLink"
-                                href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/billing#net_volume"
+                                href="saldos.html"
                                 tabindex="0">
                                 Exibir mais
                               </a>
@@ -2109,7 +2113,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q as-p2 as-p3 as-p4 as-p5 ⚙246it">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-5z as-4s as-bs as-2q as-17 as-4v as-ph ⚙1xogw1q"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-22 as-5z as-4s as-bs as-2q as-17 as-4v as-ph ⚙1xogw1q"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="0">
                                                   <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2153,7 +2157,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g  as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2178,7 +2182,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-5c as-4s as-bs as-2q as-17 as-4v as-ph ⚙16j84e8"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-22 as-5c as-4s as-bs as-2q as-17 as-4v as-ph ⚙16j84e8"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙ ml-3 rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2203,7 +2207,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q as-p2 as-p3 as-p4 as-p5 ⚙246it">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-5z as-4s as-bs as-2q as-17 as-4v as-ph ⚙1xogw1q"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-22 as-5z as-4s as-bs as-2q as-17 as-4v as-ph ⚙1xogw1q"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="0">
                                                   <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2224,7 +2228,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g  as-22 as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2247,7 +2251,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2272,7 +2276,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-5c as-4s as-bs as-2q as-17 as-4v as-ph ⚙16j84e8"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g  as-22 as-5c as-4s as-bs as-2q as-17 as-4v as-ph ⚙16j84e8"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙ ml-3 rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2297,7 +2301,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q as-p2 as-p3 as-p4 as-p5 ⚙246it">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-5z as-4s as-bs as-2q as-17 as-4v as-ph ⚙1xogw1q"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-22 as-5z as-4s as-bs as-2q as-17 as-4v as-ph ⚙1xogw1q"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="0">
                                                   <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2318,7 +2322,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g  as-22 as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2341,7 +2345,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2366,7 +2370,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-5c as-4s as-bs as-2q as-17 as-4v as-ph ⚙16j84e8"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-22 as-5c as-4s as-bs as-2q as-17 as-4v as-ph ⚙16j84e8"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙ ml-3 rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2389,7 +2393,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q as-p2 as-p3 as-p4 as-p5 ⚙246it">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-5z as-4s as-bs as-2q as-17 as-4v as-ph ⚙1xogw1q"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-22 as-5z as-4s as-bs as-2q as-17 as-4v as-ph ⚙1xogw1q"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="0">
                                                   <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2410,7 +2414,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-22 as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2433,7 +2437,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-l1 as-4s as-bs as-2q as-17 as-4v as-ph ⚙9j7dhw"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -2458,7 +2462,7 @@
                                             <div
                                               class="⚙ rs-2 rs-3 as-ow as-ox as-k1 as-oy as-oz as-89 as-0 as-x as-y as-bd as-2n as-98 as-p0 as-p1 as-17 as-2q ⚙1eyq6ei">
                                               <div class="⚙ as-17 as-2q ⚙27g56x">
-                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-21 as-22 as-5c as-4s as-bs as-2q as-17 as-4v as-ph ⚙16j84e8"
+                                                <a class="⚙ rs-4 rs-3 as-1i as-1j as-1k as-4n as-5g as-22 as-5c as-4s as-bs as-2q as-17 as-4v as-ph ⚙16j84e8"
                                                   href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payouts/po_1ETg8AF8gC7gGNTW2paAy8VI"
                                                   tabindex="-1">
                                                   <div class="⚙ ml-3 rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
@@ -3884,10 +3888,175 @@
     }
   });
 
+// ============================================
+// DADOS MOCKADOS - Simula dados do backend
+// ============================================
+const dadosMockados = {
+  hoje: {
+    valorBruto: 2449.55,
+    volumeLiquido: 1649.21
+  },
+  ultimos7dias: {
+    valorBruto: 38283.83,
+    volumeLiquido: 14630.12
+  },
+  ultimas4semanas: {
+    valorBruto: 69071.00,
+    volumeLiquido: 33754.66
+  },
+  ultimos6meses: {
+    valorBruto: 85420.50,
+    volumeLiquido: 45280.30
+  },
+  ultimos12meses: {
+    valorBruto: 150340.25,
+    volumeLiquido: 78960.55
+  },
+  mesatedata: {
+    valorBruto: 245680.75,
+    volumeLiquido: 128540.20
+  },
+  desdoinicio: {
+    valorBruto: 485920.90,
+    volumeLiquido: 256780.45
+  },
+};
+
+// ============================================
+// CONFIGURAÇÃO DOS FILTROS
+// ============================================
+const filtrosConfig = {
+  'hoje': {
+    label: 'Hoje',
+    periodo: 'hoje'
+  },
+  '7dias': {
+    label: 'Últimos 7 dias',
+    periodo: 'ultimos7dias'
+  },
+  '4semanas': {
+    label: 'Últimas 4 semanas',
+    periodo: 'ultimas4semanas'
+  },
+  '6meses': {
+    label: 'Últimos 6 meses',
+    periodo: 'ultimos6meses'
+  },
+  '12meses': {
+    label: 'Últimos 12 meses',
+    periodo: 'ultimos12meses'
+  },
+  'mesatedata': {
+    label: 'Messes ate a data',
+    periodo: 'mesatedata'
+  },
+  'desdoinicio': {
+    label: 'Desde o início',
+    periodo: 'desdoincio'
+  }
+};
+
+// ============================================
+// FUNÇÕES DE FORMATAÇÃO
+// ============================================
+function formatarMoeda(valor) {
+  const valorFormatado = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(valor);
+  
+  return `$ ${valorFormatado}`;
+}
+
+// ============================================
+// FUNÇÃO PRINCIPAL - ATUALIZAR DASHBOARD
+// ============================================
+function atualizarDashboard(filtroType) {
+  console.log('🔄 Atualizando dashboard com filtro:', filtroType);
+  
+  // Verificar se o filtro existe
+  const filtro = filtrosConfig[filtroType];
+  if (!filtro) {
+    console.error('❌ Filtro não encontrado:', filtroType);
+    return;
+  }
+
+  // Buscar os dados correspondentes ao período
+  const periodo = filtro.periodo;
+  const dados = dadosMockados[periodo];
+
+  if (!dados) {
+    console.error('❌ Dados não encontrados para o período:', periodo);
+    return;
+  }
+
+  // Atualizar os valores na interface
+  atualizarValores(dados);
+  
+  // Adicionar animação de atualização
+  adicionarAnimacaoAtualizacao();
+  
+  // Log de sucesso
+  console.log('✅ Dashboard atualizado com sucesso!');
+  console.log('📊 Dados:', dados);
+}
+
+// ============================================
+// ATUALIZAR VALORES NA INTERFACE
+// ============================================
+function atualizarValores(dados) {
+  // Atualizar Valor Bruto
+  const elementoValorBruto = document.getElementById('valorbruto');
+  if (elementoValorBruto) {
+    elementoValorBruto.textContent = formatarMoeda(dados.valorBruto);
+    console.log('💰 Valor Bruto atualizado:', formatarMoeda(dados.valorBruto));
+  } else {
+    console.warn('⚠️ Elemento #valorbruto não encontrado');
+  }
+
+  // Atualizar Volume Líquido
+  const elementoVolumeLiquido = document.getElementById('volumeliquido');
+  if (elementoVolumeLiquido) {
+    elementoVolumeLiquido.textContent = formatarMoeda(dados.volumeLiquido);
+    console.log('💧 Volume Líquido atualizado:', formatarMoeda(dados.volumeLiquido));
+  } else {
+    console.warn('⚠️ Elemento #volumeliquido não encontrado');
+  }
+}
+
+// ============================================
+// ANIMAÇÃO DE ATUALIZAÇÃO
+// ============================================
+function adicionarAnimacaoAtualizacao() {
+  const elementos = [
+    document.getElementById('valorbruto'),
+    document.getElementById('volumeliquido')
+  ];
+
+  elementos.forEach(el => {
+    if (el) {
+      // Adiciona classe de animação
+      el.classList.add('animate-pulse');
+      
+      // Remove após 600ms
+      setTimeout(() => {
+        el.classList.remove('animate-pulse');
+      }, 600);
+    }
+  });
+}
+
+  // ============================================
+  // INTEGRAÇÃO COM O CÓDIGO EXISTENTE
+  // ============================================
+
   // Abrir/Fechar Modal
   const modal = document.getElementById('modalFiltro');
   const openBtn = document.getElementById('buttonfiltro');
   const calendario = document.getElementById('calendario');
+
+  // Variável para armazenar o filtro atual
+  let filtroAtual = '7dias'; // Filtro padrão
 
   // Função para detectar se está em mobile
   function isMobile() {
@@ -3908,7 +4077,6 @@
   openBtn.addEventListener('click', () => {
     modal.classList.toggle('hidden');
 
-    // Oculta calendário quando abre o modal em mobile
     if (!modal.classList.contains('hidden')) {
       toggleCalendario(false);
     } else {
@@ -3920,34 +4088,61 @@
   document.addEventListener('click', (e) => {
     if (!modal.contains(e.target) && !openBtn.contains(e.target)) {
       modal.classList.add('hidden');
-      toggleCalendario(true); // Mostra calendário ao fechar
+      toggleCalendario(true);
     }
   });
 
-  // Botão Aplicar fecha o modal
+  // Botão Aplicar - APLICA O FILTRO
   const aplicarBtn = document.querySelector('.aplicar-btn');
   aplicarBtn.addEventListener('click', () => {
     modal.classList.add('hidden');
-    toggleCalendario(true); // Mostra calendário ao fechar
-    // Aqui você aplicaria o filtro selecionado
+    toggleCalendario(true);
+
+    // 🎯 APLICAR O FILTRO SELECIONADO
+    atualizarDashboard(filtroAtual);
   });
 
-  // Botão Excluir fecha o modal
+  // Botão Excluir - RESETA PARA O FILTRO PADRÃO
   const excluirBtn = document.querySelector('.excluir-btn');
   excluirBtn.addEventListener('click', () => {
     modal.classList.add('hidden');
-    toggleCalendario(true); // Mostra calendário ao fechar
+    toggleCalendario(true);
+
+    // Reset para o filtro padrão
+    filtroAtual = '7dias';
+
+    // Remove active de todos os filtros
+    const filterItems = document.querySelectorAll('.filter-item');
+    filterItems.forEach(item => {
+      item.classList.remove('active');
+      const link = item.querySelector('a');
+      link.classList.remove('text-purple-600', 'font-medium');
+      link.classList.add('text-gray-700');
+    });
+
+    // Ativa o filtro "hoje"
+    const filtroHoje = document.querySelector('[data-filter="hoje"]');
+    if (filtroHoje) {
+      filtroHoje.classList.add('active');
+      const link = filtroHoje.querySelector('a');
+      link.classList.remove('text-gray-700');
+      link.classList.add('text-purple-600', 'font-medium');
+    }
+
+    // Atualiza o dashboard
+    atualizarDashboard('hoje');
   });
 
   // Listener para redimensionamento da janela
   window.addEventListener('resize', () => {
-    // Se sair do modo mobile, garantir que o calendário fique visível
     if (!isMobile() && calendario && calendario.classList.contains('hidden')) {
       calendario.classList.remove('hidden');
     }
   });
 
-  // Selecionar Filtros Rápidos
+  // ============================================
+  // SELECIONAR FILTROS RÁPIDOS
+  // ============================================
   const filterItems = document.querySelectorAll('.filter-item');
 
   filterItems.forEach(item => {
@@ -3966,23 +4161,41 @@
       link.classList.remove('text-gray-700');
       link.classList.add('text-purple-600', 'font-medium');
 
-      // Aqui você pode adicionar a lógica para atualizar o dashboard
+      // Armazena o filtro selecionado
       const filterType = this.getAttribute('data-filter');
-      console.log('Filtro selecionado:', filterType);
+      filtroAtual = filterType;
 
-      // TODO: Chamar função que atualiza gráficos e números do dashboard
-      // updateDashboard(filterType);
+      console.log('📌 Filtro selecionado:', filterType);
+      console.log('ℹ️ Clique em "Aplicar" para atualizar o dashboard');
     });
   });
 
-  // Funcionalidade dos dias do calendário (visual apenas)
-  const calendarDays = document.querySelectorAll('.calendar-day:not(.disabled)');
+  // ============================================
+  // INICIALIZAÇÃO - Carregar dados padrão
+  // ============================================
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 Sistema de filtros inicializado');
 
-  calendarDays.forEach(day => {
-    day.addEventListener('click', function () {
-      console.log('Dia selecionado:', this.textContent);
-      // Funcionalidade de seleção de data será implementada futuramente
-    });
+    // Carregar dados do filtro padrão
+    atualizarDashboard(filtroAtual);
+  });  
+  // ============================================
+  <!--Drop valor bruto-->
+
+  const dropbruto = document.getElementById("dropbruto");
+  const conteudobruto = document.getElementById("select-valorbruto");
+
+  dropbruto.addEventListener("click", () => {
+    const isHidden = conteudobruto.classList.contains("hidden");
+
+    if (isHidden) {
+      // Abrir dropdown
+      conteudobruto.classList.remove("hidden");
+    } else {
+      // Fechar dropdown
+      conteudobruto.classList.add("hidden");
+    }
   });
+
 </script>
 </html>
