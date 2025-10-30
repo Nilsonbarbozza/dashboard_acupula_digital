@@ -644,7 +644,7 @@
                             </dt>
                             <span class="⚙ as-bs as-bt as-bu as-ct as-bw as-bx as-cu ⚙apol8d" role="separator" style="flex:0 0 1px">
                             </span>
-                            <dd class="⚙ as-y as-cs ⚙q34lrv">
+                            <dd id="filtroSelecionadoTag" class="⚙ as-y as-cs ⚙q34lrv">
                               Ultimos 7 dias
                             </dd>
                           </dl>
@@ -1532,7 +1532,7 @@
                                     </span>
                                   </div>
                                   <div class="⚙ rs-3 as-8h as-g1 as-5b ⚙1ge4qgr">
-                                    $62,832.00 periodo anterior
+                                    <span id="volumeBrutoAnterior"> </span> periodo anterior
                                   </div>
                                 </div>
                                 <div class="⚙ rs-2 as-1u as-x as-23 as-8k as-a ⚙1cmmezi">
@@ -1689,7 +1689,7 @@
                                     </span>
                                   </div>
                                   <div class="⚙ rs-3 as-8h as-g1 as-5b ⚙1ge4qgr">
-                                    $ 48,512.0 per&iacute;odo anterior
+                                    <span id="volumeLiquidoAnterior"></span> per&iacute;odo anterior
                                   </div>
                                 </div>
                                 <div class="⚙ rs-2 as-1u as-x as-23 as-8k as-a ⚙1cmmezi">
@@ -1881,7 +1881,7 @@
                                     </a>
                                   </div>
                                   <div class="⚙ rs-2 as-x as-8o as-bd ⚙crsr0q" display="inline">
-                                    <span class="⚙ rs-3 as-g0 ⚙7q55hl" title="0">
+                                    <span id="clientes" class="⚙ rs-3 as-g0 ⚙7q55hl" title="0">
                                       82
                                     </span>
                                   </div>
@@ -3894,31 +3894,53 @@
 const dadosMockados = {
   hoje: {
     valorBruto: 2449.55,
-    volumeLiquido: 1649.21
+    volumeBrutoAnterior: 1334.88, 
+    volumeLiquido: 1649.21,
+    volumeLiquidoAnterior: 987.34,
+    clientes: 81,
+
   },
   ultimos7dias: {
     valorBruto: 38283.83,
-    volumeLiquido: 14630.12
+    volumeBrutoAnterior: 22421.83, 
+    volumeLiquido: 14630.12,
+    volumeLiquidoAnterior: 11234.56,
+    clientes: 209,
   },
   ultimas4semanas: {
     valorBruto: 69071.00,
-    volumeLiquido: 33754.66
+    volumeBrutoAnterior: 32341.09, 
+    volumeLiquido: 33754.66,
+    volumeLiquidoAnterior: 28901.45,
+    clientes: 412,
   },
   ultimos6meses: {
     valorBruto: 85420.50,
-    volumeLiquido: 45280.30
+    volumeBrutoAnterior: 44353.23, 
+    volumeLiquido: 45280.30,
+    volumeLiquidoAnterior: 39876.12,
+    clientes: 524,
   },
   ultimos12meses: {
     valorBruto: 150340.25,
-    volumeLiquido: 78960.55
+    volumeBrutoAnterior: 89901.01, 
+    volumeLiquido: 78960.55,
+    volumeLiquidoAnterior: 72345.67,
+    clientes: 723,
   },
   mesatedata: {
     valorBruto: 245680.75,
-    volumeLiquido: 128540.20
+    volumeBrutoAnterior: 13421.83, 
+    volumeLiquido: 128540.20,
+    volumeLiquidoAnterior: 112340.56,
+    clientes: 842,
   },
   desdoinicio: {
     valorBruto: 485920.90,
-    volumeLiquido: 256780.45
+    volumeBrutoAnterior: 243421.93, 
+    volumeLiquido: 256780.45,
+    volumeLiquidoAnterior: 223450.78,
+    clientes: 1024,
   },
 };
 
@@ -4001,6 +4023,20 @@ function atualizarDashboard(filtroType) {
   console.log('📊 Dados:', dados);
 }
 
+// ATUALIZA TAG FILTRO
+
+function atualizaTag(filtroType) {
+  const filtro = filtrosConfig[filtroType];
+  const tagElemento = document.getElementById('filtroSelecionadoTag');
+
+  if (filtro && tagElemento) {
+    tagElemento.textContent = filtro.label;
+    console.log('🏷️ Tag de filtro atualizada para:', filtro.label);
+  } else {
+    console.error('❌ Não foi possível atualizar a tag de filtro. Filtro ou elemento não encontrado.');
+  }
+}
+
 // ============================================
 // ATUALIZAR VALORES NA INTERFACE
 // ============================================
@@ -4010,8 +4046,6 @@ function atualizarValores(dados) {
   if (elementoValorBruto) {
     elementoValorBruto.textContent = formatarMoeda(dados.valorBruto);
     console.log('💰 Valor Bruto atualizado:', formatarMoeda(dados.valorBruto));
-  } else {
-    console.warn('⚠️ Elemento #valorbruto não encontrado');
   }
 
   // Atualizar Volume Líquido
@@ -4019,8 +4053,27 @@ function atualizarValores(dados) {
   if (elementoVolumeLiquido) {
     elementoVolumeLiquido.textContent = formatarMoeda(dados.volumeLiquido);
     console.log('💧 Volume Líquido atualizado:', formatarMoeda(dados.volumeLiquido));
-  } else {
-    console.warn('⚠️ Elemento #volumeliquido não encontrado');
+  }
+
+  // Atualizar Clientes
+  const elementoClientes = document.getElementById('clientes')
+  if (elementoClientes) {
+    elementoClientes.textContent = (dados.clientes)
+    console.log('👥 Clientes atualizado:', dados.clientes !== undefined ? dados.clientes : 'N/A');
+  }
+
+  // Atualizar Valor bruto anterior
+  const elementoAnterior = document.getElementById('volumeBrutoAnterior')
+  if (elementoAnterior) {
+    elementoAnterior.textContent = formatarMoeda(dados.volumeBrutoAnterior)
+    console.log('📈 Valor bruto anterior atualizado:')
+  }
+
+  // Atualiza Valume Liquido anterior
+  const elementoLiquidoAnterior = document.getElementById('volumeLiquidoAnterior')
+  if (elementoLiquidoAnterior) {
+    elementoLiquidoAnterior.textContent = formatarMoeda(dados.volumeLiquidoAnterior)
+    console.log('📉 Volume líquido anterior atualizado:')
   }
 }
 
@@ -4100,6 +4153,7 @@ function adicionarAnimacaoAtualizacao() {
 
     // 🎯 APLICAR O FILTRO SELECIONADO
     atualizarDashboard(filtroAtual);
+    atualizaTag(filtroAtual); // ⬅️ CHAMANDO A FUNÇÃO PARA ATUALIZAR A LABEL DO BOTÃO
   });
 
   // Botão Excluir - RESETA PARA O FILTRO PADRÃO
@@ -4131,6 +4185,7 @@ function adicionarAnimacaoAtualizacao() {
 
     // Atualiza o dashboard
     atualizarDashboard('hoje');
+    atualizaTag('hoje'); // ⬅️ RESET LABEL PARA HOJE
   });
 
   // Listener para redimensionamento da janela
