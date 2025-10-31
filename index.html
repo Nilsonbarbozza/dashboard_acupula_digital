@@ -201,7 +201,7 @@
                                     <div class="Box-root Margin-top--4" style="height:28px">
                                       <div class="Box-root" style="min-width:160px">
                                         <!--Valor Bruto-->
-                                        <span
+                                        <span 
                                           class="Text-color--dark Text-fontSize--20 Text-fontWeight--regular Text-lineHeight--28 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
                                           $ 13,812.00
                                         </span>
@@ -592,7 +592,7 @@
                                       <span>
                                         Depositado em
                                         <span style="font-variant-numeric:tabular-nums">
-                                          2 de ago.<br> de 2025
+                                          2 de <span class="mesAtualizacao">.</span><br> de 2025
                                         </span>
                                       </span>
                                     </span>
@@ -710,13 +710,13 @@
                                 </a>
                               </li>
                               <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                                data-filter="quarterToDate">
+                                data-filter="trimesteateadata">
                                 <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
                                   Trimestre até a data
                                 </a>
                               </li>
                               <li class="filter-item flex items-center h-9 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                                data-filter="yearToDate">
+                                data-filter="anoateadata">
                                 <a class="text-gray-700 px-3 py-2 text-sm w-full" role="button" tabindex="0">
                                   Ano até a data
                                 </a>
@@ -3941,6 +3941,22 @@ const dadosMockados = {
     clientes: 842,
     clientesAnterior: 754,
   },
+  trimesteateadata: {
+    valorBruto: 320450.60,
+    volumeBrutoAnterior: 164321.45, 
+    volumeLiquido: 156780.90,
+    volumeLiquidoAnterior: 143210.34,
+    clientes: 912,
+    clientesAnterior: 834,
+  },
+  anoateadata: {
+    valorBruto: 400890.80,
+    volumeBrutoAnterior: 204321.67, 
+    volumeLiquido: 196780.75,
+    volumeLiquidoAnterior: 183450.89,
+    clientes: 978,
+    clientesAnterior: 876,
+  },
   desdoinicio: {
     valorBruto: 485920.90,
     volumeBrutoAnterior: 243421.93, 
@@ -3978,6 +3994,14 @@ const filtrosConfig = {
   'mesatedata': {
     label: 'Messes ate a data',
     periodo: 'mesatedata'
+  },
+  'trimesteateadata': {
+    label: 'Trimestre ate a data',
+    periodo: 'trimesteateadata'
+  },
+  'anoateadata': {
+    label: 'Ano ate a data',
+    periodo: 'anoateadata'
   },
   'desdoinicio': {
     label: 'Desde o início',
