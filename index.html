@@ -168,72 +168,59 @@
                                               <div
                                                 class="Box-root Flex-flex Flex-alignItems--center Flex-direction--row"
                                                 style="cursor:pointer">
-                                                <span
+                                                <span id="dropbruto"
                                                   class="Text-color--gray600 Text-fontSize--14 Text-fontWeight--medium Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
-                                                  <span>
+                                                  <span id="metricaSelecionadaLabel">
                                                     Volume bruto
                                                   </span>
                                                 </span>
-                                                <div class="">
-                                                  <!-- From Uiverse.io by jubayer-10 -->
-                                                  <div id="cardFiltroHoje" class="w-[150px] px-4 py-4 bg-white flex flex-col gap-1 rounded-md shadow-[0px_0px_15px_rgba(0,0,0,0.09)]">
-                                                    <div class="flex flex-row items-center gap-2 p-1">
-                                                      <svg aria-hidden="true" class="text-blue-200" light="12" viewbox="0 0 12 12"
-                                                        width="12" xmlns="http://www.w3.org/2000/svg">
+                                                <!-- Modal Dropdown -->
+                                                <div id="select-valorbruto" class="hidden absolute bg-white rounded-lg shadow-lg border border-gray-200 w-64 z-50">
+                                                  <div class="p-2">
+                                                    <!-- Volume bruto -->
+                                                    <div class="option-item selected flex items-center gap-3 p-3 rounded cursor-pointer" data-metric="volumebruto">
+                                                      <svg class="w-4 h-4 text-blue-500 flex-shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                                                         <path clip-rule="evenodd"
                                                           d="M11.701 1.203a.85.85 0 0 1 .096 1.198l-6.65 7.8a.85.85 0 0 1-1.26.038l-3.65-3.8A.85.85 0 0 1 1.463 5.26l3 3.123 6.04-7.085a.85.85 0 0 1 1.198-.096Z"
-                                                          fill-rule="evenodd">
-                                                        </path>
+                                                          fill="currentColor" fill-rule="evenodd" />
                                                       </svg>
-                                                      <span
-                                                        class="as-9g Text-fontSize--6 Text-fontWeight--normal Text-lineHeight--24 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
-                                                        Volume bruto
-                                                      </span>
+                                                      <span class="text-sm text-gray-700">Volume bruto</span>
                                                     </div>
-                                                    <div class="flex flex-row items-center gap-2 p-1">
-                                                      <svg aria-hidden="true" class="⚙ as-bs as-z as-10 as-11 as-8s as-5r as-5s ⚙108uabw" height="12" viewbox="0 0 12 12"
-                                                        width="12" xmlns="http://www.w3.org/2000/svg">
+                                                
+                                                    <!-- Novos clientes -->
+                                                    <div class="option-item flex items-center gap-3 p-3 rounded cursor-pointer" data-metric="novosclientes">
+                                                      <svg class="w-4 h-4 text-gray-300 flex-shrink-0 opacity-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                                                         <path clip-rule="evenodd"
                                                           d="M11.701 1.203a.85.85 0 0 1 .096 1.198l-6.65 7.8a.85.85 0 0 1-1.26.038l-3.65-3.8A.85.85 0 0 1 1.463 5.26l3 3.123 6.04-7.085a.85.85 0 0 1 1.198-.096Z"
-                                                          fill-rule="evenodd">
-                                                        </path>
+                                                          fill="currentColor" fill-rule="evenodd" />
                                                       </svg>
-                                                      <span
-                                                        class="Text-color--dark Text-fontSize--6 Text-fontWeight--normal Text-lineHeight--24 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
-                                                        Novos clientes
-                                                      </span>
+                                                      <span class="text-sm text-gray-700">Novos clientes</span>
                                                     </div>
-                                                    <div class="flex flex-row items-center gap-2 p-1">
-                                                      <svg aria-hidden="true" class="⚙ as-bs as-z as-10 as-11 as-8s as-5r as-5s ⚙108uabw" height="12" viewbox="0 0 12 12"
-                                                        width="12" xmlns="http://www.w3.org/2000/svg">
+                                                
+                                                    <!-- Pagamentos realizados -->
+                                                    <div class="option-item flex items-center gap-3 p-3 rounded cursor-pointer" data-metric="pagamentos">
+                                                      <svg class="w-4 h-4 text-gray-300 flex-shrink-0 opacity-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                                                         <path clip-rule="evenodd"
                                                           d="M11.701 1.203a.85.85 0 0 1 .096 1.198l-6.65 7.8a.85.85 0 0 1-1.26.038l-3.65-3.8A.85.85 0 0 1 1.463 5.26l3 3.123 6.04-7.085a.85.85 0 0 1 1.198-.096Z"
-                                                          fill-rule="evenodd">
-                                                        </path>
+                                                          fill="currentColor" fill-rule="evenodd" />
                                                       </svg>
-                                                      <span
-                                                        class="Text-color--dark Text-fontSize--6 Text-fontWeight--normal Text-lineHeight--24 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
-                                                        Pagamentos
-                                                      </span>
+                                                      <span class="text-sm text-gray-700">Pagamentos realizados</span>
                                                     </div>
-                                                    <div class="flex flex-row items-center gap-2 p-1">
-                                                      <svg aria-hidden="true" class="⚙ as-bs as-z as-10 as-11 as-8s as-5r as-5s ⚙108uabw" height="12" viewbox="0 0 12 12"
-                                                        width="12" xmlns="http://www.w3.org/2000/svg">
+                                                
+                                                    <!-- Volume líquido -->
+                                                    <div class="option-item flex items-center gap-3 p-3 rounded cursor-pointer" data-metric="volumeliquido">
+                                                      <svg class="w-4 h-4 text-gray-300 flex-shrink-0 opacity-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                                                         <path clip-rule="evenodd"
                                                           d="M11.701 1.203a.85.85 0 0 1 .096 1.198l-6.65 7.8a.85.85 0 0 1-1.26.038l-3.65-3.8A.85.85 0 0 1 1.463 5.26l3 3.123 6.04-7.085a.85.85 0 0 1 1.198-.096Z"
-                                                          fill-rule="evenodd">
-                                                        </path>
+                                                          fill="currentColor" fill-rule="evenodd" />
                                                       </svg>
-                                                      <span
-                                                        class="Text-color--dark Text-fontSize--6 Text-fontWeight--normal Text-lineHeight--24 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
-                                                        Volume liquido
-                                                      </span>
+                                                      <span class="text-sm text-gray-700">Volume líquido</span>
                                                     </div>
                                                   </div>
-                                                  </div>
+                                                </div>
                                                 <div id="dropbruto" aria-hidden="true"
                                                   class="SVGInline SVGInline--cleaned SVG Icon Icon--chevronDown Icon-color Icon-color--gray600 Box-root Margin-left--8 Flex-flex">
-                                                  <svg aria-hidden="true"
+                                                  <svg id="chevronIcon" aria-hidden="true"
                                                     class="SVGInline-svg SVGInline--cleaned-svg SVG-svg Icon-svg Icon--chevronDown-svg Icon-color-svg Icon-color--gray600-svg"
                                                     fill="none" height="8" margin="[object Object]" viewbox="0 0 16 16"
                                                     width="8" xmlns="http://www.w3.org/2000/svg">
@@ -245,7 +232,7 @@
                                                 </div>
                                               </div>
                                               <!--Drop Valor Bruto-->
-                                              <div class="hidden" id="select-valorbruto">
+                                              <div class="hidden" id="tituloGrafico">
                                                 <h1>valor bruto</h1>
                                               </div>
                                             </button>
@@ -258,7 +245,7 @@
                                     <div class="Box-root Margin-top--4" style="height:28px">
                                       <div class="Box-root" style="min-width:160px">
                                         <!--Valor Bruto-->
-                                        <span 
+                                        <span id="valorAtual"
                                           class="Text-color--dark Text-fontSize--20 Text-fontWeight--regular Text-lineHeight--28 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
                                           $ 13,812.00
                                         </span>
@@ -458,9 +445,8 @@
                                       <div class="db-Sparkline-hitBox">
                                       </div>
                                       <!--Linha azul - gráfico de hoje (com movimento)-->
-                                      <svg class="db-Sparkline-container db-Sparkline-container--line w-full max-w-full"
-                                        height="133.9992218017578" viewBox="0 0 708.6254272460938 133.9992218017578"
-                                        width="708.6254272460938">
+                                      <svg class="db-Sparkline-container db-Sparkline-container--line w-full max-w-full" height="133.9992218017578"
+                                        viewBox="0 0 708.6254272460938 133.9992218017578" width="708.6254272460938">
                                         <g transform="translate(0 10)">
                                           <defs>
                                             <clipPath id="db-SparklineLine-clipPath1">
@@ -469,25 +455,25 @@
                                           </defs>
                                           <g clip-path="url(#db-SparklineLine-clipPath1)">
                                             <path class="db-Sparkline-main-line" d="
-                                         M0,57
-                                         L30,57
-                                         L59,35
-                                         L89,47
-                                         L118,57
-                                         L148,30
-                                         L177,57
-                                         L207,57
-                                         L236,10
-                                         L266,57
-                                         L295,12
-                                         L325,57
-                                         L354,46
-                                         L384,57
-                                         L413,22
-                                         L443,57
-                                         L472,57
-                                         L477,57
-                                       ">
+                                                                               M0,57
+                                                                               L30,57
+                                                                               L59,35
+                                                                               L89,47
+                                                                               L118,57
+                                                                               L148,30
+                                                                               L177,57
+                                                                               L207,57
+                                                                               L236,10
+                                                                               L266,57
+                                                                               L295,12
+                                                                               L325,57
+                                                                               L354,46
+                                                                               L384,57
+                                                                               L413,22
+                                                                               L443,57
+                                                                               L472,57
+                                                                               L477,57
+                                                                             ">
                                             </path>
                                           </g>
                                         </g>
@@ -4492,6 +4478,180 @@ function adicionarAnimacaoAtualizacao() {
       conteudobruto.classList.add("hidden");
     }
   });
+
+    // ============================================
+    // DADOS MOCKADOS POR MÉTRICA (Usando dados do filtro "hoje")
+    // ============================================
+    const dadosMetricas = {
+      volumebruto: {
+        label: 'Volume bruto',
+        valorAtual: 2449.55,
+        valorAnterior: 1334.88,
+        crescimento: 83.5
+      },
+      novosclientes: {
+        label: 'Novos clientes',
+        valorAtual: 81,
+        valorAnterior: 51,
+        crescimento: 58.8
+      },
+      pagamentos: {
+        label: 'Pagamentos realizados',
+        valorAtual: 156,
+        valorAnterior: 98,
+        crescimento: 59.2
+      },
+      volumeliquido: {
+        label: 'Volume líquido',
+        valorAtual: 1649.21,
+        valorAnterior: 987.34,
+        crescimento: 67.0
+      }
+    };
+
+    // ============================================
+    // ELEMENTOS DO DOM
+    // ============================================
+    const dropButton = document.getElementById('dropbruto');
+    const modalDropdown = document.getElementById('select-valorbruto');
+    const chevronIcon = document.getElementById('chevronIcon');
+    const metricaLabel = document.getElementById('metricaSelecionadaLabel');
+    const valorAtualElement = document.getElementById('valorAtual');
+    const tituloGraficoElement = document.getElementById('tituloGrafico');
+    const optionItems = document.querySelectorAll('.option-item');
+
+    let metricaAtual = 'volumebruto';
+    let modalAberto = false;
+
+    // ============================================
+    // FUNÇÃO PARA FORMATAR MOEDA
+    // ============================================
+    function formatarMoeda(valor) {
+      return `$ ${new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(valor)}`;
+    }
+
+    // ============================================
+    // FUNÇÃO PARA FORMATAR NÚMERO
+    // ============================================
+    function formatarNumero(valor) {
+      return new Intl.NumberFormat('pt-BR').format(valor);
+    }
+
+    // ============================================
+    // ABRIR/FECHAR MODAL
+    // ============================================
+    dropButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      modalAberto = !modalAberto;
+
+      if (modalAberto) {
+        modalDropdown.classList.remove('hidden');
+        chevronIcon.style.transform = 'rotate(180deg)';
+
+        // Posicionar o modal abaixo do botão
+        const rect = dropButton.getBoundingClientRect();
+        modalDropdown.style.position = 'fixed';
+        modalDropdown.style.top = `${rect.bottom + 8}px`;
+        modalDropdown.style.left = `${rect.left}px`;
+      } else {
+        modalDropdown.classList.add('hidden');
+        chevronIcon.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // ============================================
+    // FECHAR MODAL AO CLICAR FORA
+    // ============================================
+    document.addEventListener('click', (e) => {
+      if (!modalDropdown.contains(e.target) && !dropButton.contains(e.target)) {
+        modalDropdown.classList.add('hidden');
+        chevronIcon.style.transform = 'rotate(0deg)';
+        modalAberto = false;
+      }
+    });
+
+    // ============================================
+    // SELECIONAR MÉTRICA
+    // ============================================
+    optionItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const metricaSelecionada = item.getAttribute('data-metric');
+
+        // Remove seleção de todas as opções
+        optionItems.forEach(opt => {
+          opt.classList.remove('selected');
+          const svg = opt.querySelector('svg');
+          svg.classList.remove('text-blue-500');
+          svg.classList.add('text-gray-300', 'opacity-0');
+        });
+
+        // Adiciona seleção na opção clicada
+        item.classList.add('selected');
+        const svg = item.querySelector('svg');
+        svg.classList.remove('text-gray-300', 'opacity-0');
+        svg.classList.add('text-blue-500');
+
+        // Atualiza a métrica atual
+        metricaAtual = metricaSelecionada;
+
+        // Atualiza a interface
+        atualizarInterface(metricaSelecionada);
+
+        // Fecha o modal
+        modalDropdown.classList.add('hidden');
+        chevronIcon.style.transform = 'rotate(0deg)';
+        modalAberto = false;
+
+        console.log('✅ Métrica selecionada:', metricaSelecionada);
+      });
+    });
+
+    // ============================================
+    // ATUALIZAR INTERFACE
+    // ============================================
+    function atualizarInterface(metrica) {
+      const dados = dadosMetricas[metrica];
+
+      if (!dados) {
+        console.error('❌ Métrica não encontrada:', metrica);
+        return;
+      }
+
+      // Atualizar label do botão
+      metricaLabel.textContent = dados.label;
+
+      // Atualizar valor atual
+      if (metrica === 'novosclientes' || metrica === 'pagamentos') {
+        valorAtualElement.textContent = formatarNumero(dados.valorAtual);
+      } else {
+        valorAtualElement.textContent = formatarMoeda(dados.valorAtual);
+      }
+
+      // Atualizar título do gráfico
+      tituloGraficoElement.textContent = `${dados.label} - Hoje`;
+
+      // Adicionar animação de atualização
+      valorAtualElement.classList.add('animate-pulse');
+      setTimeout(() => {
+        valorAtualElement.classList.remove('animate-pulse');
+      }, 600);
+
+      console.log('📊 Interface atualizada para:', dados.label);
+      console.log('💰 Valor atual:', dados.valorAtual);
+      console.log('📈 Crescimento:', dados.crescimento + '%');
+    }
+
+    // ============================================
+    // INICIALIZAÇÃO
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('🚀 Modal de métricas inicializado');
+      atualizarInterface(metricaAtual);
+    });
+  
 
 </script>
 </html>

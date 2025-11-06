@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Volume Bruto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .option-item {
+            transition: background-color 0.2s ease;
+        }
+
+        .option-item:hover {
+            background-color: #f3f4f6;
+        }
+
+        .option-item.selected {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 p-8">
+
+    <!-- Simulação do Header com o botão -->
+    <div class="bg-white p-4 rounded-lg shadow mb-8">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer" id="dropbruto">
+                <span class="text-gray-600 text-sm font-medium">
+                    <span id="metricaSelecionadaLabel">Volume bruto</span>
+                </span>
+                <svg class="w-4 h-4 text-gray-600 transition-transform" id="chevronIcon" fill="none" viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd"
+                        d="M.381 4.381a.875.875 0 0 1 1.238 0L8 10.763l6.381-6.382A.875.875 0 1 1 15.62 5.62l-7 7a.875.875 0 0 1-1.238 0l-7-7a.875.875 0 0 1 0-1.238Z"
+                        fill="currentColor" fill-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Dropdown -->
+    <div id="select-valorbruto" class="hidden absolute bg-white rounded-lg shadow-lg border border-gray-200 w-64 z-50">
+        <div class="p-2">
+            <!-- Volume bruto -->
+            <div class="option-item selected flex items-center gap-3 p-3 rounded cursor-pointer"
+                data-metric="volumebruto">
+                <svg class="w-4 h-4 text-blue-500 flex-shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd"
+                        d="M11.701 1.203a.85.85 0 0 1 .096 1.198l-6.65 7.8a.85.85 0 0 1-1.26.038l-3.65-3.8A.85.85 0 0 1 1.463 5.26l3 3.123 6.04-7.085a.85.85 0 0 1 1.198-.096Z"
+                        fill="currentColor" fill-rule="evenodd" />
+                </svg>
+                <span class="text-sm text-gray-700">Volume bruto</span>
+            </div>
+
+            <!-- Novos clientes -->
+            <div class="option-item flex items-center gap-3 p-3 rounded cursor-pointer" data-metric="novosclientes">
+                <svg class="w-4 h-4 text-gray-300 flex-shrink-0 opacity-0" viewBox="0 0 12 12"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd"
+                        d="M11.701 1.203a.85.85 0 0 1 .096 1.198l-6.65 7.8a.85.85 0 0 1-1.26.038l-3.65-3.8A.85.85 0 0 1 1.463 5.26l3 3.123 6.04-7.085a.85.85 0 0 1 1.198-.096Z"
+                        fill="currentColor" fill-rule="evenodd" />
+                </svg>
+                <span class="text-sm text-gray-700">Novos clientes</span>
+            </div>
+
+            <!-- Pagamentos realizados -->
+            <div class="option-item flex items-center gap-3 p-3 rounded cursor-pointer" data-metric="pagamentos">
+                <svg class="w-4 h-4 text-gray-300 flex-shrink-0 opacity-0" viewBox="0 0 12 12"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd"
+                        d="M11.701 1.203a.85.85 0 0 1 .096 1.198l-6.65 7.8a.85.85 0 0 1-1.26.038l-3.65-3.8A.85.85 0 0 1 1.463 5.26l3 3.123 6.04-7.085a.85.85 0 0 1 1.198-.096Z"
+                        fill="currentColor" fill-rule="evenodd" />
+                </svg>
+                <span class="text-sm text-gray-700">Pagamentos realizados</span>
+            </div>
+
+            <!-- Volume líquido -->
+            <div class="option-item flex items-center gap-3 p-3 rounded cursor-pointer" data-metric="volumeliquido">
+                <svg class="w-4 h-4 text-gray-300 flex-shrink-0 opacity-0" viewBox="0 0 12 12"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd"
+                        d="M11.701 1.203a.85.85 0 0 1 .096 1.198l-6.65 7.8a.85.85 0 0 1-1.26.038l-3.65-3.8A.85.85 0 0 1 1.463 5.26l3 3.123 6.04-7.085a.85.85 0 0 1 1.198-.096Z"
+                        fill="currentColor" fill-rule="evenodd" />
+                </svg>
+                <span class="text-sm text-gray-700">Volume líquido</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards de Demonstração -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        <!-- Card Volume Bruto -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-gray-600 text-sm mb-2">Valor Atual</h3>
+            <p class="text-3xl font-bold text-gray-900" id="valorAtual">$ 2,449.55</p>
+            <p class="text-sm text-green-600 mt-2">↑ 83.5% vs período anterior</p>
+        </div>
+
+        <!-- Card Gráfico -->
+        <div class="bg-white p-6 rounded-lg shadow col-span-2">
+            <h3 class="text-gray-600 text-sm mb-4" id="tituloGrafico">Volume Bruto - Hoje</h3>
+            <div class="h-48 flex items-end justify-between gap-1">
+                <div class="bg-blue-500 w-full rounded-t" style="height: 40%"></div>
+                <div class="bg-blue-500 w-full rounded-t" style="height: 60%"></div>
+                <div class="bg-blue-500 w-full rounded-t" style="height: 35%"></div>
+                <div class="bg-blue-500 w-full rounded-t" style="height: 80%"></div>
+                <div class="bg-blue-500 w-full rounded-t" style="height: 55%"></div>
+                <div class="bg-blue-500 w-full rounded-t" style="height: 70%"></div>
+                <div class="bg-blue-500 w-full rounded-t" style="height: 45%"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // DADOS MOCKADOS POR MÉTRICA (Usando dados do filtro "hoje")
+        // ============================================
+        const dadosMetricas = {
+            volumebruto: {
+                label: 'Volume bruto',
+                valorAtual: 2449.55,
+                valorAnterior: 1334.88,
+                crescimento: 83.5
+            },
+            novosclientes: {
+                label: 'Novos clientes',
+                valorAtual: 81,
+                valorAnterior: 51,
+                crescimento: 58.8
+            },
+            pagamentos: {
+                label: 'Pagamentos realizados',
+                valorAtual: 156,
+                valorAnterior: 98,
+                crescimento: 59.2
+            },
+            volumeliquido: {
+                label: 'Volume líquido',
+                valorAtual: 1649.21,
+                valorAnterior: 987.34,
+                crescimento: 67.0
+            }
+        };
+
+        // ============================================
+        // ELEMENTOS DO DOM
+        // ============================================
+        const dropButton = document.getElementById('dropbruto');
+        const modalDropdown = document.getElementById('select-valorbruto');
+        const chevronIcon = document.getElementById('chevronIcon');
+        const metricaLabel = document.getElementById('metricaSelecionadaLabel');
+        const valorAtualElement = document.getElementById('valorAtual');
+        const tituloGraficoElement = document.getElementById('tituloGrafico');
+        const optionItems = document.querySelectorAll('.option-item');
+
+        let metricaAtual = 'volumebruto';
+        let modalAberto = false;
+
+        // ============================================
+        // FUNÇÃO PARA FORMATAR MOEDA
+        // ============================================
+        function formatarMoeda(valor) {
+            return `$ ${new Intl.NumberFormat('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(valor)}`;
+        }
+
+        // ============================================
+        // FUNÇÃO PARA FORMATAR NÚMERO
+        // ============================================
+        function formatarNumero(valor) {
+            return new Intl.NumberFormat('pt-BR').format(valor);
+        }
+
+        // ============================================
+        // ABRIR/FECHAR MODAL
+        // ============================================
+        dropButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            modalAberto = !modalAberto;
+
+            if (modalAberto) {
+                modalDropdown.classList.remove('hidden');
+                chevronIcon.style.transform = 'rotate(180deg)';
+
+                // Posicionar o modal abaixo do botão
+                const rect = dropButton.getBoundingClientRect();
+                modalDropdown.style.position = 'fixed';
+                modalDropdown.style.top = `${rect.bottom + 8}px`;
+                modalDropdown.style.left = `${rect.left}px`;
+            } else {
+                modalDropdown.classList.add('hidden');
+                chevronIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // ============================================
+        // FECHAR MODAL AO CLICAR FORA
+        // ============================================
+        document.addEventListener('click', (e) => {
+            if (!modalDropdown.contains(e.target) && !dropButton.contains(e.target)) {
+                modalDropdown.classList.add('hidden');
+                chevronIcon.style.transform = 'rotate(0deg)';
+                modalAberto = false;
+            }
+        });
+
+        // ============================================
+        // SELECIONAR MÉTRICA
+        // ============================================
+        optionItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const metricaSelecionada = item.getAttribute('data-metric');
+
+                // Remove seleção de todas as opções
+                optionItems.forEach(opt => {
+                    opt.classList.remove('selected');
+                    const svg = opt.querySelector('svg');
+                    svg.classList.remove('text-blue-500');
+                    svg.classList.add('text-gray-300', 'opacity-0');
+                });
+
+                // Adiciona seleção na opção clicada
+                item.classList.add('selected');
+                const svg = item.querySelector('svg');
+                svg.classList.remove('text-gray-300', 'opacity-0');
+                svg.classList.add('text-blue-500');
+
+                // Atualiza a métrica atual
+                metricaAtual = metricaSelecionada;
+
+                // Atualiza a interface
+                atualizarInterface(metricaSelecionada);
+
+                // Fecha o modal
+                modalDropdown.classList.add('hidden');
+                chevronIcon.style.transform = 'rotate(0deg)';
+                modalAberto = false;
+
+                console.log('✅ Métrica selecionada:', metricaSelecionada);
+            });
+        });
+
+        // ============================================
+        // ATUALIZAR INTERFACE
+        // ============================================
+        function atualizarInterface(metrica) {
+            const dados = dadosMetricas[metrica];
+
+            if (!dados) {
+                console.error('❌ Métrica não encontrada:', metrica);
+                return;
+            }
+
+            // Atualizar label do botão
+            metricaLabel.textContent = dados.label;
+
+            // Atualizar valor atual
+            if (metrica === 'novosclientes' || metrica === 'pagamentos') {
+                valorAtualElement.textContent = formatarNumero(dados.valorAtual);
+            } else {
+                valorAtualElement.textContent = formatarMoeda(dados.valorAtual);
+            }
+
+            // Atualizar título do gráfico
+            tituloGraficoElement.textContent = `${dados.label} - Hoje`;
+
+            // Adicionar animação de atualização
+            valorAtualElement.classList.add('animate-pulse');
+            setTimeout(() => {
+                valorAtualElement.classList.remove('animate-pulse');
+            }, 600);
+
+            console.log('📊 Interface atualizada para:', dados.label);
+            console.log('💰 Valor atual:', dados.valorAtual);
+            console.log('📈 Crescimento:', dados.crescimento + '%');
+        }
+
+        // ============================================
+        // INICIALIZAÇÃO
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Modal de métricas inicializado');
+            atualizarInterface(metricaAtual);
+        });
+    </script>
+
+</body>
+
+</html>
