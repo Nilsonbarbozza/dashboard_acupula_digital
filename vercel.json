@@ -1,7 +1,14 @@
 {
   "routes": [
     { "src": "^/api/middleware.js$", "dest": "/api/middleware.js" },
+
     { "src": "^/password$", "dest": "/password.html" },
+
+    {
+      "src": ".*\\.(css|js|png|jpg|jpeg|svg|webp|gif)$",
+      "dest": "/$1"
+    },
+
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
