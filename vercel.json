@@ -1,12 +1,20 @@
 {
   "routes": [
     {
-      "src": "/(.*)\\.(css|js|png|jpg|jpeg|svg|gif|webp|html)$",
+      "src": "^/password$",
+      "dest": "/password.html"
+    },
+    {
+      "src": "/(.*)\\.(css|js|png|jpg|jpeg|svg|gif|webp)$",
       "dest": "/$1.$2"
     },
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "/index.html" },
-    { "src": "^/password$",
-      "dest": "/password.html"}
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
