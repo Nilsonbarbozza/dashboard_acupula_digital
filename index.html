@@ -1651,7 +1651,7 @@
                                       </div>
                                       <div class="⚙ as-cg as-gx as-gy as-17 as-2q as-0 ⚙1xkre1e">
                                         <span class="⚙ as-gz as-h0 as-h1 as-dk ⚙f8xrts" title="19 de set.">
-                                          <span class="⚙ as-d as-1n as-59 as-0 as-gs ⚙13lie0n">
+                                          <span class="dataInicio ⚙ as-d as-1n as-59 as-0 as-gs ⚙13lie0n">
                                             19 de set.
                                           </span>
                                         </span>
@@ -1807,7 +1807,7 @@
                                       </div>
                                       <div class="⚙ as-cg as-gx as-gy as-17 as-2q as-0 ⚙1xkre1e">
                                         <span class="⚙ as-gz as-h0 as-h1 as-dk ⚙f8xrts" title="19 de set.">
-                                          <span class="⚙ as-d as-1n as-59 as-0 as-gs ⚙13lie0n">
+                                          <span class="dataInicio ⚙ as-d as-1n as-59 as-0 as-gs ⚙13lie0n">
                                             25 de set.
                                           </span>
                                         </span>
@@ -2001,7 +2001,7 @@
                                       </div>
                                       <div class="⚙ as-cg as-gx as-gy as-17 as-2q as-0 ⚙1xkre1e">
                                         <span class="⚙ as-gz as-h0 as-h1 as-dk ⚙f8xrts" title="19 de set.">
-                                          <span class="⚙ as-d as-1n as-59 as-0 as-gs ⚙13lie0n">
+                                          <span class="dataInicio ⚙ as-d as-1n as-59 as-0 as-gs ⚙13lie0n">
                                             19 de set.
                                           </span>
                                         </span>
@@ -3804,7 +3804,7 @@ function adicionarAnimacaoGrafico(elemento) {
 // FUNÇÃO PRINCIPAL - ATUALIZAR DASHBOARD
 // ============================================
 // ============================================
-// FUNÇÃO PRINCIPAL - ATUALIZAR DASHBOARD (MODIFICADA)
+// FUNÇÃO PRINCIPAL - ATUALIZAR DASHBOARD
 // ============================================
 function atualizarDashboard(filtroType) {
   console.log('🔄 Atualizando dashboard com filtro:', filtroType);
@@ -4284,6 +4284,112 @@ function adicionarAnimacaoAtualizacao() {
       console.log('🚀 Modal de métricas inicializado');
       atualizarInterface(metricaAtual);
     });
+      // ==== FORMATADORES =====================================================
+
+      function formatDayMonth(date) {
+        const options = { day: 'numeric', month: 'short' };
+        return new Intl.DateTimeFormat('pt-BR', options)
+          .format(date)
+          .replace('.', '') // tira ponto do mês abreviado
+          .replace(/\s+/, ' ');
+      }
+
+      function cloneDate(date) {
+        return new Date(date.getTime());
+      }
+
+      // ==== CÁLCULO DE DATA DE ACORDO COM O FILTRO =============================
+
+      function getStartDateByFilter(filter) {
+        const today = new Date();
+        let start = cloneDate(today);
+
+        switch (filter) {
+          case 'hoje':
+            return start;
+
+          case '7dias':
+            start.setDate(start.getDate() - 7);
+            return start;
+
+          case '4semanas':
+            start.setDate(start.getDate() - 28);
+            return start;
+
+          case '6meses':
+            start.setMonth(start.getMonth() - 6);
+            return start;
+
+          case '12meses':
+            start.setFullYear(start.getFullYear() - 1);
+            return start;
+
+          case 'mesatedata':
+            return new Date(today.getFullYear(), today.getMonth(), 1);
+
+          case 'trimestreateadata':
+            start.setMonth(start.getMonth() - 3);
+            return start;
+
+          case 'anoateadata':
+            return new Date(today.getFullYear(), 0, 1);
+
+          case 'desdoinicio':
+            // Ajuste a data inicial real do seu sistema aqui:
+            return new Date(2024, 0, 1);
+
+          default:
+            return start;
+        }
+      }
+
+      // ==== ATUALIZAÇÃO DE ELEMENTOS NA UI ==================================
+
+      function updateDateDisplay(filter) {
+        const hoje = new Date();
+        const dataInicio = getStartDateByFilter(filter);
+
+        const dataInicioStr = formatDayMonth(dataInicio);
+        const dataFimStr = formatDayMonth(hoje);
+
+        // Atualiza nos elementos
+        document.querySelectorAll('.dataInicio').forEach(el => el.textContent = dataInicioStr);
+        document.querySelectorAll('.dataAtualizacao').forEach(el => el.textContent = dataFimStr);
+        document.querySelectorAll('.dataRange').forEach(el => el.textContent = `${dataInicioStr} - ${dataFimStr}`);
+
+        console.log(`✅ Filtro aplicado: ${filter} | ${dataInicioStr} - ${dataFimStr}`);
+      }
+
+      // ==== EVENTOS DE CLIQUE NOS FILTROS ====================================
+
+      (function initFilterButtons() {
+        const botoes = document.querySelectorAll('.filter-item[data-filter]');
+
+        if (botoes.length === 0) {
+          console.warn('Nenhum botão .filter-item encontrado.');
+          return;
+        }
+
+        // Atualiza inicialmente com o filtro ativo
+        const ativo = document.querySelector('.filter-item.active');
+        if (ativo) updateDateDisplay(ativo.dataset.filter);
+        else updateDateDisplay('hoje');
+
+        botoes.forEach(item => {
+          item.addEventListener('click', function () {
+            const filtro = this.dataset.filter;
+            updateDateDisplay(filtro);
+
+            // Visual: alterna classe active
+            botoes.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+
+            // Se quiser atualizar gráfico aqui:
+            // updateChart(filtro);
+          });
+        });
+      })();
+
 
     
   
