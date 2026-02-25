@@ -250,7 +250,7 @@
                                     <div class="Box-root Margin-top--4" style="height:28px">
                                       <div class="Box-root" style="min-width:160px">
                                         <!--Valor Bruto-->
-                                        <span id="valorAtual"
+                                        <span id="valorAtual" data-metric="volumebruto"
                                           class="Text-color--dark Text-fontSize--20 Text-fontWeight--regular Text-lineHeight--28 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
                                           $ 13,812.00
                                         </span>
@@ -317,7 +317,7 @@
                                   </div>
                                   <div class="Box-root" style="height:24px;margin-top:7px;margin-bottom:1px">
                                     <!--Valor Segunda analise-->
-                                    <span
+                                    <span id="valorOntem"
                                       class="Text-color--gray Text-fontSize--16 Text-fontWeight--regular Text-lineHeight--24 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
                                       $ 9,758.00
                                     </span>
@@ -566,7 +566,7 @@
                                   style="margin-left:-8px;margin-top:-8px">
                                   <div class="Box-root Box-hideIfEmpty Margin-top--8 Margin-left--8"
                                     style="pointer-events:auto">
-                                    <span
+                                    <span id="saldoUSD"
                                       class="Text-color--dark Text-fontSize--20 Text-fontWeight--regular Text-lineHeight--28 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
                                       <span>
                                         $ 7,709.00
@@ -626,7 +626,7 @@
                                   class="Box-root Flex-flex Flex-direction--column Flex-justifyContent--flexStart Flex-wrap--nowrap">
                                   <div class="Box-root Box-hideIfEmpty" style="pointer-events:auto">
                                     <div class="Box-root Margin-vertical--4">
-                                      <span
+                                      <span id="repassesValor"
                                         class="Text-color--dark Text-fontSize--20 Text-fontWeight--regular Text-lineHeight--28 Text-numericSpacing--proportional Text-typeface--base Text-wrap--wrap Text-display--inline">
                                         <span>
                                           $ 295,312.00
@@ -4400,4 +4400,5 @@ function adicionarAnimacaoAtualizacao() {
   
 
 </script>
+<script src="./api.js"></script>
 </html>
