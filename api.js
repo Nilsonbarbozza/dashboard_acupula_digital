@@ -1,7 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
       fetchMetrics();
       setupDropdown();
+      fetchSaldosMetrics(); // Will safely ignore if elements aren't present
 });
+
+async function fetchSaldosMetrics() {
+      // Check if we are on the Saldos page by looking for the IDs
+      const saldoTotalEl = document.getElementById("saldoTotal");
+      const saldoEntradaEl = document.getElementById("saldoEntrada");
+      const saldoDisponivelEl = document.getElementById("saldoDisponivel");
+
+      if (!saldoTotalEl && !saldoEntradaEl && !saldoDisponivelEl) return;
+
+      try {
+            const response = await fetch('http://localhost:8000/api/saldos/');
+            if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+
+            // The API returns an array, so we get the first record
+            const metrics = Array.isArray(data) ? data[0] : data;
+
+            if (metrics) {
+                  if (saldoTotalEl) saldoTotalEl.innerText = formatMoney(metrics.saldo_total);
+                  if (saldoEntradaEl) saldoEntradaEl.innerText = formatMoney(metrics.entrada);
+                  if (saldoDisponivelEl) saldoDisponivelEl.innerText = formatMoney(metrics.disponivel);
+            }
+      } catch (err) {
+            console.error("Error fetching Saldos metrics:", err);
+      }
+}
 
 let globalMetrics = {
       volumebruto: 13812.00,

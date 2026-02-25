@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import DashboardMetrics
+from .models import DashboardMetrics, SaldosMetrics
 
 class DashboardMetricsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,3 +12,8 @@ class DashboardMetricsSerializer(serializers.ModelSerializer):
             'volume_liquido', 'volume_liquido_ontem',
             'saldo_usd', 'repasses'
         ]
+
+class SaldosMetricsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SaldosMetrics
+        fields = ['id', 'saldo_total', 'entrada', 'disponivel']

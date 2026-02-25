@@ -24,3 +24,16 @@ class DashboardMetrics(models.Model):
 
     def __str__(self):
         return f"Dashboard Metrics (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M')})"
+
+class SaldosMetrics(models.Model):
+    saldo_total = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    entrada = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    disponivel = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Métrica de Saldos"
+        verbose_name_plural = "Métricas de Saldos"
+
+    def __str__(self):
+        return f"Saldos Metrics (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M')})"
