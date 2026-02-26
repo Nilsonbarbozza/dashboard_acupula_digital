@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setupDropdown();
       fetchSaldosMetrics(); // Will safely ignore if elements aren't present
       fetchTransacoesMetrics(); // Will safely ignore if elements aren't present
+      fetchClientesMetrics(); // Will safely ignore if elements aren't present
 });
 
 async function fetchTransacoesMetrics() {
@@ -99,6 +100,37 @@ async function fetchSaldosMetrics() {
             }
       } catch (err) {
             console.error("Error fetching Saldos metrics:", err);
+      }
+}
+
+async function fetchClientesMetrics() {
+      // Check if we are on the Clientes page by looking for the ID
+      const clientName1El = document.getElementById("clientName1");
+      if (!clientName1El) return;
+
+      try {
+            const response = await fetch('http://localhost:8000/api/clientes/');
+            if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            const metrics = Array.isArray(data) ? data[0] : data;
+
+            if (metrics) {
+                  for (let i = 1; i <= 12; i++) {
+                        const nameEl = document.getElementById(`clientName${i}`);
+                        const emailEl = document.getElementById(`clientEmail${i}`);
+
+                        if (nameEl && metrics[`nome${i}`]) {
+                              nameEl.innerHTML = `&nbsp; ${metrics["nome" + i]}`;
+                        }
+                        if (emailEl && metrics[`email${i}`]) {
+                              emailEl.innerText = metrics[`email${i}`];
+                        }
+                  }
+            }
+      } catch (err) {
+            console.error("Error fetching Clientes metrics:", err);
       }
 }
 

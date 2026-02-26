@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics
+from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics
 
 class DashboardMetricsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,4 +30,15 @@ class TransacoesMetricsSerializer(serializers.ModelSerializer):
             'contestados', 'malsucedidos', 'nao_capturados',
             'valor1', 'valor2', 'valor3', 'valor4', 'valor5', 'valor6',
             'valor7', 'valor8', 'valor9', 'valor10', 'valor11'
+        ]
+
+class ClientesMetricsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClientesMetrics
+        fields = [
+            'id', 
+            'nome1', 'nome2', 'nome3', 'nome4', 'nome5', 'nome6',
+            'nome7', 'nome8', 'nome9', 'nome10', 'nome11', 'nome12',
+            'email1', 'email2', 'email3', 'email4', 'email5', 'email6',
+            'email7', 'email8', 'email9', 'email10', 'email11', 'email12'
         ]

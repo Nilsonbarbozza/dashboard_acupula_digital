@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics
-from .serializers import DashboardMetricsSerializer, SaldosMetricsSerializer, TransacoesMetricsSerializer
+from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics
+from .serializers import DashboardMetricsSerializer, SaldosMetricsSerializer, TransacoesMetricsSerializer, ClientesMetricsSerializer
 
 class DashboardMetricsViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -38,5 +38,16 @@ class TransacoesMetricsViewSet(viewsets.ReadOnlyModelViewSet):
         instance = self.queryset.first()
         if not instance:
             instance = TransacoesMetrics.objects.create() 
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+class ClientesMetricsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = ClientesMetrics.objects.all()
+    serializer_class = ClientesMetricsSerializer
+
+    def list(self, request, *args, **kwargs):
+        instance = self.queryset.first()
+        if not instance:
+            instance = ClientesMetrics.objects.create() 
         serializer = self.get_serializer(instance)
         return Response(serializer.data)

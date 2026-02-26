@@ -76,3 +76,41 @@ class TransacoesMetrics(models.Model):
 
     def __str__(self):
         return f"Transações Metrics (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M')})"
+
+class ClientesMetrics(models.Model):
+    # Nomes
+    nome1 = models.CharField(max_length=255, default="Minneapolis Mental Health")
+    nome2 = models.CharField(max_length=255, default="San Diego Fertility Center")
+    nome3 = models.CharField(max_length=255, default="Milwaukee Urology Specialists")
+    nome4 = models.CharField(max_length=255, default="Virginia Rheumatology Clinic")
+    nome5 = models.CharField(max_length=255, default="Radiology Partners")
+    nome6 = models.CharField(max_length=255, default="Boston Heart Center")
+    nome7 = models.CharField(max_length=255, default="Houston Methodist")
+    nome8 = models.CharField(max_length=255, default="Mayo Clinic")
+    nome9 = models.CharField(max_length=255, default="Cleveland Clinic")
+    nome10 = models.CharField(max_length=255, default="New York Presbyterian")
+    nome11 = models.CharField(max_length=255, default="UCLA Health")
+    nome12 = models.CharField(max_length=255, default="Johns Hopkins Medicine")
+
+    # Emails
+    email1 = models.EmailField(default="support@minneapolismentalhealth.com")
+    email2 = models.EmailField(default="info@sdfertility.com")
+    email3 = models.EmailField(default="info@milwaukeeurology.com")
+    email4 = models.EmailField(default="care@varheum.com")
+    email5 = models.EmailField(default="scheduling@radpartnersnv.com")
+    email6 = models.EmailField(default="finance@bostonheart.com")
+    email7 = models.EmailField(default="support@houstonmethodist.org")
+    email8 = models.EmailField(default="accounts@mayo.com")
+    email9 = models.EmailField(default="contact@clevelandclinic.org")
+    email10 = models.EmailField(default="info@nyp.org")
+    email11 = models.EmailField(default="support@uclahealth.org")
+    email12 = models.EmailField(default="patientcare@jhmi.edu")
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Métrica de Clientes"
+        verbose_name_plural = "Métricas de Clientes"
+
+    def __str__(self):
+        return f"Clientes Metrics (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M')})"
