@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import DashboardMetrics, SaldosMetrics
+from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics
 
 class DashboardMetricsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,4 +21,11 @@ class SaldosMetricsSerializer(serializers.ModelSerializer):
             'atividade_1_valor', 'atividade_1_data',
             'atividade_2_valor', 'atividade_2_data',
             'atividade_3_valor', 'atividade_3_data'
+        ]
+class TransacoesMetricsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TransacoesMetrics
+        fields = [
+            'id', 'tudo', 'ok', 'reembolsados',
+            'contestados', 'malsucedidos', 'nao_capturados'
         ]

@@ -220,42 +220,42 @@
         <!-- Tab: Tudo (Active) -->
         <div class="flex flex-col gap-1 px-4 py-3 bg-white border-2 as-24 rounded-lg cursor-pointer min-w-[79px] md:min-w-[153px] max-w-[173px] min-h-[110px] md:min-h-[67px] max-h-[110px] md:max-h-[67px]">
           <span class="text-sm as-9g font-medium">Tudo</span>
-          <span class="text-lg as-9g font-semibold">172</span>
+          <span id="transacoesTudo" class="text-lg as-9g font-semibold">172</span>
         </div>
       
         <!-- Tab: OK -->
         <div
           class="flex flex-col gap-1 px-4 py-3 bg-white border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors min-w-[79px] md:min-w-[153px] max-w-[173px] min-h-[110px] md:min-h-[67px] max-h-[110px] md:max-h-[67px]">
           <span class="text-sm text-gray-700 font-medium">OK</span>
-          <span class="text-lg text-gray-500 font-semibold">143</span>
+          <span id="transacoesOk" class="text-lg text-gray-500 font-semibold">143</span>
         </div>
       
         <!-- Tab: Reembolsados -->
         <div
           class="flex flex-col gap-1 px-4 py-3 bg-white border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors min-w-[79px] md:min-w-[153px] max-w-[173px] min-h-[110px] md:min-h-[67px] max-h-[110px] md:max-h-[67px]">
           <span class="text-sm text-gray-700 font-medium">Reembolsados</span>
-          <span class="text-lg text-gray-500 font-semibold">2</span>
+          <span id="transacoesReembolsados" class="text-lg text-gray-500 font-semibold">2</span>
         </div>
       
         <!-- Tab: Contestados -->
         <div
           class="flex flex-col gap-1 px-4 py-3 bg-white border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors min-w-[79px] md:min-w-[153px] max-w-[173px] min-h-[110px] md:min-h-[67px] max-h-[110px] md:max-h-[67px]">
           <span class="text-sm text-gray-700 font-medium">Contestados</span>
-          <span class="text-lg text-gray-500 font-semibold">0</span>
+          <span id="transacoesContestados" class="text-lg text-gray-500 font-semibold">0</span>
         </div>
       
         <!-- Tab: Malsucedidos -->
         <div
           class="flex flex-col gap-1 px-4 py-3 bg-white border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors min-w-[79px] md:min-w-[153px] max-w-[173px] min-h-[110px] md:min-h-[67px] max-h-[110px] md:max-h-[67px]">
           <span class="text-sm text-gray-700 font-medium">Malsucedidos</span>
-          <span class="text-lg text-gray-500 font-semibold">28</span>
+          <span id="transacoesMalsucedidos" class="text-lg text-gray-500 font-semibold">28</span>
         </div>
       
         <!-- Tab: Não capturados -->
         <div
           class="flex flex-col gap-1 px-4 py-3 bg-white border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors min-w-[79px] md:min-w-[153px] max-w-[173px] min-h-[110px] md:min-h-[67px] max-h-[110px] md:max-h-[67px]">
           <span class="text-sm text-gray-700 font-medium">Não capturados</span>
-          <span class="text-lg text-gray-500 font-semibold">0</span>
+          <span id="transacoesNaoCapturados" class="text-lg text-gray-500 font-semibold">0</span>
         </div>
       </div>      <!--Grid Transacoes-->
             <section class="">
@@ -5563,5 +5563,6 @@
     });
   });
 </script>
+<script src="./api.js"></script>
 
 </html>

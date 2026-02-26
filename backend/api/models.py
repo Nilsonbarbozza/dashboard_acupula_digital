@@ -46,3 +46,20 @@ class SaldosMetrics(models.Model):
 
     def __str__(self):
         return f"Saldos Metrics (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M')})"
+
+class TransacoesMetrics(models.Model):
+    tudo = models.IntegerField(default=0)
+    ok = models.IntegerField(default=0)
+    reembolsados = models.IntegerField(default=0)
+    contestados = models.IntegerField(default=0)
+    malsucedidos = models.IntegerField(default=0)
+    nao_capturados = models.IntegerField(default=0)
+    
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Métrica de Transações"
+        verbose_name_plural = "Métricas de Transações"
+
+    def __str__(self):
+        return f"Transações Metrics (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M')})"

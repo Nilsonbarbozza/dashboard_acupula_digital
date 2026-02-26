@@ -2,7 +2,42 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchMetrics();
       setupDropdown();
       fetchSaldosMetrics(); // Will safely ignore if elements aren't present
+      fetchTransacoesMetrics(); // Will safely ignore if elements aren't present
 });
+
+async function fetchTransacoesMetrics() {
+      const transTudoEl = document.getElementById("transacoesTudo");
+      const transOkEl = document.getElementById("transacoesOk");
+      const transReembolsadosEl = document.getElementById("transacoesReembolsados");
+      const transContestadosEl = document.getElementById("transacoesContestados");
+      const transMalsucedidosEl = document.getElementById("transacoesMalsucedidos");
+      const transNaoCapturadosEl = document.getElementById("transacoesNaoCapturados");
+
+      if (!transTudoEl && !transOkEl && !transReembolsadosEl &&
+            !transContestadosEl && !transMalsucedidosEl && !transNaoCapturadosEl) {
+            return;
+      }
+
+      try {
+            const response = await fetch('http://localhost:8000/api/transacoes/');
+            if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            const metrics = Array.isArray(data) ? data[0] : data;
+
+            if (metrics) {
+                  if (transTudoEl) transTudoEl.innerText = metrics.tudo;
+                  if (transOkEl) transOkEl.innerText = metrics.ok;
+                  if (transReembolsadosEl) transReembolsadosEl.innerText = metrics.reembolsados;
+                  if (transContestadosEl) transContestadosEl.innerText = metrics.contestados;
+                  if (transMalsucedidosEl) transMalsucedidosEl.innerText = metrics.malsucedidos;
+                  if (transNaoCapturadosEl) transNaoCapturadosEl.innerText = metrics.nao_capturados;
+            }
+      } catch (err) {
+            console.error("Error fetching Transacoes metrics:", err);
+      }
+}
 
 async function fetchSaldosMetrics() {
       // Check if we are on the Saldos page by looking for the IDs
