@@ -27,5 +27,7 @@ class TransacoesMetricsSerializer(serializers.ModelSerializer):
         model = TransacoesMetrics
         fields = [
             'id', 'tudo', 'ok', 'reembolsados',
-            'contestados', 'malsucedidos', 'nao_capturados'
+            'contestados', 'malsucedidos', 'nao_capturados',
+            'valor1', 'valor2', 'valor3', 'valor4', 'valor5', 'valor6',
+            'valor7', 'valor8', 'valor9', 'valor10', 'valor11'
         ]

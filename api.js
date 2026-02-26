@@ -13,8 +13,16 @@ async function fetchTransacoesMetrics() {
       const transMalsucedidosEl = document.getElementById("transacoesMalsucedidos");
       const transNaoCapturadosEl = document.getElementById("transacoesNaoCapturados");
 
+      let hasAnyValorEl = false;
+      for (let i = 1; i <= 11; i++) {
+            if (document.getElementById(`valor${i}`)) {
+                  hasAnyValorEl = true;
+                  break;
+            }
+      }
+
       if (!transTudoEl && !transOkEl && !transReembolsadosEl &&
-            !transContestadosEl && !transMalsucedidosEl && !transNaoCapturadosEl) {
+            !transContestadosEl && !transMalsucedidosEl && !transNaoCapturadosEl && !hasAnyValorEl) {
             return;
       }
 
@@ -33,6 +41,16 @@ async function fetchTransacoesMetrics() {
                   if (transContestadosEl) transContestadosEl.innerText = metrics.contestados;
                   if (transMalsucedidosEl) transMalsucedidosEl.innerText = metrics.malsucedidos;
                   if (transNaoCapturadosEl) transNaoCapturadosEl.innerText = metrics.nao_capturados;
+
+                  for (let i = 1; i <= 11; i++) {
+                        const valorEl = document.getElementById(`valor${i}`);
+                        if (valorEl) {
+                              const valorKey = `valor${i}`;
+                              if (metrics[valorKey] !== undefined) {
+                                    valorEl.innerText = formatMoney(metrics[valorKey]);
+                              }
+                        }
+                  }
             }
       } catch (err) {
             console.error("Error fetching Transacoes metrics:", err);

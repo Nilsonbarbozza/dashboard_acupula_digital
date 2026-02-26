@@ -55,6 +55,19 @@ class TransacoesMetrics(models.Model):
     malsucedidos = models.IntegerField(default=0)
     nao_capturados = models.IntegerField(default=0)
     
+    # Valores dinâmicos da tabela 1 ao 11
+    valor1 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    valor2 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    valor3 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    valor4 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    valor5 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    valor6 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    valor7 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    valor8 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    valor9 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    valor10 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    valor11 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
