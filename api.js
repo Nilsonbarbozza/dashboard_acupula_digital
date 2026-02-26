@@ -26,6 +26,23 @@ async function fetchSaldosMetrics() {
                   if (saldoTotalEl) saldoTotalEl.innerText = formatMoney(metrics.saldo_total);
                   if (saldoEntradaEl) saldoEntradaEl.innerText = formatMoney(metrics.entrada);
                   if (saldoDisponivelEl) saldoDisponivelEl.innerText = formatMoney(metrics.disponivel);
+
+                  // Atividades Recentes
+                  const ativ1Val = document.getElementById("atividade1Valor");
+                  const ativ1Dat = document.getElementById("atividade1Data");
+                  const ativ2Val = document.getElementById("atividade2Valor");
+                  const ativ2Dat = document.getElementById("atividade2Data");
+                  const ativ3Val = document.getElementById("atividade3Valor");
+                  const ativ3Dat = document.getElementById("atividade3Data");
+
+                  if (ativ1Val) ativ1Val.innerText = formatMoney(metrics.atividade_1_valor);
+                  if (ativ1Dat) ativ1Dat.innerText = metrics.atividade_1_data || "";
+
+                  if (ativ2Val) ativ2Val.innerText = formatMoney(metrics.atividade_2_valor);
+                  if (ativ2Dat) ativ2Dat.innerText = metrics.atividade_2_data || "";
+
+                  if (ativ3Val) ativ3Val.innerText = formatMoney(metrics.atividade_3_valor);
+                  if (ativ3Dat) ativ3Dat.innerText = metrics.atividade_3_data || "";
             }
       } catch (err) {
             console.error("Error fetching Saldos metrics:", err);

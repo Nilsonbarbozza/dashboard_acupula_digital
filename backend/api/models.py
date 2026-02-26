@@ -29,6 +29,15 @@ class SaldosMetrics(models.Model):
     saldo_total = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
     entrada = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
     disponivel = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    
+    # Atividades Recentes
+    atividade_1_valor = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    atividade_1_data = models.CharField(max_length=50, blank=True, null=True, default='')
+    atividade_2_valor = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    atividade_2_data = models.CharField(max_length=50, blank=True, null=True, default='')
+    atividade_3_valor = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    atividade_3_data = models.CharField(max_length=50, blank=True, null=True, default='')
+
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:

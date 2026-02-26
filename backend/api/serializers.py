@@ -16,4 +16,9 @@ class DashboardMetricsSerializer(serializers.ModelSerializer):
 class SaldosMetricsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SaldosMetrics
-        fields = ['id', 'saldo_total', 'entrada', 'disponivel']
+        fields = [
+            'id', 'saldo_total', 'entrada', 'disponivel',
+            'atividade_1_valor', 'atividade_1_data',
+            'atividade_2_valor', 'atividade_2_data',
+            'atividade_3_valor', 'atividade_3_data'
+        ]
