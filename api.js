@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchSaldosMetrics(); // Will safely ignore if elements aren't present
       fetchTransacoesMetrics(); // Will safely ignore if elements aren't present
       fetchClientesMetrics(); // Will safely ignore if elements aren't present
+      fetchCatalogoMetrics(); // Will safely ignore if elements aren't present
 });
 
 async function fetchTransacoesMetrics() {
@@ -131,6 +132,45 @@ async function fetchClientesMetrics() {
             }
       } catch (err) {
             console.error("Error fetching Clientes metrics:", err);
+      }
+}
+
+async function fetchCatalogoMetrics() {
+      // Check Se está na página de catalogo
+      const totalEl = document.getElementById("produtos-total");
+      const ativosEl = document.getElementById("produtos-ativos");
+      const arquivadosEl = document.getElementById("produtos-arquivados");
+
+      // Table elements
+      const nomeProdutoEl = document.getElementById("nome-produto");
+      const precoProdutoEl = document.getElementById("preco-produto");
+      const dataProdutoEl = document.getElementById("data-produto");
+      const dataAtualizadoEl = document.getElementById("data-atualizado");
+
+      if (!totalEl && !ativosEl && !arquivadosEl && !nomeProdutoEl) return;
+
+      try {
+            const response = await fetch('http://localhost:8000/api/catalogo/');
+            if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            const metrics = Array.isArray(data) ? data[0] : data;
+
+            if (metrics) {
+                  // Top KPIs
+                  if (totalEl) totalEl.innerText = metrics.total;
+                  if (ativosEl) ativosEl.innerText = metrics.ativos;
+                  if (arquivadosEl) arquivadosEl.innerText = metrics.arquivados;
+
+                  // Table Row
+                  if (nomeProdutoEl) nomeProdutoEl.innerHTML = `&nbsp; ${metrics.produto_nome}`;
+                  if (precoProdutoEl) precoProdutoEl.innerText = formatMoney(metrics.produto_preco);
+                  if (dataProdutoEl) dataProdutoEl.innerText = metrics.produto_data;
+                  if (dataAtualizadoEl) dataAtualizadoEl.innerText = metrics.produto_data_atualizado;
+            }
+      } catch (err) {
+            console.error("Error fetching Catalogo metrics:", err);
       }
 }
 

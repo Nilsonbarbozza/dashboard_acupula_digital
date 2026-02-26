@@ -258,21 +258,21 @@
         <!-- Tab: Tudo (Active) -->
         <div class="flex flex-col gap-1 px-4 py-3 bg-white border-2 border-gray-300 rounded-lg cursor-pointer min-w-[118px] md:min-w-[365px] max-w-[173px] min-h-[67px] md:min-h-[67px] max-h-[67px] md:max-h-[67px]">
           <span class="text-sm text-gray-700 font-medium">Todos</span>
-          <span class="text-lg text-gray-500 font-semibold">1</span>
+          <span id="produtos-total" class="text-lg text-gray-500 font-semibold">1</span>
         </div>
       
         <!-- Tab: OK -->
         <div
           class="flex flex-col gap-1 px-4 py-3 bg-white border-2 as-24 rounded-lg cursor-pointer hover:border-gray-400 transition-colors min-w-[118px] md:min-w-[365px] max-w-[173px] min-h-[67px] md:min-h-[67px] max-h-[67px] md:max-h-[67px]">
           <span class="text-sm as-9g font-medium">Ativo</span>
-          <span class="text-lg as-9g font-semibold">1</span>
+          <span id="produtos-ativos" class="text-lg as-9g font-semibold">1</span>
         </div>
       
         <!-- Tab: Reembolsados -->
         <div
           class="flex flex-col gap-1 px-4 py-3 bg-white border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors min-w-[118px] md:min-w-[365px] max-w-[173px] min-h-[67px] md:min-h-[67px] max-h-[67px] md:max-h-[67px]">
           <span class="text-sm text-gray-700 font-medium">Arquivados</span>
-          <span class="text-lg text-gray-500 font-semibold">0</span>
+          <span id="produtos-arquivados" class="text-lg text-gray-500 font-semibold">0</span>
         </div>
       
       </div>      <!--Grid Transacoes-->
@@ -590,7 +590,7 @@
                                               tabindex="0">
                                               <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
                                                 <div class="⚙ as-pi as-p6 as-pj as-p7 as-lq as-9f ⚙lh10or">
-                                                  <span>
+                                                  <span id="nome-produto">
                                                     &nbsp; Á CUPULA DIGITAL
                                                   </span>
                                                 </div>
@@ -653,7 +653,7 @@
                                                 <div class="⚙ as-pi as-p6 as-pj as-p7 as-lq as-5b as-54 ⚙2144yx">
                                                   <div class="⚙ rs-2 as-x as-23 as-bd as-1m ⚙1mwhx9"
                                                     data-testid="formatted-instrument-visa">
-                                                    <span
+                                                    <span id="preco-produto"
                                                       class="Text-color--default Text-fontSize--14 Text-fontWeight--regular Text-lineHeight--20 Text-numericSpacing--proportional Text-typeface--base Text-wrap--noWrap Text-display--inline">
                                                       $ 1.890,79
                                                     </span>
@@ -674,7 +674,7 @@
                                               tabindex="-1">
                                               <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
                                                 <div class="⚙ as-pi as-p6 as-pj as-p7 as-lq as-5b as-54 ⚙2144yx">
-                                                  <div class="⚙ rs-3 as-s2 as-s3 as-ix ⚙ezwam4">
+                                                  <div id="data-produto" class="⚙ rs-3 as-s2 as-s3 as-ix ⚙ezwam4">
                                                     10 de ago.
                                                   </div>
                                                 </div>
@@ -692,7 +692,7 @@
                                               href="https://dashboard.stripe.com/acct_1EFn6WF8gC7gGNTW/payments/ch_1ENiFUF8gC7gGNTWayE4JkTp"
                                               tabindex="-1">
                                               <div class="⚙ rs-2 as-pi as-p6 as-pj as-k1 as-x as-1m ⚙1tvoza8">
-                                                <div class="⚙ as-pi as-p6 as-pj as-p7 as-lq as-5b as-54 ⚙2144yx">
+                                                <div id="data-atualizado" class="⚙ as-pi as-p6 as-pj as-p7 as-lq as-5b as-54 ⚙2144yx">
                                                   5 de jan.
                                                 </div>
                                               </div>
@@ -2206,5 +2206,5 @@
     });
   });
 </script>
-
+<script src="./api.js"></script>
 </html>

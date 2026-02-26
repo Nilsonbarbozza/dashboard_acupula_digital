@@ -114,3 +114,23 @@ class ClientesMetrics(models.Model):
 
     def __str__(self):
         return f"Clientes Metrics (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M')})"
+
+class CatalogoMetrics(models.Model):
+    total = models.IntegerField(default=1)
+    ativos = models.IntegerField(default=1)
+    arquivados = models.IntegerField(default=0)
+    
+    # Produto
+    produto_nome = models.CharField(max_length=255, default="Á CUPULA DIGITAL")
+    produto_preco = models.DecimalField(max_digits=12, decimal_places=2, default=1890.79)
+    produto_data = models.CharField(max_length=50, default="10 de ago.")
+    produto_data_atualizado = models.CharField(max_length=50, default="5 de jan.")
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Métrica de Catálogo"
+        verbose_name_plural = "Métricas de Catálogo"
+
+    def __str__(self):
+        return f"Catálogo Metrics (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M')})"

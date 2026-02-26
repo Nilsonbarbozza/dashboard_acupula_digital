@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics
+from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics, CatalogoMetrics
 
 @admin.register(DashboardMetrics)
 class DashboardMetricsAdmin(admin.ModelAdmin):
@@ -26,5 +26,12 @@ class TransacoesMetricsAdmin(admin.ModelAdmin):
 class ClientesMetricsAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         if ClientesMetrics.objects.exists():
+            return False
+        return True
+
+@admin.register(CatalogoMetrics)
+class CatalogoMetricsAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        if CatalogoMetrics.objects.exists():
             return False
         return True

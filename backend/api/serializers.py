@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics
+from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics, CatalogoMetrics
 
 class DashboardMetricsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,3 +42,8 @@ class ClientesMetricsSerializer(serializers.ModelSerializer):
             'email1', 'email2', 'email3', 'email4', 'email5', 'email6',
             'email7', 'email8', 'email9', 'email10', 'email11', 'email12'
         ]
+
+class CatalogoMetricsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CatalogoMetrics
+        fields = '__all__'
