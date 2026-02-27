@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics, CatalogoMetrics
+from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics, CatalogoMetrics, MetricasGeral
 
 @admin.register(DashboardMetrics)
 class DashboardMetricsAdmin(admin.ModelAdmin):
@@ -33,5 +33,15 @@ class ClientesMetricsAdmin(admin.ModelAdmin):
 class CatalogoMetricsAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         if CatalogoMetrics.objects.exists():
+            return False
+        return True
+
+@admin.register(MetricasGeral)
+class MetricasGeralAdmin(admin.ModelAdmin):
+    list_display = ('get_periodo_display', 'valor_bruto', 'volume_liquido', 'clientes', 'updated_at')
+    
+    def has_add_permission(self, request):
+        # We only want the 9 explicitly defined periods
+        if MetricasGeral.objects.count() >= 9:
             return False
         return True

@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchTransacoesMetrics(); // Will safely ignore if elements aren't present
       fetchClientesMetrics(); // Will safely ignore if elements aren't present
       fetchCatalogoMetrics(); // Will safely ignore if elements aren't present
+      fetchMetricasGeral(); // Update index.html periods
 });
 
 async function fetchTransacoesMetrics() {
@@ -171,6 +172,43 @@ async function fetchCatalogoMetrics() {
             }
       } catch (err) {
             console.error("Error fetching Catalogo metrics:", err);
+      }
+}
+
+async function fetchMetricasGeral() {
+      // Check Se está na página index (onde dadosMockados exite globalmente)
+      if (typeof dadosMockados === 'undefined') return;
+
+      try {
+            const response = await fetch('http://localhost:8000/api/metricas-geral/');
+            if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+
+            // Populate dadosMockados with data from API
+            data.forEach(metric => {
+                  const p = metric.periodo;
+                  if (dadosMockados[p]) {
+                        dadosMockados[p].valorBruto = parseFloat(metric.valor_bruto);
+                        dadosMockados[p].volumeBrutoAnterior = parseFloat(metric.volume_bruto_anterior);
+                        dadosMockados[p].volumeLiquido = parseFloat(metric.volume_liquido);
+                        dadosMockados[p].volumeLiquidoAnterior = parseFloat(metric.volume_liquido_anterior);
+                        dadosMockados[p].clientes = parseInt(metric.clientes);
+                        dadosMockados[p].clientesAnterior = parseInt(metric.clientes_anterior);
+                  }
+            });
+
+            // Trigger the dashboard update with the default filter to reflect new API data
+            if (typeof filtroAtual !== 'undefined' && typeof atualizarDashboard === 'function') {
+                  atualizarDashboard(filtroAtual);
+            } else if (typeof atualizarDashboard === 'function') {
+                  // Fallback if filtroAtual is not global
+                  atualizarDashboard('7dias');
+            }
+
+      } catch (err) {
+            console.error("Error fetching Metricas Geral:", err);
       }
 }
 

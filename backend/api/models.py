@@ -134,3 +134,33 @@ class CatalogoMetrics(models.Model):
 
     def __str__(self):
         return f"Catálogo Metrics (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M')})"
+
+class MetricasGeral(models.Model):
+    PERIOD_CHOICES = [
+        ('hoje', 'Hoje'),
+        ('ultimos7dias', 'Últimos 7 dias'),
+        ('ultimas4semanas', 'Últimas 4 semanas'),
+        ('ultimos6meses', 'Últimos 6 meses'),
+        ('ultimos12meses', 'Últimos 12 meses'),
+        ('mesatedata', 'Meses até a data'),
+        ('trimesteateadata', 'Trimestre até a data'),
+        ('anoateadata', 'Ano até a data'),
+        ('desdoinicio', 'Desde o início'),
+    ]
+
+    periodo = models.CharField(max_length=20, choices=PERIOD_CHOICES, unique=True, verbose_name="Período")
+    valor_bruto = models.DecimalField(max_digits=15, decimal_places=2, default=0.00, verbose_name="Valor Bruto")
+    volume_bruto_anterior = models.DecimalField(max_digits=15, decimal_places=2, default=0.00, verbose_name="Volume Bruto Anterior")
+    volume_liquido = models.DecimalField(max_digits=15, decimal_places=2, default=0.00, verbose_name="Volume Líquido")
+    volume_liquido_anterior = models.DecimalField(max_digits=15, decimal_places=2, default=0.00, verbose_name="Volume Líquido Anterior")
+    clientes = models.IntegerField(default=0, verbose_name="Clientes")
+    clientes_anterior = models.IntegerField(default=0, verbose_name="Clientes Anterior")
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Métrica Geral (Dashboard)"
+        verbose_name_plural = "Métricas Gerais (Dashboard)"
+
+    def __str__(self):
+        return dict(self.PERIOD_CHOICES).get(self.periodo, self.periodo)

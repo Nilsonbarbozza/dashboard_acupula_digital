@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics, CatalogoMetrics
+from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics, CatalogoMetrics, MetricasGeral
 
 class DashboardMetricsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -46,4 +46,9 @@ class ClientesMetricsSerializer(serializers.ModelSerializer):
 class CatalogoMetricsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CatalogoMetrics
+        fields = '__all__'
+
+class MetricasGeralSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MetricasGeral
         fields = '__all__'
