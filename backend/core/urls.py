@@ -21,3 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
 ]
+
+admin.site.site_header = 'A Cúpula Digital - Admin'
+admin.site.site_title = 'A Cúpula Digital'
+admin.site.index_title = 'Gestão do Dashboard'

@@ -1,0 +1,171 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        /* Stripe Theme Palette */
+        --primary: #635bff;            /* Main Purple */
+        --secondary: #0a2540;          /* Dark Navy */
+        --accent: #00d4ff;             /* Cyan */
+        --primary-fg: #ffffff;         /* Text on primary */
+        
+        --body-fg: #1a1f36;            /* Primary Text */
+        --body-bg: #f6f9fc;            /* Very light bluish-gray */
+        --body-quiet-color: #425466;   /* Secondary Text */
+        --body-loud-color: #0a2540;    /* Titles */
+        
+        --header-color: #ffffff;
+        --header-branding-color: #ffffff;
+        --header-bg: #0a2540;          /* Dark Navy Header block */
+        --header-link-color: #e3e8ee;
+        
+        --breadcrumbs-fg: #425466;
+        --breadcrumbs-link-fg: #635bff;
+        --breadcrumbs-bg: #ffffff;
+        
+        --link-fg: #635bff;            /* Primary link color */
+        --link-hover-color: #0a2540;   /* Hover link color */
+        
+        --link-selected-fg: #635bff;
+        --highlight-bg: #f3f5f8;       /* Table row highlight */
+        --button-fg: #ffffff;
+        --button-bg: #635bff;          /* Buttons (Save, etc) */
+        --button-hover-bg: #0a2540;
+        
+        --default-button-bg: #8792a2;
+        --default-button-hover-bg: #425466;
+        
+        --close-button-bg: #8792a2;
+        --close-button-hover-bg: #425466;
+        --delete-button-bg: #ef4444;   /* Tailwind Red 500 */
+        --delete-button-hover-bg: #dc2626;
+        
+        --error-fg: #ef4444;
+        --message-success-bg: #10b981; /* Tailwind Emerald 500 */
+        --message-warning-bg: #f59e0b; /* Tailwind Amber 500 */
+        --message-error-bg: #ef4444;
+        
+        --border-color: #e2e8f0;
+    }
+
+    /* Global Typography overrides */
+    body, h1, h2, h3, h4, h5, h6, caption, th, td, input, button, select, textarea {
+        font-family: 'Inter', sans-serif !important;
+    }
+    
+    /* Elegant Header adjustments */
+    #header {
+        align-items: center;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        background: linear-gradient(135deg, #0a2540 0%, #1a1f36 100%);
+    }
+
+    #branding h1 {
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        font-size: 20px;
+    }
+
+    /* Floating Content wrapper to look like a card */
+    #content {
+        margin: 20px !important;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+        border: 1px solid #e2e8f0;
+        padding: 30px !important;
+        position: relative;
+    }
+
+    /* Background Stripe abstraction for body */
+    body {
+        position: relative;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        width: 150%;
+        height: 150%;
+        top: -25%;
+        left: -25%;
+        /* Stripe gradient blur approach */
+        background: radial-gradient(circle at 10% 20%, rgba(216,236,252,0.8) 0%, rgba(216,236,252,0) 40%),
+                    radial-gradient(circle at 80% 20%, rgba(255,152,0,0.15) 0%, rgba(255,152,0,0) 50%),
+                    radial-gradient(circle at 70% 80%, rgba(233,30,99,0.1) 0%, rgba(233,30,99,0) 50%),
+                    radial-gradient(circle at 30% 90%, rgba(156,39,176,0.1) 0%, rgba(156,39,176,0) 60%);
+        transform: rotate(-15deg);
+        filter: blur(80px);
+        z-index: -1;
+    }
+    
+    /* Breadcrumbs styling */
+    div.breadcrumbs {
+        background: transparent;
+        color: var(--breadcrumbs-fg);
+        font-weight: 500;
+        font-size: 13px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 20px;
+    }
+
+    /* Buttons */
+    input[type="submit"], button, .button, .submit-row input {
+        border-radius: 6px;
+        font-weight: 600;
+        padding: 8px 16px;
+        transition: transform 0.05s ease, background-color 0.15s ease;
+        text-transform: none;
+    }
+    
+    input[type="submit"]:active, button:active, .button:active {
+        transform: scale(0.98);
+    }
+
+    /* Forms & Inputs */
+    input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="number"], input[type="tel"], textarea, select, .vTextField {
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        padding: 6px 12px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        border-color: var(--primary) !important;
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
+        outline: none;
+    }
+    
+    /* Tables and Modules */
+    .module th, .module td {
+        padding: 12px;
+    }
+
+    .module caption {
+        background: var(--primary);
+        color: white;
+        border-radius: 8px 8px 0 0;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    
+    #changelist table {
+        border: 1px solid var(--border-color);
+        border-radius: 0 0 8px 8px;
+    }
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
