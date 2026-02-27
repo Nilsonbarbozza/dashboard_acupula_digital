@@ -19,8 +19,8 @@ class DashboardMetrics(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Métrica do Dropdown"
-        verbose_name_plural = "Métricas do Dropdown"
+        verbose_name = "Métricas Hoje"
+        verbose_name_plural = "Métricas Hoje"
 
     def __str__(self):
         return f"Dashboard Metrics (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M')})"
@@ -159,8 +159,8 @@ class MetricasGeral(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Métrica Geral (Dashboard)"
-        verbose_name_plural = "Métricas Gerais (Dashboard)"
+        verbose_name = "Métrica Visão Geral"
+        verbose_name_plural = "Métricas Visão Geral"
 
     def __str__(self):
         return dict(self.PERIOD_CHOICES).get(self.periodo, self.periodo)
