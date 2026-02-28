@@ -128,7 +128,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise storage to compress and cache static files
+# WhiteNoise storage: Manifest strict False prevents crashes if a file is missing
+# This is crucial when injecting custom CSS into Admin in production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_MANIFEST_STRICT = False
 
 CORS_ALLOW_ALL_ORIGINS = True
