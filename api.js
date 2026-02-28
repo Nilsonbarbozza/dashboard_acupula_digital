@@ -1,7 +1,7 @@
 // Configuração de URL da API para Produção ou Local
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
       ? 'http://localhost:8000'
-      : 'https://dashboard-acupula-digital-api.onrender.com'; // <-- Substitua pelo URL do seu Render/Railway depois
+      : 'https://dashboard-acupula-digital.onrender.com'
 
 document.addEventListener("DOMContentLoaded", () => {
       fetchMetrics();
