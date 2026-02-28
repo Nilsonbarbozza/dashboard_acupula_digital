@@ -1,3 +1,8 @@
+// Configuração de URL da API para Produção ou Local
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:8000'
+      : 'https://dashboard-acupula-digital-api.onrender.com'; // <-- Substitua pelo URL do seu Render/Railway depois
+
 document.addEventListener("DOMContentLoaded", () => {
       fetchMetrics();
       setupDropdown();
@@ -30,7 +35,7 @@ async function fetchTransacoesMetrics() {
       }
 
       try {
-            const response = await fetch('http://localhost:8000/api/transacoes/');
+            const response = await fetch(`${API_BASE_URL}/api/transacoes/`);
             if (!response.ok) {
                   throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -69,7 +74,7 @@ async function fetchSaldosMetrics() {
       if (!saldoTotalEl && !saldoEntradaEl && !saldoDisponivelEl) return;
 
       try {
-            const response = await fetch('http://localhost:8000/api/saldos/');
+            const response = await fetch(`${API_BASE_URL}/api/saldos/`);
             if (!response.ok) {
                   throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -111,7 +116,7 @@ async function fetchClientesMetrics() {
       if (!clientName1El) return;
 
       try {
-            const response = await fetch('http://localhost:8000/api/clientes/');
+            const response = await fetch(`${API_BASE_URL}/api/clientes/`);
             if (!response.ok) {
                   throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -151,7 +156,7 @@ async function fetchCatalogoMetrics() {
       if (!totalEl && !ativosEl && !arquivadosEl && !nomeProdutoEl) return;
 
       try {
-            const response = await fetch('http://localhost:8000/api/catalogo/');
+            const response = await fetch(`${API_BASE_URL}/api/catalogo/`);
             if (!response.ok) {
                   throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -180,7 +185,7 @@ async function fetchMetricasGeral() {
       if (typeof dadosMockados === 'undefined') return;
 
       try {
-            const response = await fetch('http://localhost:8000/api/metricas-geral/');
+            const response = await fetch(`${API_BASE_URL}/api/metricas-geral/`);
             if (!response.ok) {
                   throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -225,7 +230,7 @@ let globalMetrics = {
 
 async function fetchMetrics() {
       try {
-            const response = await fetch("http://localhost:8000/api/metrics/");
+            const response = await fetch(`${API_BASE_URL}/api/metrics/`);
             const data = await response.json();
             const metrics = Array.isArray(data) ? data[0] : data;
 
