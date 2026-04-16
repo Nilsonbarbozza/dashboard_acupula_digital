@@ -68,6 +68,32 @@ class TransacoesMetrics(models.Model):
     valor10 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
     valor11 = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
 
+    # nomes
+    nome1 = models.CharField(max_length=255, default="")
+    nome2 = models.CharField(max_length=255, default="")
+    nome3 = models.CharField(max_length=255, default="")
+    nome4 = models.CharField(max_length=255, default="")
+    nome5 = models.CharField(max_length=255, default="")
+    nome6 = models.CharField(max_length=255, default="")
+    nome7 = models.CharField(max_length=255, default="")
+    nome8 = models.CharField(max_length=255, default="")
+    nome9 = models.CharField(max_length=255, default="")
+    nome10 = models.CharField(max_length=255, default="")
+    nome11 = models.CharField(max_length=255, default="")
+
+    # datas
+    data1 = models.CharField(max_length=50, default="")
+    data2 = models.CharField(max_length=50, default="")
+    data3 = models.CharField(max_length=50, default="")
+    data4 = models.CharField(max_length=50, default="")
+    data5 = models.CharField(max_length=50, default="")
+    data6 = models.CharField(max_length=50, default="")
+    data7 = models.CharField(max_length=50, default="")
+    data8 = models.CharField(max_length=50, default="")
+    data9 = models.CharField(max_length=50, default="")
+    data10 = models.CharField(max_length=50, default="")
+    data11 = models.CharField(max_length=50, default="")
+
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:

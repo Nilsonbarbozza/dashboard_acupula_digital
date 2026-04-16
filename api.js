@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchCatalogoMetrics(); // Will safely ignore if elements aren't present
       fetchMetricasGeral(); // Update index.html periods
 });
-
 async function fetchTransacoesMetrics() {
       const transTudoEl = document.getElementById("transacoesTudo");
+      const transTudoFooterEl = document.getElementById("transacoesTudoFooter");
       const transOkEl = document.getElementById("transacoesOk");
       const transReembolsadosEl = document.getElementById("transacoesReembolsados");
       const transContestadosEl = document.getElementById("transacoesContestados");
@@ -29,7 +29,7 @@ async function fetchTransacoesMetrics() {
             }
       }
 
-      if (!transTudoEl && !transOkEl && !transReembolsadosEl &&
+      if (!transTudoEl && !transTudoFooterEl && !transOkEl && !transReembolsadosEl &&
             !transContestadosEl && !transMalsucedidosEl && !transNaoCapturadosEl && !hasAnyValorEl) {
             return;
       }
@@ -44,6 +44,8 @@ async function fetchTransacoesMetrics() {
 
             if (metrics) {
                   if (transTudoEl) transTudoEl.innerText = metrics.tudo;
+                  if (transTudoFooterEl) transTudoFooterEl.innerText = metrics.tudo;
+
                   if (transOkEl) transOkEl.innerText = metrics.ok;
                   if (transReembolsadosEl) transReembolsadosEl.innerText = metrics.reembolsados;
                   if (transContestadosEl) transContestadosEl.innerText = metrics.contestados;
@@ -52,11 +54,17 @@ async function fetchTransacoesMetrics() {
 
                   for (let i = 1; i <= 11; i++) {
                         const valorEl = document.getElementById(`valor${i}`);
-                        if (valorEl) {
-                              const valorKey = `valor${i}`;
-                              if (metrics[valorKey] !== undefined) {
-                                    valorEl.innerText = formatMoney(metrics[valorKey]);
-                              }
+                        const nomeEl = document.getElementById(`nome${i}`);
+                        const dataEl = document.getElementById(`data${i}`);
+
+                        if (valorEl && metrics[`valor${i}`] !== undefined) {
+                              valorEl.innerText = formatMoney(metrics[`valor${i}`]);
+                        }
+                        if (nomeEl && metrics[`nome${i}`] !== undefined) {
+                              nomeEl.innerText = metrics[`nome${i}`];
+                        }
+                        if (dataEl && metrics[`data${i}`] !== undefined) {
+                              dataEl.innerText = metrics[`data${i}`];
                         }
                   }
             }

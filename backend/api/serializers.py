@@ -25,12 +25,7 @@ class SaldosMetricsSerializer(serializers.ModelSerializer):
 class TransacoesMetricsSerializer(serializers.ModelSerializer):
     class Meta:
         model = TransacoesMetrics
-        fields = [
-            'id', 'tudo', 'ok', 'reembolsados',
-            'contestados', 'malsucedidos', 'nao_capturados',
-            'valor1', 'valor2', 'valor3', 'valor4', 'valor5', 'valor6',
-            'valor7', 'valor8', 'valor9', 'valor10', 'valor11'
-        ]
+        fields = '__all__'
 
 class ClientesMetricsSerializer(serializers.ModelSerializer):
     class Meta:
