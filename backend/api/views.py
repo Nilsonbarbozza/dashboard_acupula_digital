@@ -1,7 +1,12 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from .models import DashboardMetrics, SaldosMetrics, TransacoesMetrics, ClientesMetrics, CatalogoMetrics, MetricasGeral
-from .serializers import DashboardMetricsSerializer, SaldosMetricsSerializer, TransacoesMetricsSerializer, ClientesMetricsSerializer, CatalogoMetricsSerializer, MetricasGeralSerializer
+from .serializers import (
+    DashboardMetricsSerializer, SaldosMetricsSerializer, 
+    TransacoesMetricsSerializer, ClientesMetricsSerializer, 
+    CatalogoMetricsSerializer, MetricasGeralSerializer
+)
+from rest_framework.views import APIView
 
 class DashboardMetricsViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -123,3 +128,48 @@ class MetricasGeralViewSet(viewsets.ReadOnlyModelViewSet):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+class DashboardSnapshotView(APIView):
+    """
+    Consolida todas as métricas em uma única requisição para otimização de performance.
+    """
+    def get(self, request, format=None):
+        # 1. Dashboard Metrics
+        dash_obj = DashboardMetrics.objects.first() or DashboardMetrics.objects.create()
+        dash_data = DashboardMetricsSerializer(dash_obj).data
+
+        # 2. Saldos Metrics
+        saldos_obj = SaldosMetrics.objects.first() or SaldosMetrics.objects.create()
+        saldos_data = SaldosMetricsSerializer(saldos_obj).data
+
+        # 3. Transacoes Metrics
+        trans_obj = TransacoesMetrics.objects.first() or TransacoesMetrics.objects.create()
+        trans_data = TransacoesMetricsSerializer(trans_obj).data
+
+        # 4. Clientes Metrics
+        cli_obj = ClientesMetrics.objects.first() or ClientesMetrics.objects.create()
+        cli_data = ClientesMetricsSerializer(cli_obj).data
+
+        # 5. Catalogo Metrics
+        cat_obj = CatalogoMetrics.objects.first() or CatalogoMetrics.objects.create()
+        cat_data = CatalogoMetricsSerializer(cat_obj).data
+
+        # 6. Metricas Geral (Periods)
+        geral_qs = MetricasGeral.objects.all()
+        # Se vazio, gatilha a população automática (chamando a lógica do list do ViewSet ou repetindo-a)
+        if not geral_qs.exists():
+            # Força a criação chamando o list do viewset correspondente (simulado)
+            vs = MetricasGeralViewSet()
+            vs.queryset = geral_qs
+            vs.list(request)
+            geral_qs = MetricasGeral.objects.all()
+        geral_data = MetricasGeralSerializer(geral_qs, many=True).data
+
+        return Response({
+            "metrics": dash_data,
+            "saldos": saldos_data,
+            "transacoes": trans_data,
+            "clientes": cli_data,
+            "catalogo": cat_data,
+            "metricas_geral": geral_data
+        })

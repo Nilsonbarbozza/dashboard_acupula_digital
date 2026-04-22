@@ -1,6 +1,11 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import DashboardMetricsViewSet, SaldosMetricsViewSet, TransacoesMetricsViewSet, ClientesMetricsViewSet, CatalogoMetricsViewSet, MetricasGeralViewSet
+from .views import (
+    DashboardMetricsViewSet, SaldosMetricsViewSet, 
+    TransacoesMetricsViewSet, ClientesMetricsViewSet, 
+    CatalogoMetricsViewSet, MetricasGeralViewSet,
+    DashboardSnapshotView
+)
 
 router = DefaultRouter()
 router.register(r'metrics', DashboardMetricsViewSet, basename='metrics')
@@ -12,4 +17,5 @@ router.register(r'metricas-geral', MetricasGeralViewSet, basename='metricas-gera
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('snapshot/', DashboardSnapshotView.as_view(), name='snapshot'),
 ]

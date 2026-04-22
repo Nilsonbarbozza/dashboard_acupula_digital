@@ -3,204 +3,152 @@ const API_BASE_URL = window.location.hostname === 'localhost' || window.location
       ? 'http://localhost:8000'
       : 'https://dashboard-acupula-digital.onrender.com'
 
-document.addEventListener("DOMContentLoaded", () => {
-      fetchMetrics();
+// Estado Global de Métricas (com fallback de segurança)
+let globalMetrics = {
+      volumebruto: 0,
+      volumebruto_ontem: 0,
+      novosclientes: 0,
+      novosclientes_ontem: 0,
+      pagamentos: 0,
+      pagamentos_ontem: 0,
+      volumeliquido: 0,
+      volumeliquido_ontem: 0
+};
+
+// Inicia a busca o mais rápido possível
+let snapshotPromise = fetchSnapshot();
+
+document.addEventListener("DOMContentLoaded", async () => {
+      // 1. Tenta carregar do cache para exibição INSTANTÂNEA
+      loadFromCache();
+      
+      // 2. Configura a UI (Dropdowns, etc)
       setupDropdown();
-      fetchSaldosMetrics(); // Will safely ignore if elements aren't present
-      fetchTransacoesMetrics(); // Will safely ignore if elements aren't present
-      fetchClientesMetrics(); // Will safely ignore if elements aren't present
-      fetchCatalogoMetrics(); // Will safely ignore if elements aren't present
-      fetchMetricasGeral(); // Update index.html periods
+      
+      // 3. Aguarda a resposta real do servidor (Snapshot Consolidado)
+      const data = await snapshotPromise;
+      if (data) {
+            applySnapshot(data);
+            saveToCache(data);
+            console.log("Dashboard atualizado com dados reais via Snapshot.");
+      }
 });
-async function fetchTransacoesMetrics() {
-      const transTudoEl = document.getElementById("transacoesTudo");
-      const transTudoFooterEl = document.getElementById("transacoesTudoFooter");
-      const transOkEl = document.getElementById("transacoesOk");
-      const transReembolsadosEl = document.getElementById("transacoesReembolsados");
-      const transContestadosEl = document.getElementById("transacoesContestados");
-      const transMalsucedidosEl = document.getElementById("transacoesMalsucedidos");
-      const transNaoCapturadosEl = document.getElementById("transacoesNaoCapturados");
 
-      let hasAnyValorEl = false;
-      for (let i = 1; i <= 11; i++) {
-            if (document.getElementById(`valor${i}`)) {
-                  hasAnyValorEl = true;
-                  break;
-            }
-      }
-
-      if (!transTudoEl && !transTudoFooterEl && !transOkEl && !transReembolsadosEl &&
-            !transContestadosEl && !transMalsucedidosEl && !transNaoCapturadosEl && !hasAnyValorEl) {
-            return;
-      }
-
+async function fetchSnapshot() {
       try {
-            const response = await fetch(`${API_BASE_URL}/api/transacoes/`);
-            if (!response.ok) {
-                  throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            const metrics = Array.isArray(data) ? data[0] : data;
-
-            if (metrics) {
-                  if (transTudoEl) transTudoEl.innerText = metrics.tudo;
-                  if (transTudoFooterEl) transTudoFooterEl.innerText = metrics.tudo;
-
-                  if (transOkEl) transOkEl.innerText = metrics.ok;
-                  if (transReembolsadosEl) transReembolsadosEl.innerText = metrics.reembolsados;
-                  if (transContestadosEl) transContestadosEl.innerText = metrics.contestados;
-                  if (transMalsucedidosEl) transMalsucedidosEl.innerText = metrics.malsucedidos;
-                  if (transNaoCapturadosEl) transNaoCapturadosEl.innerText = metrics.nao_capturados;
-
-                  for (let i = 1; i <= 11; i++) {
-                        const valorEl = document.getElementById(`valor${i}`);
-                        const nomeEl = document.getElementById(`nome${i}`);
-                        const dataEl = document.getElementById(`data${i}`);
-
-                        if (valorEl && metrics[`valor${i}`] !== undefined) {
-                              valorEl.innerText = formatMoney(metrics[`valor${i}`]);
-                        }
-                        if (nomeEl && metrics[`nome${i}`] !== undefined) {
-                              nomeEl.innerText = metrics[`nome${i}`];
-                        }
-                        if (dataEl && metrics[`data${i}`] !== undefined) {
-                              dataEl.innerText = metrics[`data${i}`];
-                        }
-                  }
-            }
+            const response = await fetch(`${API_BASE_URL}/api/snapshot/`);
+            if (!response.ok) throw new Error(`Snapshot error! status: ${response.status}`);
+            return await response.json();
       } catch (err) {
-            console.error("Error fetching Transacoes metrics:", err);
+            console.error("Falha ao buscar snapshot:", err);
+            return null;
       }
 }
 
-async function fetchSaldosMetrics() {
-      // Check if we are on the Saldos page by looking for the IDs
-      const saldoTotalEl = document.getElementById("saldoTotal");
-      const saldoEntradaEl = document.getElementById("saldoEntrada");
-      const saldoDisponivelEl = document.getElementById("saldoDisponivel");
-
-      if (!saldoTotalEl && !saldoEntradaEl && !saldoDisponivelEl) return;
-
-      try {
-            const response = await fetch(`${API_BASE_URL}/api/saldos/`);
-            if (!response.ok) {
-                  throw new Error(`HTTP error! status: ${response.status}`);
+function loadFromCache() {
+      const cached = localStorage.getItem('dashboard_snapshot');
+      if (cached) {
+            try {
+                  const data = JSON.parse(cached);
+                  applySnapshot(data, true); // true = carregamento silencioso de cache
+                  console.log("Dados carregados do cache local.");
+            } catch (e) {
+                  console.error("Erro ao ler cache:", e);
             }
-            const data = await response.json();
-
-            // The API returns an array, so we get the first record
-            const metrics = Array.isArray(data) ? data[0] : data;
-
-            if (metrics) {
-                  if (saldoTotalEl) saldoTotalEl.innerText = formatMoney(metrics.saldo_total);
-                  if (saldoEntradaEl) saldoEntradaEl.innerText = formatMoney(metrics.entrada);
-                  if (saldoDisponivelEl) saldoDisponivelEl.innerText = formatMoney(metrics.disponivel);
-
-                  // Atividades Recentes
-                  const ativ1Val = document.getElementById("atividade1Valor");
-                  const ativ1Dat = document.getElementById("atividade1Data");
-                  const ativ2Val = document.getElementById("atividade2Valor");
-                  const ativ2Dat = document.getElementById("atividade2Data");
-                  const ativ3Val = document.getElementById("atividade3Valor");
-                  const ativ3Dat = document.getElementById("atividade3Data");
-
-                  if (ativ1Val) ativ1Val.innerText = formatMoney(metrics.atividade_1_valor);
-                  if (ativ1Dat) ativ1Dat.innerText = metrics.atividade_1_data || "";
-
-                  if (ativ2Val) ativ2Val.innerText = formatMoney(metrics.atividade_2_valor);
-                  if (ativ2Dat) ativ2Dat.innerText = metrics.atividade_2_data || "";
-
-                  if (ativ3Val) ativ3Val.innerText = formatMoney(metrics.atividade_3_valor);
-                  if (ativ3Dat) ativ3Dat.innerText = metrics.atividade_3_data || "";
-            }
-      } catch (err) {
-            console.error("Error fetching Saldos metrics:", err);
       }
 }
 
-async function fetchClientesMetrics() {
-      // Check if we are on the Clientes page by looking for the ID
-      const clientName1El = document.getElementById("clientName1");
-      if (!clientName1El) return;
-
-      try {
-            const response = await fetch(`${API_BASE_URL}/api/clientes/`);
-            if (!response.ok) {
-                  throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            const metrics = Array.isArray(data) ? data[0] : data;
-
-            if (metrics) {
-                  for (let i = 1; i <= 12; i++) {
-                        const nameEl = document.getElementById(`clientName${i}`);
-                        const emailEl = document.getElementById(`clientEmail${i}`);
-
-                        if (nameEl && metrics[`nome${i}`]) {
-                              nameEl.innerHTML = `&nbsp; ${metrics["nome" + i]}`;
-                        }
-                        if (emailEl && metrics[`email${i}`]) {
-                              emailEl.innerText = metrics[`email${i}`];
-                        }
-                  }
-            }
-      } catch (err) {
-            console.error("Error fetching Clientes metrics:", err);
-      }
+function saveToCache(data) {
+      localStorage.setItem('dashboard_snapshot', JSON.stringify(data));
 }
 
-async function fetchCatalogoMetrics() {
-      // Check Se está na página de catalogo
-      const totalEl = document.getElementById("produtos-total");
-      const ativosEl = document.getElementById("produtos-ativos");
-      const arquivadosEl = document.getElementById("produtos-arquivados");
+function applySnapshot(data, isCache = false) {
+      if (!data) return;
 
-      // Table elements
-      const nomeProdutoEl = document.getElementById("nome-produto");
-      const precoProdutoEl = document.getElementById("preco-produto");
-      const dataProdutoEl = document.getElementById("data-produto");
-      const dataAtualizadoEl = document.getElementById("data-atualizado");
+      // 1. Dashboard Metrics (Volume Bruto, etc)
+      if (data.metrics) {
+            const metrics = data.metrics;
+            globalMetrics.volumebruto = metrics.volume_bruto;
+            globalMetrics.volumebruto_ontem = metrics.volume_bruto_ontem;
+            globalMetrics.novosclientes = metrics.novos_clientes;
+            globalMetrics.novosclientes_ontem = metrics.novos_clientes_ontem;
+            globalMetrics.pagamentos = metrics.pagamentos_realizados;
+            globalMetrics.pagamentos_ontem = metrics.pagamentos_realizados_ontem;
+            globalMetrics.volumeliquido = metrics.volume_liquido;
+            globalMetrics.volumeliquido_ontem = metrics.volume_liquido_ontem;
 
-      if (!totalEl && !ativosEl && !arquivadosEl && !nomeProdutoEl) return;
-
-      try {
-            const response = await fetch(`${API_BASE_URL}/api/catalogo/`);
-            if (!response.ok) {
-                  throw new Error(`HTTP error! status: ${response.status}`);
+            // Independente (USD/Repasses)
+            const saldoUSDEl = document.getElementById("saldoUSD");
+            if (saldoUSDEl) {
+                  const spanInner = saldoUSDEl.querySelector("span");
+                  if (spanInner) spanInner.innerText = formatMoney(metrics.saldo_usd);
             }
-            const data = await response.json();
-            const metrics = Array.isArray(data) ? data[0] : data;
-
-            if (metrics) {
-                  // Top KPIs
-                  if (totalEl) totalEl.innerText = metrics.total;
-                  if (ativosEl) ativosEl.innerText = metrics.ativos;
-                  if (arquivadosEl) arquivadosEl.innerText = metrics.arquivados;
-
-                  // Table Row
-                  if (nomeProdutoEl) nomeProdutoEl.innerHTML = `&nbsp; ${metrics.produto_nome}`;
-                  if (precoProdutoEl) precoProdutoEl.innerText = formatMoney(metrics.produto_preco);
-                  if (dataProdutoEl) dataProdutoEl.innerText = metrics.produto_data;
-                  if (dataAtualizadoEl) dataAtualizadoEl.innerText = metrics.produto_data_atualizado;
+            const repassesEl = document.getElementById("repassesValor");
+            if (repassesEl) {
+                  const spanInner = repassesEl.querySelector("span");
+                  if (spanInner) spanInner.innerText = formatMoney(metrics.repasses);
             }
-      } catch (err) {
-            console.error("Error fetching Catalogo metrics:", err);
+
+            updateDisplayValue();
       }
-}
 
-async function fetchMetricasGeral() {
-      // Check Se está na página index (onde dadosMockados exite globalmente)
-      if (typeof dadosMockados === 'undefined') return;
+      // 2. Saldos
+      if (data.saldos) {
+            const s = data.saldos;
+            updateElementText("saldoTotal", formatMoney(s.saldo_total));
+            updateElementText("saldoEntrada", formatMoney(s.entrada));
+            updateElementText("saldoDisponivel", formatMoney(s.disponivel));
+            
+            updateElementText("atividade1Valor", formatMoney(s.atividade_1_valor));
+            updateElementText("atividade1Data", s.atividade_1_data || "");
+            updateElementText("atividade2Valor", formatMoney(s.atividade_2_valor));
+            updateElementText("atividade2Data", s.atividade_2_data || "");
+            updateElementText("atividade3Valor", formatMoney(s.atividade_3_valor));
+            updateElementText("atividade3Data", s.atividade_3_data || "");
+      }
 
-      try {
-            const response = await fetch(`${API_BASE_URL}/api/metricas-geral/`);
-            if (!response.ok) {
-                  throw new Error(`HTTP error! status: ${response.status}`);
+      // 3. Transações
+      if (data.transacoes) {
+            const t = data.transacoes;
+            updateElementText("transacoesTudo", t.tudo);
+            updateElementText("transacoesTudoFooter", t.tudo);
+            updateElementText("transacoesOk", t.ok);
+            updateElementText("transacoesReembolsados", t.reembolsados);
+            updateElementText("transacoesContestados", t.contestados);
+            updateElementText("transacoesMalsucedidos", t.malsucedidos);
+            updateElementText("transacoesNaoCapturados", t.nao_capturados);
+
+            for (let i = 1; i <= 11; i++) {
+                  updateElementText(`valor${i}`, formatMoney(t[`valor${i}`]));
+                  updateElementHTML(`nome${i}`, `&nbsp; ${t[`nome${i}`] || ''}`);
+                  updateElementText(`data${i}`, t[`data${i}`] || "");
             }
-            const data = await response.json();
+      }
 
-            // Populate dadosMockados with data from API
-            data.forEach(metric => {
+      // 4. Clientes
+      if (data.clientes) {
+            const c = data.clientes;
+            for (let i = 1; i <= 12; i++) {
+                  updateElementHTML(`clientName${i}`, `&nbsp; ${c[`nome${i}`] || ''}`);
+                  updateElementText(`clientEmail${i}`, c[`email${i}`] || "");
+            }
+      }
+
+      // 5. Catálogo
+      if (data.catalogo) {
+            const cat = data.catalogo;
+            updateElementText("produtos-total", cat.total);
+            updateElementText("produtos-ativos", cat.ativos);
+            updateElementText("produtos-arquivados", cat.arquivados);
+            updateElementHTML("nome-produto", `&nbsp; ${cat.produto_nome || ''}`);
+            updateElementText("preco-produto", formatMoney(cat.produto_preco));
+            updateElementText("data-produto", cat.produto_data);
+            updateElementText("data-atualizado", cat.produto_data_atualizado);
+      }
+
+      // 6. Métricas Geral (Chart data)
+      if (data.metricas_geral && typeof dadosMockados !== 'undefined') {
+            data.metricas_geral.forEach(metric => {
                   const p = metric.periodo;
                   if (dadosMockados[p]) {
                         dadosMockados[p].valorBruto = parseFloat(metric.valor_bruto);
@@ -211,96 +159,53 @@ async function fetchMetricasGeral() {
                         dadosMockados[p].clientesAnterior = parseInt(metric.clientes_anterior);
                   }
             });
-
-            // Trigger the dashboard update with the default filter to reflect new API data
-            if (typeof filtroAtual !== 'undefined' && typeof atualizarDashboard === 'function') {
-                  atualizarDashboard(filtroAtual);
-            } else if (typeof atualizarDashboard === 'function') {
-                  // Fallback if filtroAtual is not global
-                  atualizarDashboard('7dias');
+            if (typeof atualizarDashboard === 'function') {
+                  const filtro = typeof filtroAtual !== 'undefined' ? filtroAtual : '7dias';
+                  atualizarDashboard(filtro);
             }
-
-      } catch (err) {
-            console.error("Error fetching Metricas Geral:", err);
       }
 }
 
-let globalMetrics = {
-      volumebruto: 13812.00,
-      volumebruto_ontem: 9758.00,
-      novosclientes: 45,
-      novosclientes_ontem: 40,
-      pagamentos: 120,
-      pagamentos_ontem: 110,
-      volumeliquido: 9000.00,
-      volumeliquido_ontem: 8500.00
-};
+// Helpers Utilitários
+function updateElementText(id, text) {
+      const el = document.getElementById(id);
+      if (el) el.innerText = text;
+}
 
-async function fetchMetrics() {
-      try {
-            const response = await fetch(`${API_BASE_URL}/api/metrics/`);
-            const data = await response.json();
-            const metrics = Array.isArray(data) ? data[0] : data;
-
-            if (metrics) {
-                  globalMetrics.volumebruto = metrics.volume_bruto;
-                  globalMetrics.volumebruto_ontem = metrics.volume_bruto_ontem;
-
-                  globalMetrics.novosclientes = metrics.novos_clientes;
-                  globalMetrics.novosclientes_ontem = metrics.novos_clientes_ontem;
-
-                  globalMetrics.pagamentos = metrics.pagamentos_realizados;
-                  globalMetrics.pagamentos_ontem = metrics.pagamentos_realizados_ontem;
-
-                  globalMetrics.volumeliquido = metrics.volume_liquido;
-                  globalMetrics.volumeliquido_ontem = metrics.volume_liquido_ontem;
-
-                  // Update Independent Static Metrics
-                  const saldoUSDEl = document.getElementById("saldoUSD");
-                  if (saldoUSDEl) {
-                        const spanInner = saldoUSDEl.querySelector("span");
-                        if (spanInner) spanInner.innerText = formatMoney(metrics.saldo_usd);
-                  }
-
-                  const repassesEl = document.getElementById("repassesValor");
-                  if (repassesEl) {
-                        const spanInner = repassesEl.querySelector("span");
-                        if (spanInner) spanInner.innerText = formatMoney(metrics.repasses);
-                  }
-
-                  // Update the currently selected exact metric UI immediately
-                  updateDisplayValue();
-            }
-      } catch (err) {
-            console.error("Error fetching metrics:", err);
-      }
+function updateElementHTML(id, html) {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
 }
 
 function formatMoney(value) {
-      if (!value) return "$ 0.00";
+      if (!value && value !== 0) return "$ 0.00";
       return "$ " + parseFloat(value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function updateDisplayValue() {
       const valorAtualEl = document.getElementById("valorAtual");
       const valorOntemEl = document.getElementById("valorOntem");
-
       if (!valorAtualEl) return;
 
       const metricType = valorAtualEl.getAttribute("data-metric");
 
-      if (metricType === "volumebruto") {
-            valorAtualEl.innerText = formatMoney(globalMetrics.volumebruto);
-            if (valorOntemEl) valorOntemEl.innerText = formatMoney(globalMetrics.volumebruto_ontem);
-      } else if (metricType === "novosclientes") {
-            valorAtualEl.innerText = globalMetrics.novosclientes;
-            if (valorOntemEl) valorOntemEl.innerText = globalMetrics.novosclientes_ontem;
-      } else if (metricType === "pagamentos") {
-            valorAtualEl.innerText = globalMetrics.pagamentos;
-            if (valorOntemEl) valorOntemEl.innerText = globalMetrics.pagamentos_ontem;
-      } else if (metricType === "volumeliquido") {
-            valorAtualEl.innerText = formatMoney(globalMetrics.volumeliquido);
-            if (valorOntemEl) valorOntemEl.innerText = formatMoney(globalMetrics.volumeliquido_ontem);
+      switch(metricType) {
+            case "volumebruto":
+                  valorAtualEl.innerText = formatMoney(globalMetrics.volumebruto);
+                  if (valorOntemEl) valorOntemEl.innerText = formatMoney(globalMetrics.volumebruto_ontem);
+                  break;
+            case "novosclientes":
+                  valorAtualEl.innerText = globalMetrics.novosclientes;
+                  if (valorOntemEl) valorOntemEl.innerText = globalMetrics.novosclientes_ontem;
+                  break;
+            case "pagamentos":
+                  valorAtualEl.innerText = globalMetrics.pagamentos;
+                  if (valorOntemEl) valorOntemEl.innerText = globalMetrics.pagamentos_ontem;
+                  break;
+            case "volumeliquido":
+                  valorAtualEl.innerText = formatMoney(globalMetrics.volumeliquido);
+                  if (valorOntemEl) valorOntemEl.innerText = formatMoney(globalMetrics.volumeliquido_ontem);
+                  break;
       }
 }
 
@@ -310,30 +215,23 @@ function setupDropdown() {
 
       if (!menuButton || !dropdownMenu) return;
 
-      // Move dropdown to body to bypass overflow: hidden limits
       document.body.appendChild(dropdownMenu);
 
-      // Toggle dropdown
       menuButton.addEventListener("click", function (e) {
             e.stopPropagation();
-
-            // Position the dropdown dynamically right below the button
             const rect = menuButton.getBoundingClientRect();
             dropdownMenu.style.position = 'absolute';
             dropdownMenu.style.top = `${rect.bottom + window.scrollY + 8}px`;
             dropdownMenu.style.left = `${rect.left + window.scrollX}px`;
-
             dropdownMenu.classList.toggle("hidden");
       });
 
-      // Hide dropdown when clicking outside
       document.addEventListener("click", function (e) {
             if (!menuButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
                   dropdownMenu.classList.add("hidden");
             }
       });
 
-      // Handle option selection
       const options = dropdownMenu.querySelectorAll(".option-item");
       const labelSpan = document.getElementById("metricaSelecionadaLabel");
       const valorAtualSpan = document.getElementById("valorAtual");
@@ -341,40 +239,26 @@ function setupDropdown() {
       options.forEach(option => {
             option.addEventListener("click", function (e) {
                   e.stopPropagation();
-
-                  // 1. Update text label
                   const metricName = this.querySelector("span").innerText;
-                  if (labelSpan) {
-                        labelSpan.innerText = metricName;
-                  }
+                  if (labelSpan) labelSpan.innerText = metricName;
 
-                  // 2. Visual indicator (check mark)
                   options.forEach(opt => {
                         opt.classList.remove("selected");
-                        const svg = opt.querySelector("svg");
-                        if (svg) {
-                              svg.classList.remove("text-blue-500");
-                              svg.classList.add("text-gray-300", "opacity-0");
-                        }
+                        const _svg = opt.querySelector("svg");
+                        if (_svg) _svg.classList.replace("text-blue-500", "text-gray-300");
+                        if (_svg) _svg.classList.add("opacity-0");
                   });
 
                   this.classList.add("selected");
                   const activeSvg = this.querySelector("svg");
                   if (activeSvg) {
-                        activeSvg.classList.remove("text-gray-300", "opacity-0");
-                        activeSvg.classList.add("text-blue-500");
+                        activeSvg.classList.replace("text-gray-300", "text-blue-500");
+                        activeSvg.classList.remove("opacity-0");
                   }
 
-                  // 3. Update data-metric attribute
                   const newMetric = this.getAttribute("data-metric");
-                  if (valorAtualSpan) {
-                        valorAtualSpan.setAttribute("data-metric", newMetric);
-                  }
-
-                  // 4. Update the displayed value based on globally stored metrics
+                  if (valorAtualSpan) valorAtualSpan.setAttribute("data-metric", newMetric);
                   updateDisplayValue();
-
-                  // 5. Close dropdown
                   dropdownMenu.classList.add("hidden");
             });
       });
